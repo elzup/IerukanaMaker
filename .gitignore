@@ -1,0 +1,13 @@
+
+application/config/development/
+application/config/production/
+
+license.txt
+
+htdocs/pro/
+htdocs/test/
+htdocs/robots.txt
+htdocs/sitemap.xml
+htdocs/.htaccess
+
+/nbproject/private/
