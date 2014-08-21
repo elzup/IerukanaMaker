@@ -12,4 +12,6 @@ htdocs/robots.txt
 htdocs/sitemap.xml
 htdocs/.htaccess
 
-/nbproject/private/
+node_modules/
+
+nbproject/private/
