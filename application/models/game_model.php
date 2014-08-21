@@ -1,6 +1,6 @@
 <?php
 
-class User_model extends CI_Model {
+class Game_model extends CI_Model {
 
 	private $twitter_connection;
 

@@ -3,12 +3,14 @@
 class Userobj {
 
 	public $twitter_connection;
+	public $id_user;
 	public $id_twitter;
 	public $screen_name;
 	public $img_url;
 
-	function __construct($c = NULL, $id_twitter = NULL, $screen_name = NULL, $img = NULL) {
+	function __construct($c = NULL, $id_user = NULL, $id_twitter = NULL, $screen_name = NULL, $img = NULL) {
 		$this->twitter_connection = $c;
+		$this->id_user = $id_user;
 		$this->id_twitter = $id_twitter;
 		$this->screen_name = $screen_name;
 		$this->img_url = $img;

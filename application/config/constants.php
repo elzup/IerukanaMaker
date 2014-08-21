@@ -46,8 +46,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 /*
  * BaseSiteInfo
  */
-define('SITE_NAME', '言えるかなメーカー');
-define('SITE_DESCRIPTION', '言えるかなメーカーは言えるかなを作成できるサイトです');
+define('SITE_NAME', '言えるかな？');
+define('SITE_DESCRIPTION', '言えるかなゲームを作成したりプレイできるサイトです');
 
 define('META_KEYWORDS', '言えるかな,ierukana');
 
@@ -90,11 +90,11 @@ define('DB_CN_GAMES_WORDS_NUM', 'words_num');
 define('DB_CN_GAMES_WORDS_UNIT', 'words_unit');
 
 define('DB_TN_WORDS', 'words');
-define('DB_TN_WORDS_ID', 'word_id');
-define('DB_TN_WORDS_GAME_ID', 'game_id');
-define('DB_TN_WORDS_TEXT', 'word_text');
-define('DB_TN_WORDS_POINT_POSITIVE', 'point_positive');
-define('DB_TN_WORDS_POINT_NEGATIVE', 'point_negative');
+define('DB_CN_WORDS_ID', 'word_id');
+define('DB_CN_WORDS_GAME_ID', 'game_id');
+define('DB_CN_WORDS_TEXT', 'word_text');
+define('DB_CN_WORDS_POINT_POSITIVE', 'point_positive');
+define('DB_CN_WORDS_POINT_NEGATIVE', 'point_negative');
 
 
 /* End of file constants.php */
