@@ -17,6 +17,7 @@ class Metaobj
 
 	public function __construct()
 	{
+		$this->url = $_SERVER['REQUEST_URI'];
 		$this->title = SITE_NAME;
 		$this->title_meta = SITE_NAME;
 		$this->keywords = META_KEYWORDS ? explode(',', META_KEYWORDS) : array();
@@ -62,9 +63,21 @@ class Metaobj
 // call methods to setup several page case
 	public function setup_top()
 	{
-		$this->url = base_url();
 		$this->description = SITE_DESCRIPTION;
 		$this->type = 'website';
 	}
 
+	public function setup_game($game)
+	{
+		// TODO: for game obj
+		$this->set_title("todo game");
+		$this->description = "新しい言えるかなゲームの作成ページ";
+	}
+
+	public function setup_make()
+	{
+		$this->set_title("言えるかな？の作成");
+		$this->description = "新しい言えるかなゲームの作成ページ";
+		$this->no_meta = TRUE;
+	}
 }
