@@ -3,6 +3,8 @@
 class Index extends CI_Controller
 {
 
+	/** @var Game_model */
+	public $game;
 	/** @var User_model */
 	public $user;
 
@@ -10,7 +12,7 @@ class Index extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model', 'user', TRUE);
-		$this->load->model('User_model', 'user', TRUE);
+		$this->load->model('Game_model', 'game', TRUE);
 	}
 
 	public function index()

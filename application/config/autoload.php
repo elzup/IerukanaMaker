@@ -56,6 +56,8 @@ $autoload['libraries'] = array(
 	'metaobj',
 	'userobj',
 	'session',
+	'gameobj',
+	'wordobj',
 );
 
 
