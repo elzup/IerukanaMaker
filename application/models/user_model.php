@@ -35,10 +35,9 @@ class User_model extends CI_Model
 	function check_login()
 	{
 
-		$tcp = $this->config->item('TWITTER_CONSUMER');
-		$twitter_config = @$tcp[$mode];
+		$twitter_config = $this->config->item('TWITTER_CONSUMER');
 
-		$access_token = @$this->session->userdata('access_token_' . $mode);
+		$access_token = @$this->session->userdata('access_token');
 		if (empty($access_token['oauth_token'])) {
 			return FALSE;
 		}
