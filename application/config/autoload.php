@@ -52,7 +52,10 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+$autoload['libraries'] = array(
+	'metaobj',
+	'session',
+);
 
 
 /*
@@ -64,7 +67,11 @@ $autoload['libraries'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array(
+	'url',
+	'func',
+	'parts',
+);
 
 
 /*
@@ -80,7 +87,9 @@ $autoload['helper'] = array();
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array(
+	'my_twitter',
+);
 
 
 /*

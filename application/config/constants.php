@@ -43,7 +43,57 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 |
 */
 
-define('PATH_IMG', 'images');
+/*
+ * BaseSiteInfo
+ */
+define('SITE_NAME', '言えるかなメーカー');
+define('SITE_DESCRIPTION', '言えるかなメーカーは言えるかなを作成できるサイトです');
+
+define('META_KEYWORDS', '言えるかな,ierukana');
+
+define('PATH_IMG', 'images/');
+define('PATH_LIB', 'lib/');
+define('PATH_JS', 'js/');
+define('PATH_STYLE', 'style/');
+define('PATH_GAME', 'g/');
+define('PATH_USER', 'u/');
+define('PATH_AUTH', 'auth/');
+
+define('PATH_AUTH_LOGIN', 'login');
+define('PATH_AUTH_END', PATH_AUTH . 'end');
+define('PATH_AUTH_LOGOUT', 'logout');
+
+define('PATH_STYLE_CSS_MAIN', PATH_STYLE . 'main.css');
+define('PATH_GOOGLE', 'google');
+define('PATH_GOOGLE_ANALYTICS', PATH_GOOGLE . '/analyticstracking.php');
+define('PATH_BOOTSTRAP_CSS', PATH_LIB . 'bootstrap/css/bootstrap.min.css');
+define('PATH_BOOTSTRAP_JS', PATH_LIB . 'bootstrap/js/bootstrap.min.js');
+
+
+/* online lib url */
+define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');
+define('URL_YAHOO_RESET_CSS', 'http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css');
+define('URL_JQUERY', 'https://code.jquery.com/jquery.js');
+
+/* DB constnats */
+define('DB_TN_USERS', 'users');
+define('DB_CN_USERS_ID', 'user_id');
+define('DB_CN_USERS_TWITTER_USER_ID', 'twitter_user_id');
+
+define('DB_TN_GAMES', 'games');
+define('DB_CN_GAMES_ID', 'game_id');
+define('DB_CN_GAMES_USER_ID', 'user_id');
+define('DB_CN_GAMES_NAME', 'game_name');
+define('DB_CN_GAMES_DESCRIPTION', 'game_description');
+define('DB_CN_GAMES_WORDS_NUM', 'words_num');
+define('DB_CN_GAMES_WORDS_UNIT', 'words_unit');
+
+define('DB_TN_WORDS', 'words');
+define('DB_TN_WORDS_ID', 'word_id');
+define('DB_TN_WORDS_GAME_ID', 'game_id');
+define('DB_TN_WORDS_TEXT', 'word_text');
+define('DB_TN_WORDS_POINT_POSITIVE', 'point_positive');
+define('DB_TN_WORDS_POINT_NEGATIVE', 'point_negative');
 
 
 /* End of file constants.php */

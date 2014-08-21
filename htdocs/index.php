@@ -18,11 +18,15 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+$home_path = '../';
+
 define ('ENVIRONMENT_DEVELOPMENT', 'development');
 define ('ENVIRONMENT_TESTING', 'testing');
 define ('ENVIRONMENT_PRODUCTION', 'production');
 
 if (file_exists('env_pro')) {
+    define('ENVIRONMENT', ENVIRONMENT_PRODUCTION);
+} else {
     define('ENVIRONMENT', ENVIRONMENT_DEVELOPMENT);
 }
 /*
@@ -66,7 +70,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	$system_path = $home_path . 'system';
 
 /*
  *---------------------------------------------------------------
@@ -82,7 +86,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	$application_folder = $home_path . 'application';
 
 /*
  * --------------------------------------------------------------------

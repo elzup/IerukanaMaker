@@ -1,6 +1,7 @@
 
 application/config/development/
 application/config/production/
+application/config/testing/
 
 license.txt
 plan/

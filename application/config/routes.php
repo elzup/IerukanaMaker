@@ -38,9 +38,21 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "index";
 $route['404_override'] = '';
 
+
+$route['g'] = 'game';
+$route['g/(.*)'] = 'game/$1';
+
+$route['s'] = 'search';
+$route['s/'] = 'search/$1';
+
+$route['u'] = 'user';
+$route['u/(.*)'] = 'user/$1';
+
+$route['login'] = 'auth/login';
+$route['logout'] = 'auth/logout';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
