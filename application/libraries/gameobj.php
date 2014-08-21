@@ -21,5 +21,9 @@ class Gameobj {
 		$this->description = $obj->{DB_CN_GAMES_DESCRIPTION};
 	}
 
+	public function get_words_num() {
+		return count($this->word_list);
+	}
+
 }
 
