@@ -58,7 +58,8 @@ define('PATH_STYLE', 'style/');
 define('PATH_GAME', 'g/');
 define('PATH_USER', 'u/');
 define('PATH_AUTH', 'auth/');
-define('PATH_MAKE', 'auth/');
+define('PATH_MAKE', 'make/');
+define('PATH_MAKE_POST', 'make/post');
 
 define('PATH_AUTH_LOGIN', 'login');
 define('PATH_AUTH_END', PATH_AUTH . 'end');

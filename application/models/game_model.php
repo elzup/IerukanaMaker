@@ -14,6 +14,7 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_USER_ID, $game->user_id);
 		$this->db->set(DB_CN_GAMES_NAME, $game->name);
 		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
+		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->get_words_num());
 		$this->db->insert(DB_TN_GAMES);
 		return $this->db->insert_id();

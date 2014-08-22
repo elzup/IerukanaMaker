@@ -6,7 +6,7 @@
 <?= tag_script_js(base_url(PATH_BOOTSTRAP_JS)); ?> 
 
 <!-- js of act on all page-->
-<?= tag_script_js(base_url(PATH_JS . 'helper.js')); ?>
+<?= tag_script_js(base_url(PATH_JS . 'script.js')); ?>
 
 <?php
 if (!empty($jss)) {

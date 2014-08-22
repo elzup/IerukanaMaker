@@ -5,6 +5,7 @@ class Gameobj {
 	public $user_id;
 	public $name;
 	public $description;
+	public $word_unit;
 	/**
 	 * ワードリスト
 	 * @var Wordobj[]
@@ -19,6 +20,7 @@ class Gameobj {
 		$this->user_id = $obj->{DB_CN_GAMES_USER_ID};
 		$this->name = $obj->{DB_CN_GAMES_NAME};
 		$this->description = $obj->{DB_CN_GAMES_DESCRIPTION};
+		$this->word_unit = $obj->{DB_CN_GAMES_WORDS_UNIT};
 	}
 
 	public function get_words_num() {
