@@ -2,21 +2,6 @@
 $ ->
     # TODO: それぞれのフォームでのチェック
 
-#    include_list = ->
-#        for j in [16...32]
-#            rowDiv = $("<div/>").addClass("row row-word")
-#            for i in [0...8]
-#                rowDiv.append($("<div/>").addClass("wordbox").attr
-#                    id: "input_word_" + j * 8 + i
-#                    name: "word-" + j * 8 + i
-#                    maxlength: 10
-#                    value: ""
-#                    placeholder: "---"
-#                    type: "text"
-#                )
-#            console.log rowDiv
-#            $("#word-list-box").append(rowDiv)
-    # TODO: enter時も
     add_list = ->
 #        include_list()
         add_text = $('#input_add').val()
@@ -29,8 +14,13 @@ $ ->
                 if add_words.length == 0
                     return false
         $('#input_add').val("")
+        wordbox_change()
 
     $('#submit-add').click add_list
+    $('#input_add').on("keypress", (e) ->
+        if e.which == 13
+            add_list()
+    )
 
     # チェックボタン押下
     get_forms = ->
@@ -51,8 +41,16 @@ $ ->
         return false
 
     # 合計numの更新
-    wordbox_change = -
+    wordbox_change = ->
         console.log 'changed'
+
+    wordbox_clear = ->
+        $(".wordbox").each ->
+            $(@).val("")
+
+
+    $('#submit-clear').click wordbox_clear
+
     $('#check-btn').click ->
         ok = true
         if gn = $.trim $('#input_game_name').val()

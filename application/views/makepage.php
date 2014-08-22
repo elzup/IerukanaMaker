@@ -31,6 +31,8 @@ $debug = isset($_GET['d']);
 						<div class="col-md-4">
 							<input class="" id="input_add" name="" placeholder="ヒトカゲ,ブーバー,..." type="text" />
 							<input class="btn btn-primary" id="submit-add" name="" maxlength="10" type="button" value="追加" />
+							<!--<input class="btn btn-info" id="submit-check" name="" maxlength="10" type="button" value="値チェック" />-->
+							<input class="btn btn-danger" id="submit-clear" name="" maxlength="10" type="button" value="全消去" />
 						</div>
 						<div class="col-md-8">
 							<p class="">
