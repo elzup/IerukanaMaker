@@ -13,6 +13,7 @@ class Gameobj {
 	public $word_list;
 
 	public function __construct($obj = NULL) {
+		$this->word_list = array();
 		if (is_null($obj)) {
 			return;
 		}
@@ -25,6 +26,10 @@ class Gameobj {
 
 	public function get_words_num() {
 		return count($this->word_list);
+	}
+
+	public function get_full_title() {
+		return $this->name . $this->get_words_num() . $this->word_unit . '言えるかな';
 	}
 
 }

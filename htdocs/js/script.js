@@ -81,7 +81,11 @@
         url: "make/post",
         data: data,
         success: function(data) {
-          return console.log(data);
+          if (data === 'e1') {
+            return console.log("ゲーム名が既に使われています");
+          } else {
+            return location.href = 'g/' + data;
+          }
         },
         error: function() {
           return console.log('connect error');

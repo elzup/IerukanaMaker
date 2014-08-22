@@ -7,7 +7,9 @@ class Game_model extends CI_Model {
 	}
 
 	function regist_game(Gameobj $game) {
-		$this->insert_game($game);
+		$game_id = $this->insert_game($game);
+		$this->insert_words($game_id, $game->word_list);
+		return $game_id;
 	}
 
 	function insert_game(Gameobj $game) {
@@ -40,8 +42,11 @@ class Game_model extends CI_Model {
 	/**
 	 * 既に登録されている名前の確認
 	 */
-	function check_game_name_registed($name) {
-
+	function check_gamename_can_regist($name) {
+		$this->db->where(DB_CN_GAMES_NAME, $name);
+		$query = $this->db->get(DB_TN_GAMES);
+		$result = $query->result();
+		return empty($result[0]);
 	}
 
 	function increment_play_count($game_id) {

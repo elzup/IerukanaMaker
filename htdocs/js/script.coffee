@@ -69,7 +69,10 @@ $ ->
             url: "make/post",
             data: data,
             success: (data) ->
-                console.log data
+                if data == 'e1'
+                    console.log "ゲーム名が既に使われています"
+                else
+                    location.href = 'g/' + data
             error: ->
                 console.log 'connect error'
         )

@@ -31,16 +31,26 @@ class Make extends CI_Controller
 	}
 
 	public function post() {
-		echo 'header("Content-type: text/plain; charset=utf-8");';
+		$user = $this->user->get_main_user();
 		$post = $this->input->post();
+		$name = $post['game_name'];
+		$can_use = $this->game->check_gamename_can_regist($name);
+		if (!$can_use) {
+			$this->load->view('plain', array ('text' => 'e1'));
+		}
 		$game = new Gameobj();
-		$game->name = $post['game_name'];
+		$game->name = $name;
 		$game->description = $post['game_description'];
-		$game->name = $post['game_name'];
-		// TODO: game name check
-		// TODO: value rechecks
-		var_dump($post);
+		$game->user_id = $user->id_user;
+		$game->word_unit = $post['words_unit'];
+		foreach (explode(',', $post['words_list_text']) as $word_text) {
+			$word = new Wordobj();
+			$word->text = $word_text;
+			$game->word_list[] = $word;
+		}
+		$game_id = $this->game->regist_game($game);
+		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！！'); // outpput plain text
+		echo $game_id;
 	}
 
 }
-

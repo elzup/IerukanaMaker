@@ -43,10 +43,10 @@ $route['404_override'] = '';
 
 
 $route['g'] = 'game';
-$route['g/(.*)'] = 'game/$1';
+$route['g/(:num)'] = 'game/play/$1';
 
 $route['s'] = 'search';
-$route['s/'] = 'search/$1';
+$route['s/(.*)'] = 'search/$1';
 
 $route['u'] = 'user';
 $route['u/(.*)'] = 'user/$1';
