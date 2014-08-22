@@ -30,7 +30,16 @@ class Make extends CI_Controller
 		$this->load->view('foot');
 	}
 
-	public function check() {
+	public function post() {
+		echo 'header("Content-type: text/plain; charset=utf-8");';
+		$post = $this->input->post();
+		$game = new Gameobj();
+		$game->name = $post['game_name'];
+		$game->description = $post['game_description'];
+		$game->name = $post['game_name'];
+		// TODO: game name check
+		// TODO: value rechecks
+		var_dump($post);
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php 
 /* @var $game Gameobj */
+$debug = isset($_GET['d']);
 ?>
 
 <div class="content">
@@ -9,7 +10,7 @@
 			<div class="form-group">
 				<label for="input_game_name" class="col-md-2 control-label">タイトル</label>
 				<div class="col-md-10">
-					<input class="" id="input_game_name" name="game_name" placeholder="炎ポケモン" type="text">
+					<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' :'' ?>" placeholder="炎ポケモン" type="text">
 					<span id="num">00</span>
 					<input class="" id="input_words_unit" name="words_unit" value="個" type="text">
 					言えるかな？
@@ -19,7 +20,7 @@
 			<div class="form-group">
 				<label for="input_description" class="col-md-2 control-label">追加説明文</label>
 				<div class="col-md-10">
-					<input class="form-control" id="input_description" name="description" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text">
+					<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' :'' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text">
 					<span class="help-block">最大50文字</span>
 				</div>
 			</div>
@@ -29,12 +30,13 @@
 					<div class="row">
 						<div class="col-md-4">
 							<input class="" id="input_add" name="" placeholder="ヒトカゲ,ブーバー,..." type="text" />
-							<input class="btn btn-primary" id="submit_add" name="" maxlength="10" type="button" value="追加" />
+							<input class="btn btn-primary" id="submit-add" name="" maxlength="10" type="button" value="追加" />
 						</div>
 						<div class="col-md-8">
 							<p class="">
-								右のフォームでカンマ,またはTab区切りで複数同時に追加できます<br>
-								下のボックスに直接入力することも出来ます.一単語(最大10文字)<br />
+								単語は10文字以内で記号(改行やスペースなども)は使えません<br />
+								右のフォームでカンマ,またはスペース区切りで複数同時に追加できます<br />
+								下のボックスに直接入力することも出来ます<br />
 							</p>
 						</div>
 					</div>
@@ -49,7 +51,7 @@
 							$k = $i * $w + $j;
 							echo <<< EOL
 							<div class="col-md-1">
-								<input class="wordbox" id="input_word{$k}" name="word-{$k}" maxlength="10" placeholder="---" type="text">
+								<input class="wordbox" id="input_word{$k}" name="word-{$k}" maxlength="10" value="" placeholder="---" type="text">
 							</div>
 EOL;
 						}
