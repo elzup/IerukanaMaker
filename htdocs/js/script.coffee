@@ -1,9 +1,24 @@
 # coffeescript
 $ ->
     # TODO: それぞれのフォームでのチェック
-    # チェックボタン押下
+
+#    include_list = ->
+#        for j in [16...32]
+#            rowDiv = $("<div/>").addClass("row row-word")
+#            for i in [0...8]
+#                rowDiv.append($("<div/>").addClass("wordbox").attr
+#                    id: "input_word_" + j * 8 + i
+#                    name: "word-" + j * 8 + i
+#                    maxlength: 10
+#                    value: ""
+#                    placeholder: "---"
+#                    type: "text"
+#                )
+#            console.log rowDiv
+#            $("#word-list-box").append(rowDiv)
     # TODO: enter時も
     add_list = ->
+#        include_list()
         add_text = $('#input_add').val()
         add_words = add_text.split(/[,\s]/).filter (e)->
             return !!e
@@ -35,6 +50,9 @@ $ ->
                 words_list_text: words_text
         return false
 
+    # 合計numの更新
+    wordbox_change = -
+        console.log 'changed'
     $('#check-btn').click ->
         ok = true
         if gn = $.trim $('#input_game_name').val()
@@ -57,4 +75,6 @@ $ ->
             error: ->
                 console.log 'connect error'
         )
+    $('.wordbox').change -> wordbox_change
+
 

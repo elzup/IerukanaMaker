@@ -6,19 +6,10 @@
       var add_text, add_words;
       add_text = $('#input_add').val();
       add_words = add_text.split(/[,\s]/).filter(function(e) {
-        if (!e) {
-          return false;
-        }
-        $(".wordbox").each(function() {
-          if ($(this).val() === e) {
-            return false;
-          }
-        });
-        return true;
+        return !!e;
       });
       add_words = $.unique(add_words);
       $(".wordbox").each(function() {
-        console.log(add_words);
         if (!$(this).val()) {
           $(this).val(add_words.shift());
           if (add_words.length === 0) {
@@ -64,7 +55,7 @@
       $('#input_words_unit').val();
       return $('#input_descripiton').val();
     });
-    return $('#submit-btn').click(function() {
+    $('#submit-btn').click(function() {
       var data;
       if (!(data = get_forms())) {
         console.log('form no comp');
@@ -81,6 +72,9 @@
           return console.log('connect error');
         }
       });
+    });
+    return $('.wordbox').change(function() {
+      return console.log('changed');
     });
   });
 

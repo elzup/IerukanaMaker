@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* @var $game Gameobj */
 $debug = isset($_GET['d']);
 ?>
@@ -10,7 +10,7 @@ $debug = isset($_GET['d']);
 			<div class="form-group">
 				<label for="input_game_name" class="col-md-2 control-label">タイトル</label>
 				<div class="col-md-10">
-					<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' :'' ?>" placeholder="炎ポケモン" type="text">
+					<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' : '' ?>" placeholder="炎ポケモン" type="text">
 					<span id="num">00</span>
 					<input class="" id="input_words_unit" name="words_unit" value="個" type="text">
 					言えるかな？
@@ -20,7 +20,7 @@ $debug = isset($_GET['d']);
 			<div class="form-group">
 				<label for="input_description" class="col-md-2 control-label">追加説明文</label>
 				<div class="col-md-10">
-					<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' :'' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text">
+					<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' : '' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text">
 					<span class="help-block">最大50文字</span>
 				</div>
 			</div>
@@ -34,18 +34,22 @@ $debug = isset($_GET['d']);
 						</div>
 						<div class="col-md-8">
 							<p class="">
-								単語は10文字以内で記号(改行やスペースなども)は使えません<br />
+								単語は10文字以内で記号(改行やスペースなども)は使えません.最大256単語まで<br />
 								右のフォームでカンマ,またはスペース区切りで複数同時に追加できます<br />
 								下のボックスに直接入力することも出来ます<br />
 							</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-offset-2 col-md-10">
+				<div class="col-md-offset-2 col-md-10" id="word-list-box">
 					<?php
-					$h = 16;
+					$h = 32;
 					$w = 8;
 					for ($i = 0; $i < $h; $i++) {
+						if ($i == 16) {
+							echo '<button type="button" class="btn btn-block btn-default margin-v" data-toggle="collapse" data-target="#more-word-box">表示(129 ~)</button>';
+							echo '<div id="more-word-box" class="collapse">';
+						}
 						echo '<div class="row row-word">';
 						for ($j = 0; $j < $w; $j++) {
 							$k = $i * $w + $j;
@@ -57,6 +61,7 @@ EOL;
 						}
 						echo '</div>';
 					}
+					echo '</div>';
 					?>
 				</div>
 			</div>
