@@ -67,11 +67,11 @@ class Metaobj
 		$this->type = 'website';
 	}
 
-	public function setup_game($game)
+	public function setup_game(Gameobj $game)
 	{
 		// TODO: for game obj
-		$this->set_title("todo game");
-		$this->description = "新しい言えるかなゲームの作成ページ";
+		$this->set_title($game->get_full_title());
+		$this->description = $game->get_full_title();
 	}
 
 	public function setup_make()

@@ -1,7 +1,8 @@
 <?php
+/* @var $game Gameobj */
 
 ?>
 
 <div class="content">
-	userpage
+	<p class="description"><?= $game->description ?></p>
 </div>

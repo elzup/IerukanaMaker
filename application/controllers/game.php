@@ -19,8 +19,8 @@ class Game extends CI_Controller {
 	}
 
 	public function play($game_id) {
-		echo $game_id;
 		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
@@ -29,12 +29,13 @@ class Game extends CI_Controller {
 		}
 
 		$meta = new Metaobj();
-		$meta->setup_top();
+		$meta->setup_game($game);
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
+		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('gamepage');
+		$this->load->view('gamepage', array('game' => $game));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}

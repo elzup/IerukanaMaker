@@ -14,13 +14,15 @@ if ($user == null) {
 			<span class="icon-bar"></span>
 		</button>
 
-		<a class="navbar-brand" href="<?= $meta->url ?>"><?= $meta->get_title() ?></a>
+		<a class="navbar-brand" href="<?= $meta->url ?>"><?= SITE_NAME ?></a>
 	</div>
 	<div class="navbar-collapse collapse navbar-categlyes">
 		<ul class="nav navbar-nav navbar-right">
-			<?php
-			if (empty($user)) {
-				?>
+			<li>
+				<a <?= attr_href(PATH_MAKE) ?>>言えるかなを作成</a>
+				<?php
+				if (empty($user)) {
+					?>
 				<li>
 					<a <?= attr_href(PATH_AUTH_LOGIN) ?>>Twitterでログイン</a>
 					<?php

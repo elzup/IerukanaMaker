@@ -73,14 +73,14 @@ class Game_model extends CI_Model {
 
 	function select_game($game_id) {
 		$this->db->where(DB_CN_GAMES_ID, $game_id);
-		$query = $this->db->get(DB_TN_USERS);
+		$query = $this->db->get(DB_TN_GAMES);
 		$result = $query->result();
 		return @$result[0] ? : NULL;
 	}
 
 	function select_words($game_id) {
 		$this->db->where(DB_CN_WORDS_GAME_ID, $game_id);
-		$query = $this->db->get(DB_TN_USERS);
+		$query = $this->db->get(DB_TN_WORDS);
 		$result = $query->result();
 		return $result;
 	}
