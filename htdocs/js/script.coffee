@@ -2,6 +2,48 @@
 $ ->
     # TODO: それぞれのフォームでのチェック
 
+    # init variables
+    all_word_num = $('table.words-table td').size()
+    form = $('#answer-form')
+    process_count_span = $('span#process_count')
+    solve_count = 0
+    game_flag = 0
+    btn_end = $('#submit-end')
+
+    replay = () ->
+        if game_flag != 1
+            return
+        word = form.val()
+        td = $("td[ans=#{word}]")
+        if !td
+            return
+        td.removeAttr('ans')
+        td.html(word)
+        form.val('')
+        solve_count++
+        process_count_span.html(solve_count)
+        if solve_count == all_word_num
+            game_end()
+
+    game_end = ->
+        game_flag = 0
+    game_start = ->
+        game_flag = 1
+        alert 'start!'
+
+    $('#submit-start').click ->
+        $(@).hide()
+        btn_end.show()
+
+    btn_end.click ->
+        game_start()
+
+    form.on("keypress", (e) ->
+        if e.which == 13
+            replay()
+    )
+    $('#submit-answer').click -> replay()
+
     add_list = ->
 #        include_list()
         add_text = $('#input_add').val()

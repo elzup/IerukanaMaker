@@ -67,7 +67,7 @@ class Game_model extends CI_Model {
 			return NULL;
 		}
 		$game = new Gameobj($game_res);
-		$game->word_list = $this->select_words($game_id);
+		$game->word_list = $this->to_wordobjs($this->select_words($game_id));
 		return $game;
 	}
 
@@ -83,6 +83,14 @@ class Game_model extends CI_Model {
 		$query = $this->db->get(DB_TN_WORDS);
 		$result = $query->result();
 		return $result;
+	}
+
+	function to_wordobjs($rows) {
+		$words = array();
+		foreach ($rows as $row) {
+			$words[] = new Wordobj($row);
+		}
+		return $words;
 	}
 
 	/**

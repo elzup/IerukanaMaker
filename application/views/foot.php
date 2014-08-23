@@ -13,6 +13,9 @@ if (!empty($jss)) {
 	foreach ($jss as $js) {
 		?>
 		<script src="<?= base_url(PATH_JS . "{$js}.js") ?>" type="text/javascript"></script>
+		<script>
+			window.jQuery || document.write('<script src="<?= URL_JQUERY_OFFLINE ?>"></script>');
+		</script>
 		<?php
 	}
 }
