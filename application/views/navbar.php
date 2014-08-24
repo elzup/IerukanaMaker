@@ -19,7 +19,7 @@ if ($user == null) {
 	<div class="navbar-collapse collapse navbar-categlyes">
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a <?= attr_href(PATH_MAKE) ?>>言えるかなを作成</a>
+				<a <?= attr_href(PATH_MAKE, NULL, TRUE) ?>>言えるかなを作成</a>
 				<?php
 				if (empty($user)) {
 					?>

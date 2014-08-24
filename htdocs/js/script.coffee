@@ -9,7 +9,9 @@ $ ->
     btn_end            = $('#submit-end')
     btn_start          = $('#submit-start')
     time_box           = $('#time-box')
+    word_boxs          = $('.wordbox')
     all_word_num       = td_boxs.size()
+    game_id = $('#game-id').val()
     solve_count        = 0
     game_flag          = 0
     dtime              = 0
@@ -25,7 +27,7 @@ $ ->
         word = form.val()
         td = td_boxs.find("[ans=#{word}]")
         td = $("td[ans=#{word}]")
-        if !td || td.hasClass "ok"
+        if td.size() < 1 || td.hasClass "ok"
             return
         # 正解した場合
         td.html(word)
@@ -48,6 +50,7 @@ $ ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
+
         post_result(data_start_id, ng_ids)
 
     game_start = ->
@@ -89,18 +92,15 @@ $ ->
         game_end()
 
     post_result = (start_ids, ng_ids)->
-        console.log start_ids
-        console.log ng_ids
         data =
             start_ids: start_ids.join ","
             ng_ids: ng_ids.join ","
-        console.log data
-        return
         $.ajax(
             type: "POST",
-            url: "make/post",
+            url: "../game/result/" + game_id
             data: data,
-            success: (data) ->
+            success: (res) ->
+                console.log res
                 console.log 'result posted'
             error: ->
                 console.log 'result post error'
@@ -118,7 +118,7 @@ $ ->
         add_words = add_text.split(/[,\s]/).filter (e)->
             return !!e
         add_words = $.unique(add_words)
-        $(".wordbox").each ->
+        word_boxs.each ->
             if !$(@).val()
                 $(@).val(add_words.shift())
                 if add_words.length == 0
@@ -135,7 +135,7 @@ $ ->
     # チェックボタン押下
     get_forms = ->
         wordlist = []
-        $('.wordbox').each ->
+        word_boxs.each ->
             v = $.trim $(@).val()
             wordlist.push v if v
         words_text = wordlist.join(',')
@@ -152,10 +152,16 @@ $ ->
 
     # 合計numの更新
     wordbox_change = ->
-        console.log 'changed'
+        c = 0
+        word_boxs.each ->
+            c++ if $(@).val() != ""
+        $('#num').html(c)
+
+    word_boxs.change ->
+        wordbox_change()
 
     wordbox_clear = ->
-        $(".wordbox").each ->
+        word_boxs.each ->
             $(@).val("")
 
 

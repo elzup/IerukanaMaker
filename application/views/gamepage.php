@@ -45,6 +45,6 @@
 				?>
 			</table>
 		</div>
-
 	</div>
+	<input type="hidden" id="game-id" value="<?= $game->id ?>" />
 </div>

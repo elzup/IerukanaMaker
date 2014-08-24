@@ -40,4 +40,23 @@ class Game extends CI_Controller {
 		$this->load->view('foot');
 	}
 
+	public function result($game_id = NULL) {
+		$post = $this->input->post();
+		$start_ids = explode(',', $post['start_ids']);
+		$ng_ids = explode(',', $post['ng_ids']);
+		if ($this->agent->is_referral()) {
+			$game_id_check = Game::get_game_id($this->agent->referrer());
+		}
+		if (is_null($game_id) || is_null($game_id_check) || $game_id != $game_id_check) {
+			echo 'e:0';
+			return;
+		}
+		$game = $this->game->get_game($game_id);
+	}
+
+	public static function get_game_id($url) {
+		preg_match('#.*/(?<id>[0-9]+)\??.*#', $url, $m);
+		return $m['id'];
+	}
+
 }
