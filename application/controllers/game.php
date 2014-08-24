@@ -42,8 +42,8 @@ class Game extends CI_Controller {
 
 	public function result($game_id = NULL) {
 		$post = $this->input->post();
-		$start_ids = explode(',', $post['start_ids']);
-		$ng_ids = explode(',', $post['ng_ids']);
+		$active_points = explode(',', $post['start_ids']);
+		$negative_points = explode(',', $post['ng_ids']);
 		if ($this->agent->is_referral()) {
 			$game_id_check = Game::get_game_id($this->agent->referrer());
 		}
@@ -51,7 +51,9 @@ class Game extends CI_Controller {
 			echo 'e:0';
 			return;
 		}
-		$game = $this->game->get_game($game_id);
+		$this->game->log_points($game_id, $active_points, $negative_points);
+		$this->game->close();
+		echo "result logged!";
 	}
 
 	public static function get_game_id($url) {

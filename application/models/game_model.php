@@ -53,8 +53,19 @@ class Game_model extends CI_Model {
 		// TODO: create
 	}
 
-	function update_point_negative($game_id, $word_id, $point_add) {
-		// TODO: create
+	public function log_points($game_id, $active_points, $negative_points) {
+		$game = $this->get_game($game_id);
+		$data = Game_model::to_sql_points($game, $active_points, $negative_points);
+		$this->update_points($game_id, $data);
+	}
+
+	public function close() {
+		$this->db->close();
+	}
+
+	function update_points($game_id, $data) {
+		$this->db->where(DB_CN_WORDS_GAME_ID, $game_id);
+		$this->db->update_batch(DB_TN_WORDS, $data, DB_CN_WORDS_ID);
 	}
 
 	/**
@@ -88,7 +99,7 @@ class Game_model extends CI_Model {
 	function to_wordobjs($rows) {
 		$words = array();
 		foreach ($rows as $row) {
-			$words[] = new Wordobj($row);
+			$words[$row->{DB_CN_WORDS_ID}] = new Wordobj($row);
 		}
 		return $words;
 	}
@@ -110,4 +121,25 @@ class Game_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
+		$data = array();
+		var_dump($game->word_list);
+		var_dump($active_points);
+		foreach ($active_points as $i => $p) {
+			if ($i > 10) {
+				break;
+			}
+			$data[] = array(
+				DB_CN_WORDS_ID => $p,
+				DB_CN_WORDS_POINT_POSITIVE => $game->word_list[$p]->point_positive + (10 - $i),
+			);
+		}
+		foreach ($negative_points as $i => $p) {
+			$data[] = array(
+				DB_CN_WORDS_ID => $p,
+				DB_CN_WORDS_POINT_NEGATIVE => $game->word_list[$p]->point_negative + 1,
+			);
+		}
+		return $data;
+	}
 }
