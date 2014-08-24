@@ -39,7 +39,7 @@
 						}
 						echo '<tr>';
 					}
-					echo '<td ans="' . $word->text . '"></td>';
+					echo '<td nid="' . $i . '" ans="' . $word->text . '"></td>';
 				}
 				echo '</tr>';
 				?>

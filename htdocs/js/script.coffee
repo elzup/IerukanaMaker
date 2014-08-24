@@ -3,18 +3,19 @@ $ ->
     # TODO: それぞれのフォームでのチェック
 
     # init variables
-    td_boxs = $('table.words-table td')
-    all_word_num = td_boxs.size()
-    form = $('#answer-form')
+    td_boxs            = $('table.words-table td')
+    form               = $('#answer-form')
     process_count_span = $('span#process_count')
-    solve_count = 0
-    game_flag = 0
-    btn_end = $('#submit-end')
-    btn_start = $('#submit-start')
-    start_time = null
-    time_box = $('#time-box')
-    dtime = 0
-    timer_id = null
+    btn_end            = $('#submit-end')
+    btn_start          = $('#submit-start')
+    time_box           = $('#time-box')
+    all_word_num       = td_boxs.size()
+    solve_count        = 0
+    game_flag          = 0
+    dtime              = 0
+    start_time         = null
+    timer_id           = null
+    data_start_id      = []
 
     btn_end.parent().hide()
 
@@ -26,9 +27,12 @@ $ ->
         td = $("td[ans=#{word}]")
         if !td || td.hasClass "ok"
             return
+        # 正解した場合
         td.html(word)
         td.addClass('ok')
         form.val('')
+        # 人気アイエムの統計
+        data_start_id.push td.attr 'nid'
         solve_count++
         process_count_span.html(solve_count)
         if solve_count == all_word_num
@@ -39,17 +43,26 @@ $ ->
         clearInterval(timer_id)
         btn_start.parent().show()
         btn_end.parent().hide()
-        td_boxs.each ->
+        ng_ids = []
+        td_boxs.not('.ok').each ->
             $(@).html($(@).attr('ans'))
+            $(@).addClass('ng')
+            ng_ids.push $(@).attr 'nid'
+        post_result(data_start_id, ng_ids)
+
     game_start = ->
         game_flag = 1
         start_time = new Date().getTime()
         btn_start.parent().hide()
         btn_end.parent().show()
         dtime = 0
+        solve_count = 0
+        data_start_id = []
+        process_count_span.html(0)
         td_boxs.each ->
             $(@).html("")
             $(@).removeClass('ok')
+            $(@).removeClass('ng')
         timer_id = setInterval ->
             my_disp()
         ,1
@@ -75,6 +88,23 @@ $ ->
     btn_end.click ->
         game_end()
 
+    post_result = (start_ids, ng_ids)->
+        console.log start_ids
+        console.log ng_ids
+        data =
+            start_ids: start_ids.join ","
+            ng_ids: ng_ids.join ","
+        console.log data
+        return
+        $.ajax(
+            type: "POST",
+            url: "make/post",
+            data: data,
+            success: (data) ->
+                console.log 'result posted'
+            error: ->
+                console.log 'result post error'
+        )
 
     form.on("keypress", (e) ->
         if e.which == 13
