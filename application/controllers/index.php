@@ -3,10 +3,10 @@
 class Index extends CI_Controller
 {
 
-	/** @var Game_model */
-	public $game;
 	/** @var User_model */
 	public $user;
+	/** @var Game_model */
+	public $game;
 
 	public function __construct()
 	{

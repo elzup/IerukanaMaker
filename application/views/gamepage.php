@@ -11,7 +11,7 @@ function to_ans_kana($str) {
 		<div class="control-box">
 			<div class="row">
 				<div class="col-md-2">
-					<span id="time-box">0:00:00.00</span>
+					<span id="time-box">00:00:00.00</span>
 				</div>
 				<div class="col-md-2">
 					<span id="process_count">0</span>
