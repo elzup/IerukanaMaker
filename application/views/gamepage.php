@@ -8,7 +8,7 @@
 		<div class="control-box">
 			<div class="row">
 				<div class="col-md-2">
-					<span id="time-box">00:00</span>
+					<span id="time-box">0:00:00.00</span>
 				</div>
 				<div class="col-md-2">
 					<span id="process_count">0</span>
@@ -24,7 +24,7 @@
 				<div class="col-md-1">
 					<input class="btn btn-success" id="submit-start" type="button" value="スタート" />
 				</div>
-				<div class="col-md-1 hidden">
+				<div class="col-md-1" for="submit-end">
 					<input class="btn btn-danger" id="submit-end" type="button" value="降参する" />
 				</div>
 			</div>

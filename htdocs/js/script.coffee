@@ -3,22 +3,31 @@ $ ->
     # TODO: それぞれのフォームでのチェック
 
     # init variables
-    all_word_num = $('table.words-table td').size()
+    td_boxs = $('table.words-table td')
+    all_word_num = td_boxs.size()
     form = $('#answer-form')
     process_count_span = $('span#process_count')
     solve_count = 0
     game_flag = 0
     btn_end = $('#submit-end')
+    btn_start = $('#submit-start')
+    start_time = null
+    time_box = $('#time-box')
+    dtime = 0
+    timer_id = null
+
+    btn_end.parent().hide()
 
     replay = () ->
         if game_flag != 1
             return
         word = form.val()
+        td = td_boxs.find("[ans=#{word}]")
         td = $("td[ans=#{word}]")
-        if !td
+        if !td || td.hasClass "ok"
             return
-        td.removeAttr('ans')
         td.html(word)
+        td.addClass('ok')
         form.val('')
         solve_count++
         process_count_span.html(solve_count)
@@ -27,16 +36,45 @@ $ ->
 
     game_end = ->
         game_flag = 0
+        clearInterval(timer_id)
+        btn_start.parent().show()
+        btn_end.parent().hide()
+        td_boxs.each ->
+            $(@).html($(@).attr('ans'))
     game_start = ->
         game_flag = 1
-        alert 'start!'
+        start_time = new Date().getTime()
+        btn_start.parent().hide()
+        btn_end.parent().show()
+        dtime = 0
+        td_boxs.each ->
+            $(@).html("")
+            $(@).removeClass('ok')
+        timer_id = setInterval ->
+            my_disp()
+        ,1
 
-    $('#submit-start').click ->
-        $(@).hide()
-        btn_end.show()
+    to_double0 = (n)->
+        if n < 10
+            return '0' + n
+        return n
+
+    my_disp = ->
+        dtime = new Date().getTime() - start_time
+        myH = Math.floor(dtime/(60*60*1000))
+        dtime = dtime-(myH*60*60*1000)
+        myM = Math.floor(dtime/(60*1000))
+        dtime = dtime-(myM*60*1000)
+        myS = Math.floor(dtime/1000)
+        myMS = Math.floor(dtime / 10 % 100)
+        time_box.html(to_double0(myH) + ":" + to_double0(myM) + ":" + to_double0(myS) + "." + to_double0(myMS))
+
+    btn_start.click ->
+        game_start()
 
     btn_end.click ->
-        game_start()
+        game_end()
+
 
     form.on("keypress", (e) ->
         if e.which == 13
