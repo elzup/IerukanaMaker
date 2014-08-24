@@ -71,6 +71,7 @@ define('PATH_GOOGLE_ANALYTICS', PATH_GOOGLE . '/analyticstracking.php');
 define('PATH_BOOTSTRAP_CSS', PATH_LIB . 'bootstrap/css/bootstrap.min.css');
 define('PATH_BOOTSTRAP_JS', PATH_LIB . 'bootstrap/js/bootstrap.min.js');
 
+define('PATH_JQUERY_TEXT_CONVERT', PATH_LIB . 'jquery-supertextconverter-plugin.min.js');
 define('URL_JQUERY_OFFLINE', PATH_LIB . 'jquery-2.1.1.min.js');
 
 /* online lib url */

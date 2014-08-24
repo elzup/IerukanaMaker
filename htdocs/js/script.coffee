@@ -4,35 +4,48 @@ $ ->
 
     # init variables
     td_boxs            = $('table.words-table td')
-    form               = $('#answer-form')
+    ans_form               = $('#answer-form')
     process_count_span = $('span#process_count')
     btn_end            = $('#submit-end')
     btn_start          = $('#submit-start')
     time_box           = $('#time-box')
     word_boxs          = $('.wordbox')
     all_word_num       = td_boxs.size()
-    game_id = $('#game-id').val()
+    game_id            = $('#game-id').val()
     solve_count        = 0
     game_flag          = 0
     dtime              = 0
     start_time         = null
     timer_id           = null
     data_start_id      = []
+    stc = $.SuperTextConverter()
 
     btn_end.parent().hide()
 
+    to_ans_kana = (str) ->
+        return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
+            convert:
+                punctuation: false
+        )
+
     replay = () ->
-        if game_flag != 1
+        word = ans_form.val()
+        if game_flag != 1 || !word
             return
-        word = form.val()
-        td = td_boxs.find("[ans=#{word}]")
-        td = $("td[ans=#{word}]")
+        # 全角ひらがな半角英数字に統一する
+        word_k = to_ans_kana(word)
+        console.log word
+        console.log word_k
+        td = td_boxs.next("td[ansc=#{word_k}]")
+        ans = td.attr 'ans'
+        console.log td
+        console.log ans
         if td.size() < 1 || td.hasClass "ok"
             return
         # 正解した場合
-        td.html(word)
+        td.html(ans)
         td.addClass('ok')
-        form.val('')
+        ans_form.val('')
         # 人気アイエムの統計
         data_start_id.push td.attr 'nid'
         solve_count++
@@ -50,8 +63,8 @@ $ ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
-
-        post_result(data_start_id, ng_ids)
+        if data_start_id.length >= 1
+            post_result(data_start_id, ng_ids)
 
     game_start = ->
         game_flag = 1
@@ -86,6 +99,7 @@ $ ->
         time_box.html(to_double0(myH) + ":" + to_double0(myM) + ":" + to_double0(myS) + "." + to_double0(myMS))
 
     btn_start.click ->
+        ans_form.focus()
         game_start()
 
     btn_end.click ->
@@ -106,7 +120,7 @@ $ ->
                 console.log 'result post error'
         )
 
-    form.on("keypress", (e) ->
+    ans_form.on("keypress", (e) ->
         if e.which == 13
             replay()
     )

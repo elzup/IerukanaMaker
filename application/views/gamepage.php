@@ -1,5 +1,8 @@
 <?php
 /* @var $game Gameobj */
+function to_ans_kana($str) {
+	return strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8'));
+}
 ?>
 
 <div class="content">
@@ -39,7 +42,7 @@
 						}
 						echo '<tr>';
 					}
-					echo '<td nid="' . $word->id . '" ans="' . $word->text . '"></td>';
+					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '"></td>';
 				}
 				echo '</tr>';
 				?>

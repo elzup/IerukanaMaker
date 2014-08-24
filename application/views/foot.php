@@ -3,6 +3,7 @@
 
 <!-- Incliude Twitter share button widgets -->
 <?= tag_script_js(URL_TWITTER_WIDGETS); ?> 
+<?= tag_script_js(base_url(PATH_JQUERY_TEXT_CONVERT)); ?> 
 <?= tag_script_js(base_url(PATH_BOOTSTRAP_JS)); ?> 
 
 <!-- js of act on all page-->
