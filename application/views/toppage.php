@@ -42,6 +42,9 @@
 					</tr>
 				<?php } ?>
 			</table>
+			<ul class="pager">
+				<li class="next"><a href="<?= PATH_HOT ?>" class="">もっと見る</a>
+			</ul>
 		</div>
 		<div class="col-md-6">
 			<h2 class="sub-title">新着の言えるかな</h2>
@@ -52,6 +55,9 @@
 					</tr>
 				<?php } ?>
 			</table>
+			<ul class="pager">
+				<li class="next"><a href="<?= PATH_NEW ?>" class="">もっと見る</a>
+			</ul>
 		</div>
 		<div class="col-md-2">
 
