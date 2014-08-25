@@ -39,8 +39,8 @@ class Gameobj {
 		return $this->words_num;
 	}
 
-	public function get_full_title() {
-		return $this->name . $this->get_words_num() . $this->word_unit . '言えるかな';
+	public function get_full_title($has_question = FALSE) {
+		return $this->name . $this->get_words_num() . $this->word_unit . '言えるかな' . ($has_question ? '？' : '');
 	}
 
 }

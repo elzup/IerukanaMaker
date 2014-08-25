@@ -7,7 +7,13 @@ function to_ans_kana($str) {
 ?>
 
 <div class="content">
-	<p class="description"><?= $game->description ?></p>
+	<p class="description">
+		<?php
+		echo $game->description;
+		$text = $game->get_full_title(TRUE);
+		sharebtn_twitter($text, current_url(), 'tweet');
+		?>
+	</p>
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row">
@@ -49,7 +55,7 @@ function to_ans_kana($str) {
 					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '"></td>';
 					$i++;
 				}
-				while($i % $p != 0) {
+				while ($i % $p != 0) {
 					$i++;
 					echo '<td class="emp"></td>';
 				}
