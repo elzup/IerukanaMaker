@@ -29,6 +29,7 @@ function to_ans_kana($str) {
 						<input class="btn btn-primary" id="submit-answer" type="button" value="答える" />
 						<input class="btn btn-success" id="submit-start" type="button" value="スタート" />
 						<input class="btn btn-danger" id="submit-end" type="button" value="降参する" />
+						<input class="btn btn-primary" id="submit-tweet" type="button" value="結果ツイート" />
 					</div>
 				</div>
 			</div>
@@ -58,4 +59,6 @@ function to_ans_kana($str) {
 		</div>
 	</div>
 	<input type="hidden" id="game-id" value="<?= $game->id ?>" />
+	<input type="hidden" id="game-name" value="<?= $game->name ?>" />
+	<input type="hidden" id="word-unit" value="<?= $game->word_unit ?>" />
 </div>

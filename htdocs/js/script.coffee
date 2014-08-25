@@ -8,10 +8,14 @@ $ ->
     process_count_span = $('span#process_count')
     btn_end            = $('#submit-end')
     btn_start          = $('#submit-start')
+    btn_tweet          = $('#submit-tweet')
+    btn_answer         = $('#submit-answer')
     time_box           = $('#time-box')
     word_boxs          = $('.wordbox')
     all_word_num       = td_boxs.size()
     game_id            = $('#game-id').val()
+    game_name          = $('#game-name').val()
+    word_unit          = $('#word-unit').val()
     solve_count        = 0
     game_flag          = 0
     dtime              = 0
@@ -20,6 +24,8 @@ $ ->
     data_start_id      = []
     stc = $.SuperTextConverter()
     btn_end.hide()
+    btn_answer.hide()
+    btn_tweet.hide()
     input_game_name = $('#input_game_name')
 
     to_ans_kana = (str) ->
@@ -56,8 +62,10 @@ $ ->
     game_end = ->
         game_flag = 0
         clearInterval(timer_id)
-        btn_start.show()
         btn_end.hide()
+        btn_answer.hide()
+        btn_start.show()
+        btn_tweet.show()
         ng_ids = []
         td_boxs.not('.ok').each ->
             $(@).html($(@).attr('ans'))
@@ -70,6 +78,7 @@ $ ->
         game_flag = 1
         start_time = new Date().getTime()
         btn_start.hide()
+        btn_answer.show()
         btn_end.show()
         dtime = 0
         solve_count = 0
@@ -124,7 +133,7 @@ $ ->
         if e.which == 13
             replay()
     )
-    $('#submit-answer').click ->
+    btn_answer.click ->
         replay()
         ans_form.focus()
 
@@ -243,4 +252,19 @@ $ ->
         )
     $('.wordbox').change -> wordbox_change
 
-
+    btn_tweet.click ->
+        hashtags = '言えるかな'
+        text = game_name + "を" + solve_count + word_unit + "言えました。[" + to_time_str(time_box.html()) + "]"
+        share_url = location.href
+        url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
+        console.log url
+        window.open(url)
+    
+    to_time_str = (time) ->
+        ts = time.split(':')
+        time_h = ts[0] * 1
+        time_m = ts[1] * 1
+        ts2 = ts[2].split('.')
+        time_s = ts2[0] * 1
+        console.log time_s
+        return (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
