@@ -18,8 +18,8 @@ class Index extends CI_Controller
 	public function index()
 	{
 		$user = $this->user->get_main_user();
-		$new_games = $this->game->get_new_games(NUM_GAME_PAR_TOPPAGE);
-		$hot_games = $this->game->get_top_games(NUM_GAME_PAR_TOPPAGE);
+		$hot_games = $this->game->search_games(NULL, SORT_HOT);
+		$new_games = $this->game->search_games(NULL, SORT_NEW);
 
 		$meta = new Metaobj();
 		$meta->setup_top();

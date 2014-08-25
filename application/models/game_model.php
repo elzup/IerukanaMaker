@@ -146,14 +146,16 @@ class Game_model extends CI_Model {
 				$order_by = DB_CN_GAMES_PLAY_COUNT;
 				$order_asc = 'DESC';
 				break;
-			case SORT_HOT:
+			case SORT_NEW:
 				$order_by = DB_CN_GAMES_TIMESTAMP;
 				$order_asc = 'DESC';
 				break;
+			default :
+				return NULL;
 		}
 		$rows = $this->get_games($q, $order_by, $order_asc, $limit, $offset);
 		return $this->to_gameobjs($rows);
-		}
+	}
 
 	public function get_games($q, $order_by, $order_asc, $limit, $offset) {
 		if (isset($q)) {

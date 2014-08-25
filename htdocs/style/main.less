@@ -88,11 +88,26 @@ span.strong-s {
 
 .plate {
     width: 100%;
-    display: table;
     border: @border-d;
     border-radius: 3px;
-    text-align: center;
-    font-family: monospace;
+    &.plate-game {
+        padding: .5em 10px;
+        .name {
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 0;
+            .over-text-wrap;
+            .index {
+                &:after {
+                    content: '.';
+                    padding-right: 5px;
+                }
+            }
+        }
+        .description {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .timer {
@@ -108,6 +123,14 @@ span.strong-s {
     font-size: 27px;
 }
 
+.over-text-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
 .control-box {
     padding: 10px;
     .control-forms {
@@ -116,6 +139,11 @@ span.strong-s {
             width: 50%;
             display: inline;
         }
+    }
+    .plate {
+        display: table;
+        text-align: center;
+        font-family: monospace;
     }
 }
 

@@ -61,6 +61,7 @@ define('PATH_JS', 'js/');
 define('PATH_STYLE', 'style/');
 define('PATH_GAME', 'g/');
 define('PATH_USER', 'u/');
+define('PATH_SEARCH', 's/');
 define('PATH_AUTH', 'auth/');
 define('PATH_MAKE', 'make/');
 define('PATH_MAKE_POST', 'make/post');
