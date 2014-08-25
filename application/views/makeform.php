@@ -8,9 +8,9 @@ $debug = isset($_GET['d']);
 		<div class="form-group">
 			<label for="input_game_name" class="col-md-2 control-label">タイトル</label>
 			<div class="col-md-10">
-				<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' : '' ?>" placeholder="炎ポケモン" type="text">
+				<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' : '' ?>" placeholder="炎ポケモン" type="text" maxlength="20">
 				<span id="num">00</span>
-				<input class="" id="input_words_unit" name="words_unit" value="個" type="text">
+				<input class="" id="input_words_unit" name="words_unit" value="個" type="text" maxlength="5">
 				言えるかな？
 				<span class="help-block">最大20文字</span>
 			</div>
@@ -18,7 +18,7 @@ $debug = isset($_GET['d']);
 		<div class="form-group">
 			<label for="input_description" class="col-md-2 control-label">追加説明文</label>
 			<div class="col-md-10">
-				<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' : '' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text">
+				<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' : '' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text" maxlength="50">
 				<span class="help-block">最大50文字</span>
 			</div>
 		</div>
