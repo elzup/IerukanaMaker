@@ -24,6 +24,14 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<?php
+			$this->load->view('searchform');
+			?>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-md-6">
 			<h2 class="sub-title">今ホットな言えるかな</h2>
 			<table class="table table-hover table-games games-new">
