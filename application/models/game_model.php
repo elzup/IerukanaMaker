@@ -20,7 +20,6 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
 		$this->db->insert(DB_TN_GAMES);
 		return $this->db->insert_id();
-
 	}
 
 	/**
@@ -116,7 +115,6 @@ class Game_model extends CI_Model {
 		return $games;
 	}
 
-
 	/**
 	 * 
 	 * @param int $id twitterid
@@ -134,24 +132,42 @@ class Game_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	public function get_top_games($limit = 20) {
-		return $this->to_gameobjs($this->get_games(DB_CN_GAMES_PLAY_COUNT, 'DESC'));
+	public function get_top_games($limit = 20, $start = 0) {
+		return $this->search_games(NULL, SORT_HOT, $limit, $start);
 	}
 
-	public function get_new_games() {
-		return $this->to_gameobjs($this->get_games(DB_CN_GAMES_TIMESTAMP, 'DESC'));
+	public function get_new_games($limit = 20, $start = 0) {
+		return $this->search_games(NULL, SORT_NEW, $limit, $start);
 	}
 
-	public function get_games($order_by, $order_asc = 'ASC', $limit = 20) {
+	public function search_games($q = NULL, $sort = SORT_HOT, $limit = 20, $offset = 0) {
+		switch ($sort) {
+			case SORT_HOT:
+				$order_by = DB_CN_GAMES_PLAY_COUNT;
+				$order_asc = 'DESC';
+				break;
+			case SORT_HOT:
+				$order_by = DB_CN_GAMES_TIMESTAMP;
+				$order_asc = 'DESC';
+				break;
+		}
+		$rows = $this->get_games($q, $order_by, $order_asc, $limit, $offset);
+		return $this->to_gameobjs($rows);
+		}
+
+	public function get_games($q, $order_by, $order_asc, $limit, $offset) {
+		if (isset($q)) {
+			$this->db->like(DB_CN_GAMES_NAME, $q);
+		}
 		$this->db->order_by($order_by, $order_asc);
-		$this->db->limit($limit);
+		$this->db->limit($limit, $offset);
 		$query = $this->db->get(DB_TN_GAMES);
 		$result = $query->result();
 		return $result;
 	}
 
 	public function get_recent_aborted_chars() {
-
+		
 	}
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
@@ -173,4 +189,5 @@ class Game_model extends CI_Model {
 		}
 		return $data;
 	}
+
 }

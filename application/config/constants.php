@@ -51,6 +51,10 @@ define('SITE_DESCRIPTION', '言えるかなゲームを作成したりプレイ�
 
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
+define('NUM_GAME_PAR_SEARCHPAGE', 50);
+define('NUM_GAME_PAR_TOPPAGE', 20);
+
+/* path */
 define('PATH_IMG', 'images/');
 define('PATH_LIB', 'lib/');
 define('PATH_JS', 'js/');
@@ -101,6 +105,8 @@ define('DB_CN_WORDS_TEXT', 'word_text');
 define('DB_CN_WORDS_POINT_POSITIVE', 'point_positive');
 define('DB_CN_WORDS_POINT_NEGATIVE', 'point_negative');
 
+define('SORT_HOT', 'hot');
+define('SORT_NEW', 'new');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

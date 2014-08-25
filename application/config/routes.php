@@ -44,9 +44,17 @@ $route['404_override'] = '';
 
 $route['g'] = 'game';
 $route['g/(:num)'] = 'game/play/$1';
+$route['g/(.*)'] = 'game/$1';
+
+$route['m/(.*)'] = 'more/$1';
 
 $route['s'] = 'search';
-$route['s/(.*)'] = 'search/$1';
+$route['s/(.*)'] = 'search/main/$1';
+
+$route['h'] = 'hot';
+$route['h/(.*)'] = 'hot/$1';
+$route['n'] = 'new';
+$route['n/(.*)'] = 'new/$1';
 
 $route['u'] = 'user';
 $route['u/(.*)'] = 'user/$1';
