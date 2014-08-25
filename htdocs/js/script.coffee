@@ -3,7 +3,7 @@ $ ->
     # TODO: それぞれのフォームでのチェック
 
     # init variables
-    td_boxs            = $('table.words-table td')
+    td_boxs            = $('table.table-words td')
     ans_form               = $('#answer-form')
     process_count_span = $('span#process_count')
     btn_end            = $('#submit-end')
@@ -20,7 +20,7 @@ $ ->
     data_start_id      = []
     stc = $.SuperTextConverter()
 
-    btn_end.parent().hide()
+    btn_end.hide()
 
     to_ans_kana = (str) ->
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
@@ -34,12 +34,12 @@ $ ->
             return
         # 全角ひらがな半角英数字に統一する
         word_k = to_ans_kana(word)
-        console.log word
+#        console.log word
         console.log word_k
-        td = td_boxs.next("td[ansc=#{word_k}]")
+        td = $("td[ansc=#{word_k}]")
         ans = td.attr 'ans'
-        console.log td
-        console.log ans
+#        console.log td
+#        console.log ans
         if td.size() < 1 || td.hasClass "ok"
             return
         # 正解した場合
@@ -56,8 +56,8 @@ $ ->
     game_end = ->
         game_flag = 0
         clearInterval(timer_id)
-        btn_start.parent().show()
-        btn_end.parent().hide()
+        btn_start.show()
+        btn_end.hide()
         ng_ids = []
         td_boxs.not('.ok').each ->
             $(@).html($(@).attr('ans'))
@@ -69,8 +69,8 @@ $ ->
     game_start = ->
         game_flag = 1
         start_time = new Date().getTime()
-        btn_start.parent().hide()
-        btn_end.parent().show()
+        btn_start.hide()
+        btn_end.show()
         dtime = 0
         solve_count = 0
         data_start_id = []
@@ -124,7 +124,9 @@ $ ->
         if e.which == 13
             replay()
     )
-    $('#submit-answer').click -> replay()
+    $('#submit-answer').click ->
+        replay()
+        ans_form.focus()
 
     add_list = ->
 #        include_list()

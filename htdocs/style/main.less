@@ -4,6 +4,8 @@
 @import "./md.less";
 @import "./xs.less";
 
+@border-d: solid 1px #dddddd;
+
 h1.page-title {
     font-size: 37px;
     margin-top: 5px;
@@ -22,4 +24,76 @@ h1.page-title {
 .margin-v {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.plate {
+    width: 100%;
+    display: table;
+    border: @border-d;
+    border-radius: 3px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.timer {
+    color: gray;
+    vertical-align: middle;
+    >div {
+        font-size: 27px;
+    }
+    height: 3em;
+}
+
+.counter {
+    font-size: 27px;
+}
+
+.control-box {
+    padding: 10px;
+    .control-forms {
+        padding-top: 10px;
+        #answer-form {
+            width: 50%;
+            display: inline;
+        }
+    }
+}
+
+
+table.table-words {
+    border: @border-d;
+    border-collapse: separate;
+    @brv: 3px;
+    border-radius: @brv;
+    tbody {
+    }
+    tr {
+        border-collapse: collapse;
+        td {
+            padding: 5px 0px !important;
+            border-top: @border-d;
+            border-left: @border-d;
+            text-align: center;
+            width: 12.5%;
+            height: 34px;
+            &.ng {
+                color: red;
+            }
+            &.ok {
+/*                color: #00CC10; */
+/*                box-shadow: inset 0 -2px 1px; */
+            }
+            &.emp {
+                background: #dddddd;
+            }
+        }
+        &:first-child {
+            td {
+                border-top: none;
+            }
+        }
+        td:first-child {
+            border-left: none;
+        }
+    }
 }

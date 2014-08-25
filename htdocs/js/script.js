@@ -2,7 +2,7 @@
 (function() {
   $(function() {
     var add_list, all_word_num, ans_form, btn_end, btn_start, data_start_id, dtime, game_end, game_flag, game_id, game_start, get_forms, my_disp, post_result, process_count_span, replay, solve_count, start_time, stc, td_boxs, time_box, timer_id, to_ans_kana, to_double0, word_boxs, wordbox_change, wordbox_clear;
-    td_boxs = $('table.words-table td');
+    td_boxs = $('table.table-words td');
     ans_form = $('#answer-form');
     process_count_span = $('span#process_count');
     btn_end = $('#submit-end');
@@ -18,7 +18,7 @@
     timer_id = null;
     data_start_id = [];
     stc = $.SuperTextConverter();
-    btn_end.parent().hide();
+    btn_end.hide();
     to_ans_kana = function(str) {
       return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)), {
         convert: {
@@ -33,12 +33,9 @@
         return;
       }
       word_k = to_ans_kana(word);
-      console.log(word);
       console.log(word_k);
-      td = td_boxs.next("td[ansc=" + word_k + "]");
+      td = $("td[ansc=" + word_k + "]");
       ans = td.attr('ans');
-      console.log(td);
-      console.log(ans);
       if (td.size() < 1 || td.hasClass("ok")) {
         return;
       }
@@ -56,8 +53,8 @@
       var ng_ids;
       game_flag = 0;
       clearInterval(timer_id);
-      btn_start.parent().show();
-      btn_end.parent().hide();
+      btn_start.show();
+      btn_end.hide();
       ng_ids = [];
       td_boxs.not('.ok').each(function() {
         $(this).html($(this).attr('ans'));
@@ -71,8 +68,8 @@
     game_start = function() {
       game_flag = 1;
       start_time = new Date().getTime();
-      btn_start.parent().hide();
-      btn_end.parent().show();
+      btn_start.hide();
+      btn_end.show();
       dtime = 0;
       solve_count = 0;
       data_start_id = [];
@@ -135,7 +132,8 @@
       }
     });
     $('#submit-answer').click(function() {
-      return replay();
+      replay();
+      return ans_form.focus();
     });
     add_list = function() {
       var add_text, add_words;
