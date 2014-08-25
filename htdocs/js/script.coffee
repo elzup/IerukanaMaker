@@ -41,7 +41,6 @@ $ ->
         # 全角ひらがな半角英数字に統一する
         word_k = to_ans_kana(word)
 #        console.log word
-        console.log word_k
         td = $("td[ansc=#{word_k}]")
         ans = td.attr 'ans'
 #        console.log td
@@ -67,7 +66,7 @@ $ ->
         btn_start.show()
         btn_tweet.show()
         ng_ids = []
-        td_boxs.not('.ok').each ->
+        td_boxs.not('.ok').not('.emp').each ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
@@ -75,19 +74,34 @@ $ ->
             post_result(data_start_id, ng_ids)
 
     game_start = ->
-        game_flag = 1
+        game_flag = 2
         start_time = new Date().getTime()
         btn_start.hide()
+        btn_tweet.hide()
         btn_answer.show()
         btn_end.show()
         dtime = 0
         solve_count = 0
         data_start_id = []
+        btn_answer.attr('disabled', '')
+        btn_end.attr('disabled', '')
         process_count_span.html(0)
+        time_box.css('color', 'red')
         td_boxs.each ->
             $(@).html("")
             $(@).removeClass('ok')
             $(@).removeClass('ng')
+        timer_id = setInterval ->
+            my_disp_down()
+        ,1
+
+    game_start_open = ->
+        game_flag = 1
+        btn_answer.removeAttr('disabled')
+        btn_end.removeAttr('disabled')
+        clearInterval(timer_id)
+        start_time = new Date().getTime()
+        time_box.css('color', 'black')
         timer_id = setInterval ->
             my_disp()
         ,1
@@ -107,6 +121,14 @@ $ ->
         myMS = Math.floor(dtime / 10 % 100)
         time_box.html(to_double0(myH) + ":" + to_double0(myM) + ":" + to_double0(myS) + "." + to_double0(myMS))
 
+    my_disp_down = ->
+        dtime = 3000 - (new Date().getTime() - start_time)
+        if dtime <= 0
+            game_start_open()
+            return
+        myS = Math.floor(dtime/1000) +  1
+        time_box.html("--:--:" + to_double0(myS) + ".--")
+
     btn_start.click ->
         ans_form.focus()
         game_start()
@@ -115,6 +137,10 @@ $ ->
         game_end()
 
     post_result = (start_ids, ng_ids)->
+        start_ids = start_ids.filter (e)->
+            return !!e
+        ng_ids = ng_ids.filter (e)->
+            return !!e
         data =
             start_ids: start_ids.join ","
             ng_ids: ng_ids.join ","
@@ -124,7 +150,6 @@ $ ->
             data: data,
             success: (res) ->
                 console.log res
-                console.log 'result posted'
             error: ->
                 console.log 'result post error'
         )
@@ -207,7 +232,6 @@ $ ->
             url: "make/check",
             data: data,
             success: (res) ->
-                console.log res
                 if res == "s"
                     $('#check-name').html('使うことのできるタイトルです')
                     $('#check-name').css('color', 'green')
@@ -257,7 +281,6 @@ $ ->
         text = game_name + "を" + solve_count + word_unit + "言えました。[" + to_time_str(time_box.html()) + "]"
         share_url = location.href
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
-        console.log url
         window.open(url)
     
     to_time_str = (time) ->
@@ -266,5 +289,4 @@ $ ->
         time_m = ts[1] * 1
         ts2 = ts[2].split('.')
         time_s = ts2[0] * 1
-        console.log time_s
         return (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
