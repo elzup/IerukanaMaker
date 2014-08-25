@@ -51,6 +51,7 @@ class Game extends CI_Controller {
 			echo 'e:0';
 			return;
 		}
+		$this->game->increment_play_count($game_id);
 		$this->game->log_points($game_id, $active_points, $negative_points);
 		$this->game->close();
 		echo "result logged!";

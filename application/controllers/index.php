@@ -18,13 +18,15 @@ class Index extends CI_Controller
 	public function index()
 	{
 		$user = $this->user->get_main_user();
+		$new_games = $this->game->get_new_games();
+		$hot_games = $this->game->get_top_games();
 
 		$meta = new Metaobj();
 		$meta->setup_top();
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
-		$this->load->view('toppage');
+		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}

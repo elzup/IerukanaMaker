@@ -51,6 +51,10 @@ class Game_model extends CI_Model {
 
 	function increment_play_count($game_id) {
 		// TODO: create
+		$this->db->where(DB_CN_GAMES_ID, $game_id);
+		$this->db->set(DB_CN_GAMES_PLAY_COUNT, DB_CN_GAMES_PLAY_COUNT . ' + 1', FALSE);
+		$this->db->set(DB_CN_GAMES_TIMESTAMP, DB_CN_GAMES_TIMESTAMP, FALSE);
+		$this->db->update(DB_TN_GAMES);
 	}
 
 	public function log_points($game_id, $active_points, $negative_points) {
@@ -104,6 +108,15 @@ class Game_model extends CI_Model {
 		return $words;
 	}
 
+	function to_gameobjs($rows) {
+		$games = array();
+		foreach ($rows as $row) {
+			$games[] = new Gameobj($row);
+		}
+		return $games;
+	}
+
+
 	/**
 	 * 
 	 * @param int $id twitterid
@@ -119,6 +132,26 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_USERS_TWITTER_USER_ID, $id_twitter);
 		$this->db->insert(DB_TN_USERS);
 		return $this->db->insert_id();
+	}
+
+	public function get_top_games($limit = 20) {
+		return $this->to_gameobjs($this->get_games(DB_CN_GAMES_PLAY_COUNT, 'DESC'));
+	}
+
+	public function get_new_games() {
+		return $this->to_gameobjs($this->get_games(DB_CN_GAMES_TIMESTAMP, 'DESC'));
+	}
+
+	public function get_games($order_by, $order_asc = 'ASC', $limit = 20) {
+		$this->db->order_by($order_by, $order_asc);
+		$this->db->limit($limit);
+		$query = $this->db->get(DB_TN_GAMES);
+		$result = $query->result();
+		return $result;
+	}
+
+	public function get_recent_aborted_chars() {
+
 	}
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {

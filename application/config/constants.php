@@ -91,6 +91,8 @@ define('DB_CN_GAMES_NAME', 'game_name');
 define('DB_CN_GAMES_DESCRIPTION', 'game_description');
 define('DB_CN_GAMES_WORDS_NUM', 'words_num');
 define('DB_CN_GAMES_WORDS_UNIT', 'words_unit');
+define('DB_CN_GAMES_PLAY_COUNT', 'play_count');
+define('DB_CN_GAMES_TIMESTAMP', 'timestamp');
 
 define('DB_TN_WORDS', 'words');
 define('DB_CN_WORDS_ID', 'word_id');

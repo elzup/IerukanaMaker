@@ -1,4 +1,9 @@
-<?php ?>
+<?php 
+/* @var $hot_games Gameobj[] */
+/* @var $new_games Gameobj[] */
+var_dump($hot_game);
+var_dump($new_games);
+?>
 
 <div class="content">
 	<div class="jumbotron">
