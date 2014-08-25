@@ -30,6 +30,11 @@ class Gameobj {
 		$this->timestamp = strtotime($obj->{DB_CN_GAMES_TIMESTAMP});
 	}
 
+	public function set_word_list(array $list) {
+		$this->word_list = $list;
+		$this->words_num = count($list);
+	}
+
 	public function get_words_num() {
 		return $this->words_num;
 	}

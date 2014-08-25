@@ -17,7 +17,7 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_NAME, $game->name);
 		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
 		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
-		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->get_words_num());
+		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
 		$this->db->insert(DB_TN_GAMES);
 		return $this->db->insert_id();
 
@@ -82,7 +82,7 @@ class Game_model extends CI_Model {
 			return NULL;
 		}
 		$game = new Gameobj($game_res);
-		$game->word_list = $this->to_wordobjs($this->select_words($game_id));
+		$game->set_word_list($this->to_wordobjs($this->select_words($game_id)));
 		return $game;
 	}
 
@@ -156,8 +156,6 @@ class Game_model extends CI_Model {
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
 		$data = array();
-		var_dump($game->word_list);
-		var_dump($active_points);
 		foreach ($active_points as $i => $p) {
 			if ($i > 10) {
 				break;

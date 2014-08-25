@@ -9,9 +9,10 @@ $debug = isset($_GET['d']);
 			<label for="input_game_name" class="col-md-2 control-label">タイトル</label>
 			<div class="col-md-10">
 				<input class="" id="input_game_name" name="game_name" value="<?= $debug ? 'testタイトル' : '' ?>" placeholder="炎ポケモン" type="text" maxlength="20">
-				<span id="num">00</span>
+				<span id="num">&nbsp;&nbsp;0</span>
 				<input class="" id="input_words_unit" name="words_unit" value="個" type="text" maxlength="5">
 				言えるかな？
+				<span id="check-name"></span>
 				<span class="help-block">最大20文字</span>
 			</div>
 		</div>
@@ -41,7 +42,7 @@ $debug = isset($_GET['d']);
 					</div>
 				</div>
 			</div>
-			<div class="col-md-offset-2 col-md-10" id="word-list-box">
+			<div class="col-md-12" id="word-list-box">
 				<?php
 				$h = 32;
 				$w = 8;
@@ -67,7 +68,7 @@ EOL;
 		</div>
 		<div class="form-group">
 			<div class="col-md-10 col-md-offset-2">
-				<button id="check-btn" type="button" class="btn btn-default">チェック</button>
+				<!--<button id="check-btn" type="button" class="btn btn-default">チェック</button>-->
 				<button id="submit-btn" type="button" class="btn btn-primary">作成</button>
 			</div>
 		</div>

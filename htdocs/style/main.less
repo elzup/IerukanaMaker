@@ -27,7 +27,7 @@ h1.page-title {
 }
 span.strong-s {
     font-weight: bold;
-    text-shadow: 2px 2px rgba(0,0,0,.1);
+    text-shadow: 1px 1px rgba(0,0,0,.1);
 }
 
 .sub-title {
@@ -42,13 +42,32 @@ span.strong-s {
     }
 }
 
-.row.row-word {
-    >div {
-        float: left;
-        width: 12.5%;
-    }
-    .wordbox {
-        width: 100%;
+#word-list-box {
+    .row.row-word {
+        >div {
+            float: left;
+            width: 12.5%;
+            padding: 0;
+            border-left: @border-d;
+            height: 28px;
+            >input {
+                text-align: center;
+                font-size: 13px;
+                line-height: 27px;
+                border: none;
+            }
+            &:last-child {
+                border-right: @border-d;
+            }
+        }
+        &:first-child {
+            >div {
+                border-top: @border-d;
+            }
+        }
+        .wordbox {
+            width: 100%;
+        }
     }
 }
 
@@ -90,6 +109,19 @@ span.strong-s {
     }
 }
 
+#make-form {
+    input#input_game_name {
+        width: 20em;
+    }
+    #num {
+        font-size: 20px;
+        margin: 5px;
+    }
+    input#input_words_unit {
+        width: 5em;
+    }
+}
+
 
 table.table-words {
     border: @border-d;
@@ -127,6 +159,17 @@ table.table-words {
             border-left: none;
         }
     }
+}
+
+#check-name {
+    margin-left: 45px;
+}
+
+.color-error {
+    color: red;
+}
+.color-success {
+    color: lime;
 }
 
 .over-text-wrap {

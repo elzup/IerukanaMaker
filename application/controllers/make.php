@@ -1,22 +1,20 @@
 <?php
 
-class Make extends CI_Controller
-{
+class Make extends CI_Controller {
 
 	/** @var User_model */
 	public $user;
+
 	/** @var Game_model */
 	public $game;
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 		$this->load->model('User_model', 'user', TRUE);
 		$this->load->model('Game_model', 'game', TRUE);
 	}
 
-	public function index()
-	{
+	public function index() {
 		$user = $this->user->get_main_user();
 
 		$meta = new Metaobj();
@@ -36,7 +34,8 @@ class Make extends CI_Controller
 		$name = $post['game_name'];
 		$can_use = $this->game->check_gamename_can_regist($name);
 		if (!$can_use) {
-			$this->load->view('plain', array ('text' => 'e1'));
+			echo 'e:1';
+			exit;
 		}
 		$game = new Gameobj();
 		$game->name = $name;
@@ -48,9 +47,21 @@ class Make extends CI_Controller
 			$word->text = $word_text;
 			$game->word_list[] = $word;
 		}
+		$game->words_num = count($game->words_num);
 		$game_id = $this->game->regist_game($game);
 		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！！'); // outpput plain text
-		echo $game_id;
+		echo 's:' . $game_id;
+	}
+
+	public function check() {
+		$post = $this->input->post();
+		$name = $post['name'];
+		if ($this->game->check_gamename_can_regist($name)) {
+			echo 's';
+		} else {
+			echo 'e';
+		}
+		exit;
 	}
 
 }

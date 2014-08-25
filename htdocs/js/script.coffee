@@ -19,8 +19,8 @@ $ ->
     timer_id           = null
     data_start_id      = []
     stc = $.SuperTextConverter()
-
     btn_end.hide()
+    input_game_name = $('#input_game_name')
 
     to_ans_kana = (str) ->
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
@@ -46,7 +46,7 @@ $ ->
         td.html(ans)
         td.addClass('ok')
         ans_form.val('')
-        # 人気アイエムの統計
+        # 人気アイテムの統計
         data_start_id.push td.attr 'nid'
         solve_count++
         process_count_span.html(solve_count)
@@ -133,6 +133,10 @@ $ ->
         add_text = $('#input_add').val()
         add_words = add_text.split(/[,\s]/).filter (e)->
             return !!e
+        $.each(add_words, (i, v) ->
+            add_words[i] = v.substr(0, 10)
+        )
+
         add_words = $.unique(add_words)
         word_boxs.each ->
             if !$(@).val()
@@ -155,7 +159,7 @@ $ ->
             v = $.trim $(@).val()
             wordlist.push v if v
         words_text = wordlist.join(',')
-        game_name = $.trim($('#input_game_name').val())
+        game_name = $.trim(input_game_name.val())
         words_unit = $.trim $('#input_words_unit').val()
         game_description = $.trim $('#input_description').val()
         if words_text != '' && game_name? && words_unit? && game_description
@@ -171,7 +175,8 @@ $ ->
         c = 0
         word_boxs.each ->
             c++ if $(@).val() != ""
-        $('#num').html(c)
+        # 半角スペース3桁埋め
+        $('#num').html(('   ' + c).substr(-3).replace(' ', '&nbsp;'))
 
     word_boxs.change ->
         wordbox_change()
@@ -183,9 +188,32 @@ $ ->
 
     $('#submit-clear').click wordbox_clear
 
+    name_check = ->
+        data =
+            name: input_game_name.val()
+        $('#check-name').html('check')
+        $('#check-name').parent().parent().removeClass('has-error')
+        $.ajax(
+            type: "POST",
+            url: "make/check",
+            data: data,
+            success: (res) ->
+                console.log res
+                if res == "s"
+                    $('#check-name').html('使うことのできるタイトルです')
+                    $('#check-name').css('color', 'green')
+                else
+                    $('#check-name').html('既に使われているタイトルです')
+                    $('#check-name').parent().parent().addClass('has-error')
+                    $('#check-name').css('color', 'red')
+            error: ->
+                console.log 'check error'
+        )
+    input_game_name.change -> name_check()
+
     $('#check-btn').click ->
         ok = true
-        if gn = $.trim $('#input_game_name').val()
+        if gn = $.trim input_game_name.val()
             gn
         else
             ok = false
@@ -200,11 +228,16 @@ $ ->
             type: "POST",
             url: "make/post",
             data: data,
-            success: (data) ->
-                if data == 'e1'
-                    console.log "ゲーム名が既に使われています"
-                else
-                    location.href = 'g/' + data
+            success: (res) ->
+                console.log res
+                ress = res.split(':')
+                res_code = ress[0]
+                res_text = ress[1]
+                switch res_code
+                    when 'e'
+                        console.log "ゲーム名が既に使われています"
+                    when 's'
+                        location.href = 'g/' + res_text
             error: ->
                 console.log 'connect error'
         )
