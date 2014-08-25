@@ -28,7 +28,7 @@ if ($user == null) {
 					<?php
 				} else {
 					?>
-				<li>
+				<li class="img">
 					<img src="<?= $user->img_url ?>" alt="アイコン">
 				<li>
 					<a <?= attr_href('//twitter.com/' . $user->screen_name, NULL, FALSE) ?>><?= $user->screen_name ?></a>

@@ -49,7 +49,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('SITE_NAME', '言えるかな？');
 define('SITE_DESCRIPTION', '言えるかなゲームを作成したりプレイできるサイトです');
 
-define('META_KEYWORDS', '言えるかな,ierukana');
+define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
 define('PATH_IMG', 'images/');
 define('PATH_LIB', 'lib/');

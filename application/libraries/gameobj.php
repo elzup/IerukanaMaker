@@ -6,6 +6,7 @@ class Gameobj {
 	public $name;
 	public $description;
 	public $word_unit;
+	public $words_num;
 	public $play_count;
 	public $timestamp;
 	/**
@@ -24,12 +25,13 @@ class Gameobj {
 		$this->name = $obj->{DB_CN_GAMES_NAME};
 		$this->description = $obj->{DB_CN_GAMES_DESCRIPTION};
 		$this->word_unit = $obj->{DB_CN_GAMES_WORDS_UNIT};
+		$this->words_num = $obj->{DB_CN_GAMES_WORDS_NUM};
 		$this->play_count = $obj->{DB_CN_GAMES_PLAY_COUNT};
 		$this->timestamp = strtotime($obj->{DB_CN_GAMES_TIMESTAMP});
 	}
 
 	public function get_words_num() {
-		return count($this->word_list);
+		return $this->words_num;
 	}
 
 	public function get_full_title() {
