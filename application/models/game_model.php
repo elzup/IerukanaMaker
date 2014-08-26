@@ -18,6 +18,7 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
 		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
+		$this->db->set(DB_CN_GAMES_CREATED_AT, date(MYSQL_TIMESTAMP));
 		$this->db->insert(DB_TN_GAMES);
 		return $this->db->insert_id();
 	}
@@ -52,7 +53,6 @@ class Game_model extends CI_Model {
 		// TODO: create
 		$this->db->where(DB_CN_GAMES_ID, $game_id);
 		$this->db->set(DB_CN_GAMES_PLAY_COUNT, DB_CN_GAMES_PLAY_COUNT . ' + 1', FALSE);
-		$this->db->set(DB_CN_GAMES_TIMESTAMP, DB_CN_GAMES_TIMESTAMP, FALSE);
 		$this->db->update(DB_TN_GAMES);
 	}
 
@@ -147,7 +147,7 @@ class Game_model extends CI_Model {
 				$order_asc = 'DESC';
 				break;
 			case SORT_NEW:
-				$order_by = DB_CN_GAMES_TIMESTAMP;
+				$order_by = DB_CN_GAMES_UPDATED_AT;
 				$order_asc = 'DESC';
 				break;
 			default :
@@ -174,16 +174,23 @@ class Game_model extends CI_Model {
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
 		$data = array();
+		$max = count($active_points) < 10 ? count($active_points) : 10;
 		foreach ($active_points as $i => $p) {
+			if (is_null($p) || "" === $p) {
+				continue;
+			}
 			if ($i > 10) {
 				break;
 			}
 			$data[] = array(
 				DB_CN_WORDS_ID => $p,
-				DB_CN_WORDS_POINT_POSITIVE => $game->word_list[$p]->point_positive + (10 - $i),
+				DB_CN_WORDS_POINT_POSITIVE => $game->word_list[$p]->point_positive + ($max - $i),
 			);
 		}
 		foreach ($negative_points as $i => $p) {
+			if (is_null($p) || "" === $p) {
+				continue;
+			}
 			$data[] = array(
 				DB_CN_WORDS_ID => $p,
 				DB_CN_WORDS_POINT_NEGATIVE => $game->word_list[$p]->point_negative + 1,

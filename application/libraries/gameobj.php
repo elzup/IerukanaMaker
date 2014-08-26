@@ -9,6 +9,7 @@ class Gameobj {
 	public $words_num;
 	public $play_count;
 	public $timestamp;
+	public $created_timestamp;
 	/**
 	 * ワードリスト
 	 * @var Wordobj[]
@@ -27,7 +28,8 @@ class Gameobj {
 		$this->word_unit = $obj->{DB_CN_GAMES_WORDS_UNIT};
 		$this->words_num = $obj->{DB_CN_GAMES_WORDS_NUM};
 		$this->play_count = $obj->{DB_CN_GAMES_PLAY_COUNT};
-		$this->timestamp = strtotime($obj->{DB_CN_GAMES_TIMESTAMP});
+		$this->timestamp = strtotime($obj->{DB_CN_GAMES_CREATED_AT});
+		$this->created_timestamp = strtotime($obj->{DB_CN_GAMES_UPDATED_AT});
 	}
 
 	public function set_word_list(array $list) {

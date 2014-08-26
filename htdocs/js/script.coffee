@@ -3,7 +3,7 @@ $ ->
     # TODO: それぞれのフォームでのチェック
 
     # init variables
-    td_boxs            = $('table.table-words td')
+    td_boxs            = $('table.table-words td').not('.emp')
     ans_form               = $('#answer-form')
     process_count_span = $('span#process_count')
     btn_end            = $('#submit-end')
@@ -55,6 +55,8 @@ $ ->
         data_start_id.push td.attr 'nid'
         solve_count++
         process_count_span.html(solve_count)
+        console.log solve_count
+        console.log all_word_num
         if solve_count == all_word_num
             game_end()
 
@@ -66,7 +68,7 @@ $ ->
         btn_start.show()
         btn_tweet.show()
         ng_ids = []
-        td_boxs.not('.ok').not('.emp').each ->
+        td_boxs.not('.ok').each ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
@@ -141,6 +143,8 @@ $ ->
             return !!e
         ng_ids = ng_ids.filter (e)->
             return !!e
+        console.log start_ids
+        console.log ng_ids
         data =
             start_ids: start_ids.join ","
             ng_ids: ng_ids.join ","

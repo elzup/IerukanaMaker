@@ -2,7 +2,7 @@
 (function() {
   $(function() {
     var add_list, all_word_num, ans_form, btn_answer, btn_end, btn_start, btn_tweet, data_start_id, dtime, game_end, game_flag, game_id, game_name, game_start, game_start_open, get_forms, input_game_name, my_disp, my_disp_down, name_check, post_result, process_count_span, replay, solve_count, start_time, stc, td_boxs, time_box, timer_id, to_ans_kana, to_double0, to_time_str, word_boxs, word_unit, wordbox_change, wordbox_clear;
-    td_boxs = $('table.table-words td');
+    td_boxs = $('table.table-words td').not('.emp');
     ans_form = $('#answer-form');
     process_count_span = $('span#process_count');
     btn_end = $('#submit-end');
@@ -52,6 +52,8 @@
       data_start_id.push(td.attr('nid'));
       solve_count++;
       process_count_span.html(solve_count);
+      console.log(solve_count);
+      console.log(all_word_num);
       if (solve_count === all_word_num) {
         return game_end();
       }
@@ -65,7 +67,7 @@
       btn_start.show();
       btn_tweet.show();
       ng_ids = [];
-      td_boxs.not('.ok').not('.emp').each(function() {
+      td_boxs.not('.ok').each(function() {
         $(this).html($(this).attr('ans'));
         $(this).addClass('ng');
         return ng_ids.push($(this).attr('nid'));
@@ -150,6 +152,8 @@
       ng_ids = ng_ids.filter(function(e) {
         return !!e;
       });
+      console.log(start_ids);
+      console.log(ng_ids);
       data = {
         start_ids: start_ids.join(","),
         ng_ids: ng_ids.join(",")
