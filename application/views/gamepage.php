@@ -11,7 +11,7 @@ function to_ans_kana($str) {
 		<?php
 		echo $game->description;
 		$text = $game->get_full_title(TRUE);
-		sharebtn_twitter($text, current_url(), 'tweet');
+		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
 		?>
 	</p>
 	<div class="game-container">

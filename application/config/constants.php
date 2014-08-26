@@ -51,6 +51,8 @@ define('SITE_DESCRIPTION', '言えるかなゲームを作成したりプレイ�
 
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
+define('AUTHOR_TWITTER_SCREEN_NAME', 'arzzup');
+
 define('NUM_GAME_PAR_SEARCHPAGE', 50);
 define('NUM_GAME_PAR_TOPPAGE', 20);
 

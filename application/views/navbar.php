@@ -19,12 +19,16 @@ if ($user == null) {
 	<div class="navbar-collapse collapse navbar-categlyes">
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a <?= attr_href(PATH_MAKE, NULL, TRUE) ?>>言えるかなを作成</a>
+				<a <?= attr_href(base_url(PATH_MAKE)) ?>>作成</a>
+			<li>
+				<a <?= attr_href(base_url(PATH_SEARCH)) ?>>検索</a>
+			<li>
+				<a <?= attr_href('//twitter.com/' . AUTHOR_TWITTER_SCREEN_NAME , NULL, FALSE) ?>>サポート</a>
 				<?php
 				if (empty($user)) {
 					?>
 				<li>
-					<a <?= attr_href(PATH_AUTH_LOGIN) ?>>Twitterでログイン</a>
+					<a <?= attr_href(base_url(PATH_AUTH_LOGIN)) ?>>Twitterでログイン</a>
 					<?php
 				} else {
 					?>
@@ -33,7 +37,7 @@ if ($user == null) {
 				<li>
 					<a <?= attr_href('//twitter.com/' . $user->screen_name, NULL, FALSE) ?>><?= $user->screen_name ?></a>
 				<li>
-					<a <?= attr_href(PATH_AUTH_LOGOUT) ?>>ログアウトする</a>
+					<a <?= attr_href(base_url(PATH_AUTH_LOGOUT)) ?>>ログアウトする</a>
 				<?php } ?>
 
 		</ul>

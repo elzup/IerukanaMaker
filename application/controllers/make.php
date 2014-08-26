@@ -47,7 +47,7 @@ class Make extends CI_Controller {
 			$word->text = $word_text;
 			$game->word_list[] = $word;
 		}
-		$game->words_num = count($game->words_num);
+		$game->words_num = count($game->word_list);
 		$game_id = $this->game->regist_game($game);
 		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！！'); // outpput plain text
 		echo 's:' . $game_id;

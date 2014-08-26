@@ -278,7 +278,8 @@ $ ->
 
     btn_tweet.click ->
         hashtags = '言えるかな'
-        text = game_name + "を" + solve_count + word_unit + "言えました。[" + to_time_str(time_box.html()) + "]"
+        time = to_time_str(time_box.html())
+        text = "#{game_name}を#{all_word_num}#{word_unit}中#{solve_count}#{word_unit}言えました[#{time}]"
         share_url = location.href
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
         window.open(url)
