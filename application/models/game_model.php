@@ -215,4 +215,17 @@ class Game_model extends CI_Model {
 		$this->db->delete(DB_TN_GAMES);
 	}
 
+	public function update_game(Gameobj $game) {
+		$this->_update_game($game);
+		$this->delete_words($game->id);
+		$this->insert_words($game->id, $game->word_list);
+	}
+
+	private function _update_game($game) {
+		$this->db->where(DB_CN_GAMES_ID, $game->id);
+		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
+		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
+		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
+		$this->db->update(DB_TN_GAMES);
+	}
 }

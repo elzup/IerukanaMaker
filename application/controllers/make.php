@@ -49,7 +49,7 @@ class Make extends CI_Controller {
 		}
 		$game->words_num = count($game->word_list);
 		$game_id = $this->game->regist_game($game);
-		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！削除したくなった場合はこのページの最下部を見てください'); // outpput plain text
+		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！管理はこのページの最下部を見てください'); // outpput plain text
 		echo 's:' . $game_id;
 	}
 
@@ -93,6 +93,18 @@ class Make extends CI_Controller {
 		}
 		$game->description = $post['game_description'];
 		$game->word_unit = $post['words_unit'];
+		for ($i = 0; $i < 256; $i++) {
+			if (!$text = $post['word-' . $i]) {
+				continue;
+			}
+			$word = new Wordobj();
+			$word->text = $text;
+			$game->word_list[] = $word;
+		}
+		$game->words_num = count($game->word_list);
+		$this->game->update_game($game);
+		$this->session->set_userdata('alert', $game->get_full_title() . 'を変更しました!');
+		jump(base_url(PATH_GAME . $game_id));
 	}
 
 }

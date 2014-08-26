@@ -63,7 +63,7 @@
 						}
 						?>
 						<div class="col-md-1">
-							<input class="wordbox" id="input_word<?= $k ?>" name="word-<?= $k ?>" maxlength="20" value="<?= $word ? $word->text : '' ?>" placeholder="---" type="text">
+							<input class="wordbox" id="input_word<?= $k ?>" name="word-<?= "" + $k ?>" maxlength="20" value="<?= $word ? $word->text : '' ?>" placeholder="---" type="text">
 						</div>
 						<?php
 					}
