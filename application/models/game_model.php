@@ -160,6 +160,7 @@ class Game_model extends CI_Model {
 	public function get_games($q, $order_by, $order_asc, $limit, $offset) {
 		if (isset($q)) {
 			$this->db->like(DB_CN_GAMES_NAME, $q);
+			$this->db->or_like(DB_CN_GAMES_DESCRIPTION, $q);
 		}
 		$this->db->order_by($order_by, $order_asc);
 		$this->db->limit($limit, $offset);

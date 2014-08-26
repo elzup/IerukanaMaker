@@ -24,7 +24,7 @@ class Gameobj {
 		$this->id = $obj->{DB_CN_GAMES_ID};
 		$this->user_id = $obj->{DB_CN_GAMES_USER_ID};
 		$this->name = $obj->{DB_CN_GAMES_NAME};
-		$this->description = $obj->{DB_CN_GAMES_DESCRIPTION};
+		$this->description = wrap_taglink($obj->{DB_CN_GAMES_DESCRIPTION});
 		$this->word_unit = $obj->{DB_CN_GAMES_WORDS_UNIT};
 		$this->words_num = $obj->{DB_CN_GAMES_WORDS_NUM};
 		$this->play_count = $obj->{DB_CN_GAMES_PLAY_COUNT};

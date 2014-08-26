@@ -64,4 +64,7 @@ class Make extends CI_Controller {
 		exit;
 	}
 
+	public function update() {
+	}
+
 }

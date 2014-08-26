@@ -8,13 +8,15 @@ function to_ans_kana($str) {
 ?>
 
 <div class="content">
-	<p class="description">
+	<div class="description">
+		<p><?= $game->description?></p>
 		<?php
-		echo $game->description;
+		echo '<div>';
 		$text = $game->get_full_title(TRUE);
 		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
+		echo '</div>';
 		?>
-	</p>
+	</div>
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row">

@@ -20,7 +20,7 @@ $debug = isset($_GET['d']);
 			<label for="input_description" class="col-md-2 control-label">追加説明文</label>
 			<div class="col-md-10">
 				<input class="form-control" id="input_description" name="description" value="<?= $debug ? 'これが詳細文' : '' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text" maxlength="50">
-				<span class="help-block">最大50文字</span>
+				<span class="help-block">最大50文字 #でタグ付け出来ます</span>
 			</div>
 		</div>
 		<div class="form-group">
