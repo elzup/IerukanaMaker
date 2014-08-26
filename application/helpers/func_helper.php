@@ -269,7 +269,7 @@ if (!function_exists('wrap_taglink')) {
 
 	function wrap_taglink($str) {
 		$pattern = '/#(w*[一-龠_ぁ-ん_ァ-ヴー]+|[a-zA-Z0-9]+|[a-zA-Z0-9]w*)/u';
-		$replacement = '<a class="tag-link" href="' . base_url(PATH_SEARCH) . '?q=%23$1">$0</a>';
+		$replacement = '<a class="tag-link" href="' . base_url(PATH_TAG) . '/$1">$0</a>';
 		return preg_replace($pattern, $replacement, $str);
 	}
 
@@ -278,7 +278,7 @@ if (!function_exists('wrap_taglink')) {
 if (!function_exists('wrap_taglink_only')) {
 
 	function wrap_taglink_only($str) {
-		return '<a class="tag-link" href="' . base_url(PATH_SEARCH) . '?q=%23' . urlencode($str) . '">#' . $str . '</a>';
+		return '<a class="tag-link" href="' . base_url(PATH_TAG . urlencode($str)) . '">#' . $str . '</a>';
 	}
 
 }

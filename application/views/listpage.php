@@ -1,12 +1,19 @@
 <?php
 /* @var $games Gameobj[] */
 /* @var $page_index integer */
+/* @var $is_tag bool */
+$is_tag = !!@$is_tag;
 $is_nogame = count($games) < 1;
 $is_startpage = $page_index == 0;
 
-function tag_pager($is_startpage, $is_nogame, $page_index, $q) {
-	$prev_url = ($page_index - 1) . ($q ? '?q=' . urlencode($q): "");
-	$next_url = ($page_index + 1) . ($q ? '?q=' . urlencode($q): "");
+function tag_pager($is_startpage, $is_nogame, $page_index, $q, $is_tag) {
+	if ($is_tag) {
+		$prev_url = base_url(PATH_TAG . $q .'/' . ($page_index - 1));
+		$next_url = base_url(PATH_TAG . $q .'/' . ($page_index + 1));
+	} else {
+		$prev_url = ($page_index - 1) . ($q ? '?q=' . urlencode($q) : "");
+		$next_url = ($page_index + 1) . ($q ? '?q=' . urlencode($q) : "");
+	}
 	?>
 	<ul class="pager">
 		<li class="previous<?= $is_startpage ? ' disabled' : '' ?>"><a href="<?= $is_startpage ? "#" : $prev_url ?>">←</a></li>
@@ -20,7 +27,7 @@ function tag_pager($is_startpage, $is_nogame, $page_index, $q) {
 		<div class="col-md-offset-2 col-md-8">
 			<?php
 			$this->load->view('searchform');
-			tag_pager($is_startpage, $is_nogame, $page_index, $q);
+			tag_pager($is_startpage, $is_nogame, $page_index, $q, $is_tag);
 			if (!$is_nogame) {
 				foreach ($games as $i => $game) {
 					$i++;
@@ -31,7 +38,7 @@ function tag_pager($is_startpage, $is_nogame, $page_index, $q) {
 					</div>
 					<?php
 				}
-				tag_pager($is_startpage, $is_nogame, $page_index, $q);
+				tag_pager($is_startpage, $is_nogame, $page_index, $q, $is_tag);
 			} else {
 				?>
 				言えるかなは見つかりませんでした

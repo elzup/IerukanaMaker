@@ -192,8 +192,17 @@ class Game_model extends CI_Model {
 		return $result;
 	}
 
-	public function get_games_tag($tag, $order_by, $order_asc, $limit, $offset) {
-
+	public function get_games_tag($tag, $limit, $offset) {
+		$ids = $this->get_ids_tag($tag);
+		if (empty($ids)) {
+			return array();
+		}
+		$this->db->where_in(DB_CN_GAMES_ID, $ids);
+		$this->db->order_by(DB_CN_GAMES_PLAY_COUNT, 'DESC');
+		$this->db->limit($limit, $offset);
+		$query = $this->db->get(DB_TN_GAMES);
+		$result = $query->result();
+		return $this->to_gameobjs($result);
 	}
 
 	public function get_recent_games($num = 20) {
@@ -277,8 +286,22 @@ class Game_model extends CI_Model {
 		return $tags;
 	}
 
+	function get_ids_tag($tag_text) {
+		$rows = $this->select_tags_id($tag_text);
+		$ids = array();
+		foreach ($rows as $row) {
+			$ids[] = $row->{DB_CN_TAGS_GAME_ID};
+		}
+		return $ids;
+	}
+
 	function select_tags($game_id) {
 		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
+		return $this->db->get(DB_TN_TAGS)->result();
+	}
+
+	function select_tags_id($tag_text) {
+		$this->db->where(DB_CN_TAGS_TEXT, $tag_text);
 		return $this->db->get(DB_TN_TAGS)->result();
 	}
 
