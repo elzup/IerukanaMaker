@@ -49,7 +49,7 @@ class Make extends CI_Controller {
 		}
 		$game->words_num = count($game->word_list);
 		$game_id = $this->game->regist_game($game);
-		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！！'); // outpput plain text
+		$this->session->set_userdata('alert', '新しい言えるかなを作成しました！削除したくなった場合はこのページの最下部を見てください'); // outpput plain text
 		echo 's:' . $game_id;
 	}
 

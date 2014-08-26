@@ -47,6 +47,7 @@ $route['g/(:num)'] = 'game/play/$1';
 $route['g/(.*)'] = 'game/$1';
 
 $route['m/(.*)'] = 'more/$1';
+$route['del/(:num)'] = 'game/delete/$1';
 
 $route['s'] = 'search';
 $route['s/(:num)'] = 'search/main/hot/$1';

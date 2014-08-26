@@ -192,4 +192,19 @@ class Game_model extends CI_Model {
 		return $data;
 	}
 
+	public function remove_game($game_id) {
+		$this->delete_words($game_id);
+		$this->delete_game($game_id);
+	}
+
+	public function delete_words($game_id) {
+		$this->db->where(DB_CN_GAMES_ID, $game_id);
+		$this->db->delete(DB_TN_WORDS);
+	}
+
+	public function delete_game($game_id) {
+		$this->db->where(DB_CN_GAMES_ID, $game_id);
+		$this->db->delete(DB_TN_GAMES);
+	}
+
 }

@@ -28,6 +28,13 @@ class Game extends CI_Controller {
 			$messages[] = $posted;
 		}
 
+		if (empty($game)) {
+			$this->session->set_userdata('alert', 'お探しの言えるかな？は存在しません。消去された可能性があります');
+			jump(base_url());
+		}
+
+		$is_owner = isset($user) && $user->id_user == $game->user_id;
+
 		$meta = new Metaobj();
 		$meta->setup_game($game);
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
@@ -35,7 +42,22 @@ class Game extends CI_Controller {
 		$this->load->view('navbar');
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('gamepage', array('game' => $game));
+		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner));
+		$this->load->view('bodywrapper_foot');
+		$this->load->view('foot');
+	}
+
+	private function _no_game($user) {
+		$meta = new Metaobj();
+		$meta->no_meta = TRUE;
+		$meta->set_title("言えるかな？がみつかりません");
+		$meta->description = "この言えるかなは存在しません";
+		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('bodywrapper_head');
+		$this->load->view('navbar');
+		$this->load->view('title', array('title' => $meta->get_title()));
+		$this->load->view('alert');
+		$this->load->view('nogamepage');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}
@@ -55,6 +77,18 @@ class Game extends CI_Controller {
 		$this->game->log_points($game_id, $active_points, $negative_points);
 		$this->game->close();
 		echo "result logged!";
+	}
+
+	public function delete($game_id) {
+		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
+		if (empty($user) || empty($game) || $user->id_user != $game->user_id) {
+			// TODO: error処理
+			jump(base_url());
+		}
+		$this->game->remove_game($game_id);
+		$this->session->set_userdata('alert', '「' . $game->get_full_title() . '」を削除しました');
+		jump(base_url());
 	}
 
 	public static function get_game_id($url) {
