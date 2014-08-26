@@ -70,7 +70,7 @@ define('PATH_AUTH', 'auth/');
 define('PATH_MAKE', 'make/');
 define('PATH_MAKE_POST', 'make/post');
 define('PATH_UPDATE', 'update/');
-define('PATH_UPDATE_POST', 'update/post');
+define('PATH_UPDATE_POST', 'update/post/');
 define('PATH_DELETE', 'del/');
 define('PATH_HELP', 'help/');
 

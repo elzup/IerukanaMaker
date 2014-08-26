@@ -329,7 +329,7 @@
       url = "https://twitter.com/intent/tweet?hashtags=" + hashtags + "&text=" + text + "&url=" + share_url;
       return window.open(url);
     });
-    return to_time_str = function(time) {
+    to_time_str = function(time) {
       var time_h, time_m, time_s, ts, ts2;
       ts = time.split(':');
       time_h = ts[0] * 1;
@@ -338,6 +338,12 @@
       time_s = ts2[0] * 1;
       return (time_h ? time_h + '時間' : '') + "" + (time_m ? time_m + '分' : '') + "" + time_s + '秒';
     };
+    return $('#update-btn').click(function() {
+      var data;
+      data = get_forms();
+      $('#words-text-box').val(data.words_list_text);
+      return $('form').submit();
+    });
   });
 
 }).call(this);

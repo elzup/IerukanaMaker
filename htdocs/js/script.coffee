@@ -296,3 +296,7 @@ $ ->
         time_s = ts2[0] * 1
         return (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
 
+    $('#update-btn').click ->
+        data = get_forms()
+        $('#words-text-box').val(data.words_list_text)
+        $('form').submit()

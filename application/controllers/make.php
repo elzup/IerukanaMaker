@@ -83,7 +83,16 @@ class Make extends CI_Controller {
 		$this->load->view('foot');
 	}
 
-	public function update_post() {
+	public function update_post($game_id) {
+		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
+		$post = $this->input->post();
+		if (empty($user) || empty($game) || $user->id_user != $game->user_id || empty($post)) {
+			// TODO: error処理
+			jump(base_url());
+		}
+		$game->description = $post['game_description'];
+		$game->word_unit = $post['words_unit'];
 	}
 
 }

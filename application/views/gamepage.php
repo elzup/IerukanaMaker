@@ -9,7 +9,7 @@ function to_ans_kana($str) {
 
 <div class="content">
 	<div class="description">
-		<p><?= $game->description?></p>
+		<p><?= $game->get_wraped_description()?></p>
 		<?php
 		echo '<div>';
 		$text = $game->get_full_title(TRUE);
@@ -70,6 +70,7 @@ function to_ans_kana($str) {
 	<?php if ($is_owner) { ?>
 		<div>
 			あなたはこの言えるかな？の作成者です
+			<a class="btn btn-info" href="<?= base_url(PATH_UPDATE . $game->id) ?>">変更する</a>
 			<input class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" type="button" id="submit-delete-game" value="この言えるかな？を削除する" />
 		</div>
 

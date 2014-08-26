@@ -27,7 +27,7 @@ function tag_pager($is_startpage, $is_nogame, $page_index, $q) {
 					?>
 					<div class="plate plate-game">
 						<p class="name"><span class="index"><?= $i ?></span><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></p>
-						<p class="description"><?= $game->description ?></p>
+						<p class="description"><?= $game->get_wraped_description() ?></p>
 					</div>
 					<?php
 				}
