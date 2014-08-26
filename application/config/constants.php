@@ -69,8 +69,10 @@ define('PATH_NEW', 's/new');
 define('PATH_AUTH', 'auth/');
 define('PATH_MAKE', 'make/');
 define('PATH_MAKE_POST', 'make/post');
-define('PATH_HELP', 'help/');
+define('PATH_UPDATE', 'update/');
+define('PATH_UPDATE_POST', 'update/post');
 define('PATH_DELETE', 'del/');
+define('PATH_HELP', 'help/');
 
 define('PATH_AUTH_LOGIN', 'login');
 define('PATH_AUTH_END', PATH_AUTH . 'end');

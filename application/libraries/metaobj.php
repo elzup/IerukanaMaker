@@ -84,6 +84,13 @@ class Metaobj
 	{
 		$this->set_title("言えるかな？の作成");
 		$this->description = "新しい言えるかなゲームの作成ページ";
+	}
+
+	public function setup_update()
+	{
+		$this->set_title("言えるかな？の更新");
+		$this->description = "言えるかな？再設定";
 		$this->no_meta = TRUE;
 	}
+
 }

@@ -72,7 +72,7 @@
         $(this).addClass('ng');
         return ng_ids.push($(this).attr('nid'));
       });
-      if (data_start_id.length >= 1) {
+      if (all_word_num < 5 || data_start_id.length >= 1) {
         return post_result(data_start_id, ng_ids);
       }
     };

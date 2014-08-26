@@ -48,6 +48,8 @@ $route['g/(.*)'] = 'game/$1';
 
 $route['m/(.*)'] = 'more/$1';
 $route['del/(:num)'] = 'game/delete/$1';
+$route['update/(:num)'] = 'make/update/$1';
+$route['update/post/(:num)'] = 'make/update_post/$1';
 
 $route['s'] = 'search';
 $route['s/(:num)'] = 'search/main/hot/$1';

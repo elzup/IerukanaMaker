@@ -72,7 +72,7 @@ $ ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
-        if data_start_id.length >= 1
+        if all_word_num < 5 || data_start_id.length >= 1
             post_result(data_start_id, ng_ids)
 
     game_start = ->

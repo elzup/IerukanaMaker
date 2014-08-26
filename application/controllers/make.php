@@ -23,7 +23,7 @@ class Make extends CI_Controller {
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
 		$this->load->view('title', array('title' => $meta->get_title()));
-		$this->load->view('makepage', array('user', $user));
+		$this->load->view('makepage', array('user' => $user));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}
@@ -64,7 +64,26 @@ class Make extends CI_Controller {
 		exit;
 	}
 
-	public function update() {
+	public function update($game_id) {
+		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
+		if (empty($user) || empty($game) || $user->id_user != $game->user_id) {
+			// TODO: error処理
+			jump(base_url());
+		}
+
+		$meta = new Metaobj();
+		$meta->setup_update();
+		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('bodywrapper_head');
+		$this->load->view('navbar');
+		$this->load->view('title', array('title' => $meta->get_title()));
+		$this->load->view('makepage', array('user' => $user, 'game' => $game));
+		$this->load->view('bodywrapper_foot');
+		$this->load->view('foot');
+	}
+
+	public function update_post() {
 	}
 
 }
