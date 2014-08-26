@@ -168,7 +168,7 @@ $ ->
         add_words = add_text.split(/[,\s]/).filter (e)->
             return !!e
         $.each(add_words, (i, v) ->
-            add_words[i] = v.substr(0, 10)
+            add_words[i] = v.substr(0, 20)
         )
 
         add_words = $.unique(add_words)

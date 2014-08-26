@@ -29,15 +29,16 @@ $debug = isset($_GET['d']);
 				<div class="row">
 					<div class="col-md-4">
 						<input class="" id="input_add" name="" placeholder="ヒトカゲ,ブーバー,..." type="text" />
-						<input class="btn btn-primary" id="submit-add" name="" maxlength="10" type="button" value="追加" />
+						<input class="btn btn-primary" id="submit-add" name="" maxlength="20" type="button" value="追加" />
 						<!--<input class="btn btn-info" id="submit-check" name="" maxlength="10" type="button" value="値チェック" />-->
-						<input class="btn btn-danger" id="submit-clear" name="" maxlength="10" type="button" value="全消去" />
+						<input class="btn btn-danger" id="submit-clear" name="" maxlength="20" type="button" value="全消去" />
 					</div>
 					<div class="col-md-8">
 						<p class="">
-							単語は10文字以内で記号(改行やスペースなども)は使えません.最大256単語まで<br />
-							右のフォームでカンマ,またはスペース区切りで複数同時に追加できます<br />
-							下のボックスに直接入力することも出来ます<br />
+							単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です.最大256単語まで<br />
+							記号(改行やスペースなど)は使えません.<br />
+							右のフォームでカンマ,またはスペース区切りで<b>複数同時</b>に追加できます.<br />
+							下のボックスに直接入力することも出来ます.<br />
 						</p>
 					</div>
 				</div>
@@ -56,7 +57,7 @@ $debug = isset($_GET['d']);
 						$k = $i * $w + $j;
 						echo <<< EOL
 							<div class="col-md-1">
-								<input class="wordbox" id="input_word{$k}" name="word-{$k}" maxlength="10" value="" placeholder="---" type="text">
+								<input class="wordbox" id="input_word{$k}" name="word-{$k}" maxlength="20" value="" placeholder="---" type="text">
 							</div>
 EOL;
 					}

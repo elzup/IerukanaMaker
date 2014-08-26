@@ -31,7 +31,7 @@ function to_ans_kana($str) {
 				</div>
 				<div class="col-md-5">
 					<div class="control-forms">
-						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" />
+						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" maxlength="20" />
 						<input class="btn btn-primary" id="submit-answer" type="button" value="答える" />
 						<input class="btn btn-success" id="submit-start" type="button" value="スタート" />
 						<input class="btn btn-danger" id="submit-end" type="button" value="降参する" />

@@ -181,7 +181,7 @@
         return !!e;
       });
       $.each(add_words, function(i, v) {
-        return add_words[i] = v.substr(0, 10);
+        return add_words[i] = v.substr(0, 20);
       });
       add_words = $.unique(add_words);
       word_boxs.each(function() {
