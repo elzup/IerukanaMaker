@@ -9,6 +9,9 @@ class Game_model extends CI_Model {
 	function regist_game(Gameobj $game) {
 		$game_id = $this->insert_game($game);
 		$this->insert_words($game_id, $game->word_list);
+		if (!empty($game->tags)) {
+			$this->insert_tags($game_id, $game->tags);
+		}
 		return $game_id;
 	}
 
@@ -82,6 +85,7 @@ class Game_model extends CI_Model {
 		}
 		$game = new Gameobj($game_res);
 		$game->set_word_list($this->to_wordobjs($this->select_words($game_id)));
+		$game->tags = $this->get_tags($game_id);
 		return $game;
 	}
 
@@ -112,12 +116,13 @@ class Game_model extends CI_Model {
 		foreach ($rows as $row) {
 			$game = new Gameobj($row);
 			if ($get_words) {
-					$game->set_word_list($this->get_words($game->id));
+				$game->set_word_list($this->get_words($game->id));
 			}
 			$games[] = $game;
 		}
 		return $games;
 	}
+
 	function get_words($game_id) {
 		return $this->to_wordobjs($this->select_words($game_id));
 	}
@@ -235,6 +240,8 @@ class Game_model extends CI_Model {
 		$this->_update_game($game);
 		$this->delete_words($game->id);
 		$this->insert_words($game->id, $game->word_list);
+		$this->delete_tags($game->id);
+		$this->insert_tags($game->id, $game->tags);
 	}
 
 	private function _update_game($game) {
@@ -244,4 +251,34 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
 		$this->db->update(DB_TN_GAMES);
 	}
+
+	function insert_tags($game_id, array $tags) {
+		foreach ($tags as $tag) {
+			$data[] = array(
+				DB_CN_TAGS_GAME_ID => $game_id,
+				DB_CN_TAGS_TEXT => $tag
+			);
+		}
+		$this->db->insert_batch(DB_TN_TAGS, $data);
+	}
+
+	function get_tags($game_id) {
+		$rows = $this->select_tags($game_id);
+		$tags = array();
+		foreach ($rows as $row) {
+			$tags[] = $row->{DB_CN_TAGS_TEXT};
+		}
+		return $tags;
+	}
+
+	function select_tags($game_id) {
+		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
+		return $this->db->get(DB_TN_TAGS)->result();
+	}
+
+	function delete_tags($game_id) {
+		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
+		$this->db->delete(DB_TN_TAGS);
+	}
+
 }

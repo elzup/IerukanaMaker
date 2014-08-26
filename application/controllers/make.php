@@ -40,6 +40,9 @@ class Make extends CI_Controller {
 		$game = new Gameobj();
 		$game->name = $name;
 		$game->description = $post['game_description'];
+		if ($post['game_tags']) {
+			$game->tags = explode(',', $post['game_tags']);
+		}
 		$game->user_id = $user->id_user;
 		$game->word_unit = $post['words_unit'];
 		foreach (explode(',', $post['words_list_text']) as $word_text) {

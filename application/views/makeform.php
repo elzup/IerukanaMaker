@@ -19,7 +19,14 @@
 			<label for="input_description" class="col-md-2 control-label">追加説明文</label>
 			<div class="col-md-10">
 				<input class="form-control" id="input_description" name="game_description" value="<?= $game ? $game->description : '' ?>" placeholder="ex. 初代151匹の中で炎タイプをもつポケモンを答えてください" type="text" maxlength="50">
-				<span class="help-block">最大50文字 #でタグ付け出来ます</span>
+				<span class="help-block">最大50文字</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input_tags" class="col-md-2 control-label">タグ付け</label>
+			<div class="col-md-10">
+				<input class="form-control" id="input_tags" name="game_tags" value="<?= $game ? $game->description : '' ?>" placeholder="ポケモン,キャラ" type="text" maxlength="20">
+				<span class="help-block">,(カンマ)区切りで羅列してください.タグは無くても可</span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -58,7 +65,7 @@
 						$k = $i * $w + $j;
 						$word = NULL;
 						if ($game && $f) {
-							list($k, $word) = each($game->word_list);
+							list($key, $word) = each($game->word_list);
 							$f = isset($word);
 						}
 						?>

@@ -18,8 +18,11 @@ class Gameobj {
 	 */
 	public $word_list;
 
+	public $tags;
+
 	public function __construct($obj = NULL) {
 		$this->word_list = array();
+		$this->tags = array();
 		if (is_null($obj)) {
 			return;
 		}

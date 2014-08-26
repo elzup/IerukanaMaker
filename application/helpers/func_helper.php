@@ -274,3 +274,11 @@ if (!function_exists('wrap_taglink')) {
 	}
 
 }
+
+if (!function_exists('wrap_taglink_only')) {
+
+	function wrap_taglink_only($str) {
+		return '<a class="tag-link" href="' . base_url(PATH_SEARCH) . '?q=%23' . urlencode($str) . '">#' . $str . '</a>';
+	}
+
+}

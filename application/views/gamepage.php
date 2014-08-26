@@ -9,12 +9,21 @@ function to_ans_kana($str) {
 
 <div class="content">
 	<div class="description">
-		<p><?= $game->get_wraped_description()?></p>
+		<p><?= $game->get_wraped_description() ?></p>
 		<?php
 		echo '<div>';
 		$text = $game->get_full_title(TRUE);
 		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
 		echo '</div>';
+		?>
+	</div>
+	<div class="tag-box">
+		<?php
+		foreach ($game->tags as $tag) {
+			echo '<span class="tag">';
+			echo wrap_taglink_only($tag);
+			echo '</span>';
+		}
 		?>
 	</div>
 	<div class="game-container">
@@ -86,7 +95,7 @@ function to_ans_kana($str) {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
-						<a type="button" href="<?= base_url(PATH_DELETE . $game->id)?>" class="btn btn-danger">削除</a>
+						<a type="button" href="<?= base_url(PATH_DELETE . $game->id) ?>" class="btn btn-danger">削除</a>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->

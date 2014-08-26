@@ -40,8 +40,8 @@ class Game extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
-		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
+		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
@@ -56,7 +56,6 @@ class Game extends CI_Controller {
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
 		$this->load->view('title', array('title' => $meta->get_title()));
-		$this->load->view('alert');
 		$this->load->view('nogamepage');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');

@@ -115,6 +115,10 @@ define('DB_CN_WORDS_TEXT', 'word_text');
 define('DB_CN_WORDS_POINT_POSITIVE', 'point_positive');
 define('DB_CN_WORDS_POINT_NEGATIVE', 'point_negative');
 
+define('DB_TN_TAGS', 'tags');
+define('DB_CN_TAGS_GAME_ID', 'game_id');
+define('DB_CN_TAGS_TEXT', 'tag_text');
+
 define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 
 define('SORT_HOT', 'hot');
