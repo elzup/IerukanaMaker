@@ -32,7 +32,7 @@ $ ->
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
             convert:
                 punctuation: false
-        )
+        ).toLowerCase()
 
     replay = () ->
         word = ans_form.val()
@@ -40,7 +40,7 @@ $ ->
             return
         # 全角ひらがな半角英数字に統一する
         word_k = to_ans_kana(word)
-#        console.log word
+        console.log word_k
         td = $("td[ansc=#{word_k}]")
         ans = td.attr 'ans'
 #        console.log td

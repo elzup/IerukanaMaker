@@ -67,6 +67,12 @@ class Metaobj
 		$this->type = 'website';
 	}
 
+	public function setup_help()
+	{
+		$this->set_title("ヘルプ");
+		$this->description = "このサイトについてやその他サポート";
+	}
+
 	public function setup_game(Gameobj $game)
 	{
 		// TODO: for game obj

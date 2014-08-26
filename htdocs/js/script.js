@@ -31,7 +31,7 @@
         convert: {
           punctuation: false
         }
-      });
+      }).toLowerCase();
     };
     replay = function() {
       var ans, td, word, word_k;
@@ -40,6 +40,7 @@
         return;
       }
       word_k = to_ans_kana(word);
+      console.log(word_k);
       td = $("td[ansc=" + word_k + "]");
       ans = td.attr('ans');
       if (td.size() < 1 || td.hasClass("ok")) {

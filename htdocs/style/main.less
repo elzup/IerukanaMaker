@@ -11,6 +11,11 @@ h1.page-title {
     margin-top: 5px;
 }
 
+h2 {
+    font-size: 35px;
+}
+
+
 .navbar {
     li.img {
         padding-top: 8px;
@@ -224,6 +229,20 @@ table.table-words {
     margin-left: 45px;
 }
 
+.qa {
+    &.qa-q {
+        font-size: 24px;
+        &:before {
+            content: "Q.";
+        }
+    }
+    &.qa-a {
+        &:before {
+            content: "A.";
+            font-size: 24px;
+        }
+    }
+}
 .color-error {
     color: red;
 }

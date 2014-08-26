@@ -23,7 +23,7 @@ if ($user == null) {
 			<li>
 				<a <?= attr_href(base_url(PATH_SEARCH)) ?>>検索</a>
 			<li>
-				<a <?= attr_href('//twitter.com/' . AUTHOR_TWITTER_SCREEN_NAME , NULL, FALSE) ?>>サポート</a>
+				<a <?= attr_href(base_url(PATH_HELP)) ?>>ヘルプ</a>
 				<?php
 				if (empty($user)) {
 					?>
