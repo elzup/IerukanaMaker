@@ -7,7 +7,7 @@
 
 <div class="content">
 	<div id="topjumbo" class="jumbotron">
-		<h1><?= SITE_NAME ?></h1>
+		<h1>言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png')?>" /></h1>
 		<p class="description">
 			<span class="strong-s">言えるかな？</span>とは、お題に沿った単語のリストの中でいくつ答えられるかを試すゲームです<br />
 			このサイトはいろいろな人が作った<span class="strong-s">言えるかな？</span>で遊ぶことが出来るサイトです<br />
@@ -18,7 +18,7 @@
 		</div>
 		<div class="tweet-btn">
 			<?php
-			$text = '言えるかな？';
+			$text = '言えるかな？ゲームに挑戦しよう';
 			sharebtn_twitter($text, base_url(), TRUE, TRUE);
 			?>
 		</div>
@@ -33,7 +33,7 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<h2 class="sub-title">今ホットな言えるかな</h2>
+			<h2 class="sub-title">人気な言えるかな</h2>
 			<table class="table table-hover table-games games-new">
 				<?php foreach ($hot_games as $i => $game) { ?>
 					<tr>

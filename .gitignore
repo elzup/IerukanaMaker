@@ -16,3 +16,4 @@ htdocs/.htaccess
 node_modules/
 
 nbproject/private/
+*.xcf

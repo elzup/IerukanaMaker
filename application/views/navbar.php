@@ -14,7 +14,7 @@ if ($user == null) {
 			<span class="icon-bar"></span>
 		</button>
 
-		<a class="navbar-brand" href="<?= base_url() ?>"><?= SITE_NAME ?></a>
+		<a class="navbar-brand" href="<?= base_url() ?>">言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png')?>" /></a>
 	</div>
 	<div class="navbar-collapse collapse navbar-categlyes">
 		<ul class="nav navbar-nav navbar-right">
