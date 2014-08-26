@@ -21,6 +21,8 @@ class Index extends CI_Controller
 		$hot_games = $this->game->search_games(NULL, SORT_HOT);
 		$new_games = $this->game->search_games(NULL, SORT_NEW);
 
+		$recent_games = $this->game->get_recent_games(20);
+
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
 			$this->session->unset_userdata('alert');
@@ -34,7 +36,7 @@ class Index extends CI_Controller
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games));
+		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games, 'recent_games' => $recent_games));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}

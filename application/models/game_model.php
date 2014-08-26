@@ -107,12 +107,19 @@ class Game_model extends CI_Model {
 		return $words;
 	}
 
-	function to_gameobjs($rows) {
+	function to_gameobjs($rows, $get_words = FALSE) {
 		$games = array();
 		foreach ($rows as $row) {
-			$games[] = new Gameobj($row);
+			$game = new Gameobj($row);
+			if ($get_words) {
+					$game->set_word_list($this->get_words($game->id));
+			}
+			$games[] = $game;
 		}
 		return $games;
+	}
+	function get_words($game_id) {
+		return $this->to_wordobjs($this->select_words($game_id));
 	}
 
 	/**
@@ -157,6 +164,15 @@ class Game_model extends CI_Model {
 		return $this->to_gameobjs($rows);
 	}
 
+	/**
+	 * 
+	 * @param string|null $q
+	 * @param string $order_by
+	 * @param string $order_asc
+	 * @param inteter $limit
+	 * @param teterype $offset
+	 * @return Gameobj[]
+	 */
 	public function get_games($q, $order_by, $order_asc, $limit, $offset) {
 		if (isset($q)) {
 			$this->db->like(DB_CN_GAMES_NAME, $q);
@@ -169,8 +185,8 @@ class Game_model extends CI_Model {
 		return $result;
 	}
 
-	public function get_recent_aborted_chars() {
-		
+	public function get_recent_games($num = 20) {
+		return $this->to_gameobjs($this->get_games(NULL, DB_CN_GAMES_UPDATED_AT, 'DESC', $num, 0), TRUE);
 	}
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {

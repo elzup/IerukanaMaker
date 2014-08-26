@@ -1,6 +1,7 @@
 <?php
 
 class Gameobj {
+
 	public $id;
 	public $user_id;
 	public $name;
@@ -10,6 +11,7 @@ class Gameobj {
 	public $play_count;
 	public $timestamp;
 	public $created_timestamp;
+
 	/**
 	 * ワードリスト
 	 * @var Wordobj[]
@@ -49,5 +51,40 @@ class Gameobj {
 		return $this->name . $this->get_words_num() . $this->word_unit . '言えるかな' . ($has_question ? '？' : '');
 	}
 
-}
+	/**
+	 * 
+	 * @return Wordobj[]
+	 */
+	public function get_words_popular() {
 
+		if (!function_exists('cmp_p')) {
+
+			function cmp_p(Wordobj $a, Wordobj $b) {
+				return $a->point_positive < $b->point_positive;
+			}
+
+		}
+		$words = $this->word_list;
+		usort($words, 'cmp_p');
+		return $words;
+	}
+
+	/**
+	 * 
+	 * @return Wordobj[]
+	 */
+	public function get_words_abord() {
+
+		if (!function_exists('cmp_n')) {
+
+			function cmp_n(Wordobj $a, Wordobj $b) {
+				return $a->point_negative < $b->point_negative;
+			}
+
+		}
+		$words = $this->word_list;
+		usort($words, 'cmp_n');
+		return $words;
+	}
+
+}

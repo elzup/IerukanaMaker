@@ -287,6 +287,13 @@ $ ->
         share_url = location.href
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
         window.open(url)
+
+    $('#btn-please').click ->
+        hashtags = '言えるかな作って'
+        text = ""
+        url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}"
+        window.open(url)
+
     
     to_time_str = (time) ->
         ts = time.split(':')

@@ -329,6 +329,13 @@
       url = "https://twitter.com/intent/tweet?hashtags=" + hashtags + "&text=" + text + "&url=" + share_url;
       return window.open(url);
     });
+    $('#btn-please').click(function() {
+      var hashtags, text, url;
+      hashtags = '言えるかな作って';
+      text = "";
+      url = "https://twitter.com/intent/tweet?hashtags=" + hashtags + "&text=" + text;
+      return window.open(url);
+    });
     to_time_str = function(time) {
       var time_h, time_m, time_s, ts, ts2;
       ts = time.split(':');
