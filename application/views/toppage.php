@@ -2,6 +2,7 @@
 /* @var $hot_games Gameobj[] */
 /* @var $new_games Gameobj[] */
 /* @var $word Word */
+/* @var $tags string[] */
 /* @var $recent_games Gameobj[] */
 ?>
 
@@ -37,9 +38,23 @@
 			?>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="tag-box plate">
+				注目のタグ: 
+				<?php
+				foreach ($tags as $tag) {
+					echo '<span class="tag">';
+					echo wrap_taglink_only($tag);
+					echo '</span>';
+				}
+				?>
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-5 col-md-offset-1">
 			<ul class="nav nav-tabs">
 
 				<li class="active"><a href="#gamelist-hot" data-toggle="tab"><h2 class="sub-title">人気</h2></a></li>
@@ -86,7 +101,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-5">
 			<h2 class="sub-title">最近人気のワード</h2>
 			<ul class="aborted-list">
 				<?php

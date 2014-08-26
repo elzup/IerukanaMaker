@@ -66,6 +66,7 @@ define('PATH_USER', 'u/');
 define('PATH_SEARCH', 's/');
 define('PATH_HOT', 's/');
 define('PATH_NEW', 's/new');
+define('PATH_TAG', 'tag/');
 define('PATH_AUTH', 'auth/');
 define('PATH_MAKE', 'make/');
 define('PATH_MAKE_POST', 'make/post');

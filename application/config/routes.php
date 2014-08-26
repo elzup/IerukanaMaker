@@ -42,6 +42,8 @@ $route['default_controller'] = "index";
 $route['404_override'] = '';
 
 
+$route['tag/(.*)'] = 'tag/main/$1';
+
 $route['g'] = 'game';
 $route['g/(:num)'] = 'game/play/$1';
 $route['g/(.*)'] = 'game/$1';

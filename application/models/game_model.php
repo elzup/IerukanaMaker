@@ -179,15 +179,21 @@ class Game_model extends CI_Model {
 	 * @return Gameobj[]
 	 */
 	public function get_games($q, $order_by, $order_asc, $limit, $offset) {
+		$this->db->select('*');
+		$this->db->from(DB_TN_GAMES);
 		if (isset($q)) {
 			$this->db->like(DB_CN_GAMES_NAME, $q);
 			$this->db->or_like(DB_CN_GAMES_DESCRIPTION, $q);
 		}
 		$this->db->order_by($order_by, $order_asc);
 		$this->db->limit($limit, $offset);
-		$query = $this->db->get(DB_TN_GAMES);
+		$query = $this->db->get();
 		$result = $query->result();
 		return $result;
+	}
+
+	public function get_games_tag($tag, $order_by, $order_asc, $limit, $offset) {
+
 	}
 
 	public function get_recent_games($num = 20) {
@@ -279,6 +285,16 @@ class Game_model extends CI_Model {
 	function delete_tags($game_id) {
 		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
 		$this->db->delete(DB_TN_TAGS);
+	}
+
+	function get_hot_tags($limit) {
+		$query = $this->db->query('SELECT distinct ' . DB_CN_TAGS_TEXT . ' FROM ie_' . DB_TN_TAGS . ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' order by ' . DB_CN_GAMES_UPDATED_AT . ') limit ' . $limit);
+		$result = $query->result();
+		$tags = array();
+		foreach ($result as $row) {
+			$tags[] = $row->{DB_CN_TAGS_TEXT};
+		}
+		return $tags;
 	}
 
 }
