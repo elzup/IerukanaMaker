@@ -27,10 +27,10 @@
 			<div class="col-md-offset-1 col-md-10">
 				<div class="row">
 					<div class="col-md-6 rank-box">
-						<span claas="sub-title">人気ワード</span>
+						<span class="sub-title">人気ワード</span>
 						最初に答えられやすい順
 						<ul class="item-rank">
-							<?php 
+							<?php
 							$rank = 1;
 							$p_pre = NULL;
 							foreach ($game->get_words_popular() as $i => $word) {
@@ -39,24 +39,27 @@
 								}
 								$p_pre = $word->point_positive;
 								?>
-								<li>
+ 								<li class="rank-<?= $rank ?>">
 									<div class="row">
 										<div class="col-md-2 rank">
 											<?= $rank ?>
 										</div>
-										<div class="col-md-6 text">
-											<?= $word->text ?>
+										<div class="col-md-10 text">
+											<span><?= $word->text ?></span>
 										</div>
-										<div class="col-md-4 graph">
-											<?= $word->point_positive ?>
+										<div class="col-md-12 graph">
+											<div class="progress progress-striped">
+												<div class="progress-bar progress-bar-warning" style="width: <?= $word->get_rate_point_positive(TRUE) ?>%"></div>
+											</div>
 										</div>
 									</div>
+								</li>
 								<?php } ?>
 						</ul>
 					</div>
 					<div class="col-md-6 rank-box">
-						<span claas="sub-title">残念ワード</span>
-						よく忘れられているワード
+						<span class="sub-title">残念ワード</span>
+						よく忘れられている順
 						<ul class="item-rank">
 							<?php
 							$rank = 1;
@@ -67,16 +70,18 @@
 								}
 								$p_pre = $word->point_negative;
 								?>
-								<li>
+ 								<li class="rank-<?= $rank ?>">
 									<div class="row">
 										<div class="col-md-2 rank">
 											<?= $rank ?>
 										</div>
-										<div class="col-md-6 text">
-											<?= $word->text ?>
+										<div class="col-md-10 text">
+											<span><?= $word->text ?></span>
 										</div>
-										<div class="col-md-4 graph">
-											<?= $word->point_negative ?>
+										<div class="col-md-12 graph">
+											<div class="progress progress-striped">
+												<div class="progress-bar progress-bar-info" style="width: <?= $word->get_rate_point_negative(TRUE) ?>%"></div>
+											</div>
 										</div>
 									</div>
 								<?php } ?>

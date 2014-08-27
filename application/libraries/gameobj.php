@@ -40,6 +40,7 @@ class Gameobj {
 	public function set_word_list(array $list) {
 		$this->word_list = $list;
 		$this->words_num = count($list);
+		$this->rate_words_max();
 	}
 
 	public function get_words_num() {
@@ -88,6 +89,17 @@ class Gameobj {
 		$words = $this->word_list;
 		usort($words, 'cmp_n');
 		return $words;
+	}
+
+	public function rate_words_max() {
+		$max_p = 0;
+		$max_n = 0;
+		foreach($this->word_list as $word) {
+			$max_p = max($word->point_positive, $max_p);
+			$max_n = max($word->point_negative, $max_n);
+		}
+		Wordobj::$point_positive_maxs[$this->id] = $max_p;
+		Wordobj::$point_negative_maxs[$this->id] = $max_n;
 	}
 
 }

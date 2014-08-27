@@ -112,6 +112,7 @@ span.strong-s {
             font-weight: 500;
             margin-bottom: 0;
             .over-text-wrap;
+            width: 100%;
             .index {
                 &:after {
                     content: '.';
@@ -163,7 +164,6 @@ div.description {
 .over-text-wrap {
     white-space: nowrap;
     overflow: hidden;
-    width: 100%;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
 }
@@ -270,6 +270,27 @@ table.table-words {
     }
 }
 
+.rank-box {
+    .sub-title {
+        font-size: 27px;
+    }
+    ul.item-rank {
+        font-size: 18px;
+        .text {
+            .over-text-wrap;
+        }
+    }
+    .rank-1 {
+        font-size: 28px;
+    }
+    .rank-2 {
+        font-size: 24px;
+    }
+    .rank-3 {
+        font-size: 20px;
+    }
+}
+
 .color-error {
     color: red;
 }
@@ -277,8 +298,6 @@ table.table-words {
     color: lime;
 }
 
-.over-text-wrap {
-}
 .float-left {
     float: left;
 }
