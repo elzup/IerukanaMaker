@@ -62,6 +62,7 @@ define('PATH_LIB', 'lib/');
 define('PATH_JS', 'js/');
 define('PATH_STYLE', 'style/');
 define('PATH_GAME', 'g/');
+define('PATH_RANK', PATH_GAME . 'r/');
 define('PATH_USER', 'u/');
 define('PATH_SEARCH', 's/');
 define('PATH_HOT', 's/');

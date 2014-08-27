@@ -4,24 +4,7 @@
 ?>
 
 <div class="content">
-	<div class="description">
-		<p><?= $game->get_wraped_description() ?></p>
-		<?php
-		echo '<div>';
-		$text = $game->get_full_title(TRUE);
-		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
-		echo '</div>';
-		?>
-	</div>
-	<div class="tag-box">
-		<?php
-		foreach ($game->tags as $tag) {
-			echo '<span class="tag">';
-			echo wrap_taglink_only($tag);
-			echo '</span>';
-		}
-		?>
-	</div>
+	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'rank')); ?>
 	<div class="rank-container">
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">

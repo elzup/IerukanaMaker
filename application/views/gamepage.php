@@ -8,24 +8,7 @@ function to_ans_kana($str) {
 ?>
 
 <div class="content">
-	<div class="description">
-		<p><?= $game->get_wraped_description() ?></p>
-		<?php
-		echo '<div>';
-		$text = $game->get_full_title(TRUE);
-		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
-		echo '</div>';
-		?>
-	</div>
-	<div class="tag-box">
-		<?php
-		foreach ($game->tags as $tag) {
-			echo '<span class="tag">';
-			echo wrap_taglink_only($tag);
-			echo '</span>';
-		}
-		?>
-	</div>
+	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game')); ?>
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row">
