@@ -37,6 +37,8 @@ class Game_model extends CI_Model {
 			$data[] = array(
 				DB_CN_WORDS_GAME_ID => $game_id,
 				DB_CN_WORDS_TEXT => $word->text,
+				DB_CN_WORDS_POINT_NEGATIVE => $word->point_negative,
+				DB_CN_WORDS_POINT_POSITIVE => $word->point_positive,
 			);
 		}
 		$this->db->insert_batch(DB_TN_WORDS, $data);
@@ -238,6 +240,7 @@ class Game_model extends CI_Model {
 
 	public function remove_game($game_id) {
 		$this->delete_words($game_id);
+		$this->delete_tags($game_id);
 		$this->delete_game($game_id);
 	}
 
@@ -268,6 +271,7 @@ class Game_model extends CI_Model {
 	}
 
 	function insert_tags($game_id, array $tags) {
+		$data = array();
 		foreach ($tags as $tag) {
 			$data[] = array(
 				DB_CN_TAGS_GAME_ID => $game_id,

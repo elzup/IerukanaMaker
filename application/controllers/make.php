@@ -96,12 +96,25 @@ class Make extends CI_Controller {
 		}
 		$game->description = $post['game_description'];
 		$game->word_unit = $post['words_unit'];
+		if ($post['game_tags']) {
+			$game->tags = explode(',', $post['game_tags']);
+		}
+		$word_list_tmp = $game->word_list;
+		$game->word_list = array();
 		for ($i = 0; $i < 256; $i++) {
 			if (!$text = $post['word-' . $i]) {
 				continue;
 			}
 			$word = new Wordobj();
 			$word->text = $text;
+			foreach($word_list_tmp as $key => $wordtmp) {
+				// point 受け継ぎ
+				if ($wordtmp->text == $word->text) {
+					$word->point_negative = $wordtmp->point_negative;
+					$word->point_positive = $wordtmp->point_positive;
+					unset($word_list_tmp[$key]);
+				}
+			}
 			$game->word_list[] = $word;
 		}
 		$game->words_num = count($game->word_list);
