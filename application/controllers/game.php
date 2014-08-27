@@ -18,7 +18,10 @@ class Game extends CI_Controller {
 		
 	}
 
-	public function play($game_id) {
+	public function play($game_id, $rank = NULL) {
+		if ($rank == "rank") {
+			$this->rank($game_id);
+		}
 		$user = $this->user->get_main_user();
 		$game = $this->game->get_game($game_id);
 
@@ -43,6 +46,34 @@ class Game extends CI_Controller {
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner));
+		$this->load->view('bodywrapper_foot');
+		$this->load->view('foot');
+	}
+
+	public function rank($game_id) {
+		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
+
+		$messages = array();
+		if (($posted = $this->session->userdata('alert'))) {
+			$this->session->unset_userdata('alert');
+			$messages[] = $posted;
+		}
+
+		if (empty($game)) {
+			$this->session->set_userdata('alert', 'お探しの言えるかな？は存在しません。消去された可能性があります');
+			jump(base_url());
+		}
+		$is_owner = isset($user) && $user->id_user == $game->user_id;
+
+		$meta = new Metaobj();
+		$meta->setup_game($game);
+		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('bodywrapper_head');
+		$this->load->view('navbar');
+		$this->load->view('alert', array('messages' => $messages));
+		$this->load->view('title', array('title' => $meta->get_title()));
+		$this->load->view('rankpage', array('game' => $game, 'is_owner' => $is_owner));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}

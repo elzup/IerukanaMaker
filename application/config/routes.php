@@ -44,9 +44,12 @@ $route['404_override'] = '';
 
 $route['tag/(.*)'] = 'tag/main/$1';
 
+$route['g/r/(:num)'] = 'game/rank/$1';
+
 $route['g'] = 'game';
 $route['g/(:num)'] = 'game/play/$1';
 $route['g/(.*)'] = 'game/$1';
+
 
 $route['m/(.*)'] = 'more/$1';
 $route['del/(:num)'] = 'game/delete/$1';
