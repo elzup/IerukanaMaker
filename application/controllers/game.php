@@ -25,6 +25,17 @@ class Game extends CI_Controller {
 		$user = $this->user->get_main_user();
 		$game = $this->game->get_game($game_id);
 
+		// gamemode
+		$get = $this->input->get();
+		$gamemode = GAME_MODE_NORMAL;
+		if (isset($get['easy'])) {
+			$gamemode = GAME_MODE_EASY;
+		} elseif (isset($get['soeasy'])) {
+			$gamemode = GAME_MODE_SO_EASY;
+		} elseif (isset($get['typing'])) {
+			$gamemode = GAME_MODE_TYPING;
+		}
+
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
 			$this->session->unset_userdata('alert');
@@ -44,7 +55,7 @@ class Game extends CI_Controller {
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner));
+		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('foot');
 	}

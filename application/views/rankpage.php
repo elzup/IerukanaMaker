@@ -4,7 +4,7 @@
 ?>
 
 <div class="content">
-	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'rank')); ?>
+	<?php $this->load->view('gameinfo', array("game" => $game, 'gamemode' => GAME_MODE_RANK)); ?>
 	<div class="rank-container">
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">

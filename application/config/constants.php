@@ -126,5 +126,11 @@ define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 define('SORT_HOT', 'hot');
 define('SORT_NEW', 'new');
 
+define('GAME_MODE_NORMAL', 'normal');
+define('GAME_MODE_EASY', 'easy');
+define('GAME_MODE_SO_EASY', 'soeasy');
+define('GAME_MODE_TYPING', 'typing');
+define('GAME_MODE_RANK', 'ranking');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

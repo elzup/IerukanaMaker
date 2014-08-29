@@ -15,6 +15,7 @@ $ ->
     all_word_num       = td_boxs.size()
     game_id            = $('#game-id').val()
     game_name          = $('#game-name').val()
+    game_mode          = $('#game-mode').val()
     word_unit          = $('#word-unit').val()
     timer_btn          = $('#timer-toggle-btn')
     timer_input        = $('#timer-input')
@@ -93,7 +94,8 @@ $ ->
         process_count_span.html(0)
         time_box.css('color', 'red')
         td_boxs.each ->
-            $(@).html("")
+            if game_mode == 'normal'
+                $(@).html("")
             $(@).removeClass('ok')
             $(@).removeClass('ng')
         timer_id = setInterval ->

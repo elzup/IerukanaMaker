@@ -1,16 +1,34 @@
 <?php
 /* @var $game Gameobj */
-/* @var $page string */
+/* @var $gamemode string */
+
+$title = $game->get_full_title(TRUE);
+switch ($gamemode) {
+	case GAME_MODE_EASY:
+		$title .= '(やさしい)';
+		break;
+	case GAME_MODE_SO_EASY:
+		$title .= '(超やさしい)';
+		break;
+	case GAME_MODE_TYPING:
+		$title .= '(タイピング)';
+		break;
+	case GAME_MODE_RANK:
+		$title .= '(ランキング)';
+		break;
+	default:
+		break;
+}
 ?>
 <div id="game-info" class="plate">
 	<div class="row">
 		<div class="col-md-8">
-			<h1 class="page-title"><?= $game->get_full_title(TRUE) . ($page == 'game' ? '' : '(ランキング)') ?></h1>
+			<h1 class="page-title"><?= $title ?></h1>
 		</div>
 		<div class="col-md-2">
 			<?php
-			if ($page == 'game') {
-				echo '<a class="btn btn-default" href="' . base_url(PATH_RANK . $game->id) . '">単語ランキング</a>';
+			if ($gamemode != GAME_MODE_RANK) {
+				?> <a class="btn btn-default" href="<?= base_url(PATH_RANK . $game->id) ?>">単語ランキングを見る</a> <?php
 			} else {
 				echo '<a class="btn btn-default" href="' . base_url(PATH_GAME . $game->id) . '">ゲームページヘ</a>';
 			}

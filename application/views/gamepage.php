@@ -1,16 +1,82 @@
 <?php
 /* @var $game Gameobj */
 /* @var $is_owner bool */
+/* @var $gamemode string */
 
+/**
+ * 
+ * @param string $str
+ * @return string
+ */
 function to_ans_kana($str) {
 	return preg_replace('#ー#u', '-', strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+}
+
+function to_valuetext($text, $gamemode) {
+	switch ($gamemode) {
+		case GAME_MODE_EASY:
+			return strtosilhouette($text);
+		case GAME_MODE_SO_EASY:
+			return strtosilhouette($text, TRUE);
+		case GAME_MODE_TYPING:
+			return $text;
+		default:
+			break;
+	}
+	return '';
+}
+
+function strtosilhouette($str, $head_view = FALSE) {
+	$strs = mbStringToArray($str);
+	$silhouette = '';
+	$lib = 'ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮ.。、';
+	foreach($strs as $i => $c) {
+		if ($i == 0 && $head_view && count($strs) != 1) {
+			$silhouette .= $c;
+			continue;
+		}
+		if (mb_strpos($lib, $c) !== FALSE) {
+			$silhouette .= 'o';
+			continue;
+		}
+		if (is_half_char($c)) {
+			$silhouette .= 'O';
+			continue;
+		}
+		$silhouette .= '○';
+	}
+	return $silhouette;
+}
+
+function is_half_char($str) {
+	return strlen($str) === mb_strlen($str);
+}
+
+function mbStringToArray($sStr, $sEnc = 'UTF-8') {
+	$aRes = array();
+	while ($iLen = mb_strlen($sStr, $sEnc)) {
+		array_push($aRes, mb_substr($sStr, 0, 1, $sEnc));
+		$sStr = mb_substr($sStr, 1, $iLen, $sEnc);
+	}
+	return $aRes;
 }
 ?>
 
 <div class="content">
-	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game')); ?>
+	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game', 'gamemode' => $gamemode)); ?>
 	<div class="game-container">
 		<div class="control-box">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="btn-group">
+						<span href="#" class="btn btn-info disabled">ゲームモード</span>
+						<a href="<?= base_url(PATH_GAME . $game->id) ?>" class="btn btn-default<?= $gamemode == GAME_MODE_NORMAL ? ' active disabled' : '' ?>">ノーマル</a>
+						<a href="<?= base_url(PATH_GAME . $game->id . '?easy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_EASY ? ' active disabled' : '' ?>">やさしい</a>
+						<a href="<?= base_url(PATH_GAME . $game->id . '?soeasy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_SO_EASY ? ' active disabled' : '' ?>">超やさしい</a>
+						<a href="<?= base_url(PATH_GAME . $game->id . '?typing') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_TYPING ? ' active disabled' : '' ?>">タイピング</a>
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-2">
 					<div class="input-group timer-set" disabled="">
@@ -47,7 +113,7 @@ function to_ans_kana($str) {
 			</div>
 		</div>
 		<div class="words-box">
-			<table class="table table-words">
+			<table class="table table-words table-<?= $gamemode ?>">
 				<?php
 				$i = 0;
 				$p = ($game->get_words_num() <= 32) ? 4 : 8;
@@ -58,7 +124,8 @@ function to_ans_kana($str) {
 						}
 						echo '<tr>';
 					}
-					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '"></td>';
+					$value = to_valuetext($word->text, $gamemode);
+					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '">' . $value.'</td>';
 					$i++;
 				}
 				while ($i % $p != 0) {
@@ -78,4 +145,5 @@ function to_ans_kana($str) {
 	<input type="hidden" id="game-id" value="<?= $game->id ?>" />
 	<input type="hidden" id="game-name" value="<?= $game->name ?>" />
 	<input type="hidden" id="word-unit" value="<?= $game->word_unit ?>" />
+	<input type="hidden" id="game-mode" value="<?= $gamemode ?>" />
 </div>
