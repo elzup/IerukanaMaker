@@ -19,7 +19,7 @@
 				<a class="btn btn-primary btn-lg btn-block" href="<?= base_url(PATH_MAKE) ?>">言えるかな？を作る</a>
 			</div>
 			<div class="col-md-3">
-				<button id="btn-please" class="btn btn-primary btn-lg btn-block">作成希望申請</button>
+				<button id="btn-please" class="btn btn-primary btn-lg btn-block">誰か作ってと頼む</button>
 			</div>
 			<div class="col-md-3">
 				<div class="tweet-btn">

@@ -16,6 +16,9 @@ $ ->
     game_id            = $('#game-id').val()
     game_name          = $('#game-name').val()
     word_unit          = $('#word-unit').val()
+    timer_btn          = $('#timer-toggle-btn')
+    timer_input        = $('#timer-input')
+    timer_mode         = 0
     solve_count        = 0
     game_flag          = 0
     dtime              = 0
@@ -103,6 +106,9 @@ $ ->
         btn_end.removeAttr('disabled')
         clearInterval(timer_id)
         start_time = new Date().getTime()
+        if timer_mode == 1
+            start_time += 60 * 1000 * timer_input.val()
+            console.log("timermode gone: " + timer_input.val())
         time_box.css('color', 'black')
         timer_id = setInterval ->
             my_disp()
@@ -114,7 +120,13 @@ $ ->
         return n
 
     my_disp = ->
-        dtime = new Date().getTime() - start_time
+        if timer_mode == 1
+            dtime = start_time - new Date().getTime()
+            if dtime < 0
+                game_end()
+                dtime = 0
+        else
+            dtime = new Date().getTime() - start_time
         myH = Math.floor(dtime/(60*60*1000))
         dtime = dtime-(myH*60*60*1000)
         myM = Math.floor(dtime/(60*1000))
@@ -309,3 +321,16 @@ $ ->
         data = get_forms()
         $('#words-text-box').val(data.words_list_text)
         $('form').submit()
+
+    timer_btn.click ->
+        console.log timer_mode
+        if timer_mode == 0
+            timer_input.removeAttr('disabled')
+            $('.timer-set').removeAttr('disabled')
+            timer_mode = 1
+        else
+            timer_input.attr('disabled', "")
+            $('.timer-set').attr('disabled', "")
+            timer_mode = 0
+
+

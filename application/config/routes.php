@@ -48,6 +48,7 @@ $route['g/r/(:num)'] = 'game/rank/$1';
 
 $route['g'] = 'game';
 $route['g/(:num)'] = 'game/play/$1';
+$route['g/(:num)/(:num)'] = 'game/play/$1/$2';
 $route['g/(.*)'] = 'game/$1';
 
 

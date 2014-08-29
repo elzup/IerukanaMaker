@@ -144,6 +144,7 @@ span.strong-s {
 .timer {
     color: gray;
     vertical-align: middle;
+    border-top-left-radius: 0;
     >div {
         font-size: 27px;
     }
@@ -319,5 +320,35 @@ table.table-words {
     >a {
         color: white;
 /*        display: block; */
+    }
+}
+
+.timer-set {
+    width: 80%;
+    border: @border-d;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    #timer-toggle-btn {
+        border-radius: 0;
+    }
+    #timer-input {
+        padding: 0 5px;
+        height: 22px;
+        border: none;
+        text-align: right;
+    }
+    .input-group-addon {
+        line-height: 3px;
+        border-radius: 0;
+    }
+    &[disabled] {
+        #timer-input {
+            background: gray;
+            color: #333;
+        }
+        .input-group-addon {
+            background: gray;
+            color: #333;
+        }
     }
 }

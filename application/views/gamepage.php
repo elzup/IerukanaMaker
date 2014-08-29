@@ -12,6 +12,17 @@ function to_ans_kana($str) {
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row">
+				<div class="col-md-2">
+					<div class="input-group timer-set" disabled="">
+						<span class="input-group-btn">
+							<button id="timer-toggle-btn" class="btn btn-xs btn-default" type="button" data-toggle="button"><i class="glyphicon glyphicon-time"></i></button>
+						</span>
+						<input id="timer-input" type="number" class="form-control" value="3" disabled="">
+						<span class="input-group-addon">分</span>
+					</div><!-- /input-group -->
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-3">
 					<div class="timer plate plate-plain">
 						<div id="time-box">00:00:00.00</div>

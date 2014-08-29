@@ -5,7 +5,7 @@
 <div id="game-info" class="plate">
 	<div class="row">
 		<div class="col-md-8">
-			<h1 class="page-title"><?= $game->get_full_title(TRUE) ?></h1>
+			<h1 class="page-title"><?= $game->get_full_title(TRUE) . ($page == 'game' ? '' : '(ランキング)') ?></h1>
 		</div>
 		<div class="col-md-2">
 			<?php
