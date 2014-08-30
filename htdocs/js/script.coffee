@@ -36,6 +36,7 @@ $ ->
     input_game_name = $('#input_game_name')
 
     to_ans_kana = (str) ->
+        str = str.replace(/[-ー]/g, 'h').replace(/\./g, 'd').replace(/\+/g, 'p').replace(/#/g, 's')
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
             convert:
                 punctuation: false
@@ -310,11 +311,14 @@ $ ->
         else
             time = to_time_str(time_box.html())
         if game_mode != 'typing'
-            text = "#{game_name}を#{all_word_num}#{word_unit}中#{solve_count}#{word_unit}言えました[#{time}]"
+            if all_word_num == solve_count
+                text = "#{game_name}を#{solve_count}#{word_unit}全て言うことが出来ました！[#{time}]"
+            else
+                text = "#{game_name}を#{all_word_num}#{word_unit}中#{solve_count}#{word_unit}言えました[#{time}]"
             if game_mode != 'normal'
                 text += "<#{game_mode}>"
         else
-            text = "#{game_name}{solve_count}#{word_unit}を[#{time}]でタイプしました"
+            text = "#{game_name}#{solve_count}#{word_unit}を[#{time}]でタイプしました"
         share_url = location.href
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
         window.open(url)

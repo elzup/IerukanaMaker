@@ -18,7 +18,8 @@ class Tag extends CI_Controller {
 		$this->main();
 	}
 
-	public function main($tag, $page_index = 0) {
+	public function main($tage, $page_index = 0) {
+		$tag = urldecode($tage);
 		$games = $this->game->get_games_tag($tag, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
 		$user = $this->user->get_main_user();
 

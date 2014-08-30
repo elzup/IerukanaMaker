@@ -9,7 +9,7 @@
  * @return string
  */
 function to_ans_kana($str) {
-	return preg_replace('#ー#u', '-', strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+	return str_replace(array('ー', '-', '+', '.', '#'), array('h', 'h','p','d','s'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {
