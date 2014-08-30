@@ -69,7 +69,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 			<div class="row game-mode-box">
 				<div class="col-md-6">
 					<div class="btn-group">
-						<span href="#" class="btn btn-info disabled">ゲームモード</span>
+						<span href="#" class="btn btn-primary disabled">ゲームモード</span>
 						<a href="<?= base_url(PATH_GAME . $game->id) ?>" class="btn btn-default<?= $gamemode == GAME_MODE_NORMAL ? ' active disabled' : '' ?>">ノーマル</a>
 						<a href="<?= base_url(PATH_GAME . $game->id . '?easy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_EASY ? ' active disabled' : '' ?>">やさしい</a>
 						<a href="<?= base_url(PATH_GAME . $game->id . '?soeasy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_SO_EASY ? ' active disabled' : '' ?>">超やさしい</a>
@@ -105,9 +105,9 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 					<div class="control-forms">
 						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" maxlength="20" />
 						<input class="btn btn-primary" id="submit-answer" type="button" value="答える" />
-						<input class="btn btn-success" id="submit-start" type="button" value="スタート" />
+						<input class="btn btn-primary" id="submit-start" type="button" value="スタート" />
 						<input class="btn btn-danger" id="submit-end" type="button" value="降参する" />
-						<input class="btn btn-primary" id="submit-tweet" type="button" value="結果ツイート" />
+						<input class="btn btn-success" id="submit-tweet" type="button" value="結果ツイート" />
 					</div>
 				</div>
 			</div>

@@ -41,6 +41,7 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
 			<div class="tag-box plate">
+				<?= tag_icon('tags')?>
 				注目のタグ: 
 				<?php
 				foreach ($tags as $tag) {
@@ -55,11 +56,10 @@
 
 	<div class="row">
 		<div class="col-md-5 col-md-offset-1">
-			<ul class="nav nav-tabs">
-
-				<li class="active"><a href="#gamelist-hot" data-toggle="tab"><h2 class="sub-title">人気</h2></a></li>
-				<li class=""><a href="#gamelist-new" data-toggle="tab"><h2 class="sub-title">新着</h2></a></li>
-				<li class=""><a href="#gamelist-recent" data-toggle="tab"><h2 class="sub-title">おすすめ</h2></a></li>
+			<ul class="nav nav-tabs nav-tabs-gamelist">
+				<li class="active"><a href="#gamelist-hot" data-toggle="tab"><h3 class="sub-title">人気</h3></a></li>
+				<li class=""><a href="#gamelist-new" data-toggle="tab"><h3 class="sub-title">新着</h3></a></li>
+				<li class=""><a href="#gamelist-recent" data-toggle="tab"><h3 class="sub-title">おすすめ</h3></a></li>
 			</ul>
 			<div id="tab-content-gamelist" class="tab-content">
 				<div class="tab-pane fade active in" id="gamelist-hot">

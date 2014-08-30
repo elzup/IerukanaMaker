@@ -4,8 +4,20 @@
 @import "./md.less";
 @import "./xs.less";
 
-@border-d: solid 1px #dddddd;
+@main_color: #FFFB00;
+@sub_color: #FFC201;
+@accent_color: #25B9FF;
+@font_main_color: @sub_color - #aaa;
+@font_link_color: @accent_color;
+@border_d: solid 1px #dddddd;
 
+html, body {
+    background: @main_color + #aaa;
+    color: @font_main_color;
+}
+a {
+    color: @font_link_color;
+}
 h1.page-title {
     font-size: 37px;
     margin-top: 5px;
@@ -15,8 +27,17 @@ h2 {
     font-size: 35px;
 }
 
+.deco_inbox(@col: @sub_color) {
+    @size_in: 8px;
+    box-shadow: -@size_in -@size_in 10px (@col) inset, @size_in @size_in 10px (@col) inset;
+}
 
 .navbar {
+    color: @font_main_color;
+    a {
+        color: @font_main_color;
+    }
+    background: @main_color;
     li.img {
         padding-top: 8px;
         >img {
@@ -36,9 +57,11 @@ img.log-img {
 }
 
 #topjumbo.jumbotron {
-    border: @border-d;
+    background: @main_color + #666;
+    .deco_inbox(@sub_color + #333);
+    border: @border_d;
     padding: 10px 30px 20px;
-    background: white;
+    border-radius: 10px;
     overflow: auto;
     p.description {
         font-size: 16px;
@@ -77,7 +100,7 @@ span.strong-s {
             float: left;
             width: 12.5%;
             padding: 0;
-            border-left: @border-d;
+            border-left: @border_d;
             height: 28px;
             >input {
                 text-align: center;
@@ -86,12 +109,12 @@ span.strong-s {
                 border: none;
             }
             &:last-child {
-                border-right: @border-d;
+                border-right: @border_d;
             }
         }
         &:first-child {
             >div {
-                border-top: @border-d;
+                border-top: @border_d;
             }
         }
         .wordbox {
@@ -107,7 +130,7 @@ span.strong-s {
 
 .plate {
     width: 100%;
-    border: @border-d;
+    border: @border_d;
     border-radius: 3px;
     &.plate-game {
         padding: .5em 10px;
@@ -204,7 +227,7 @@ div.description {
 
 
 table.table-words {
-    border: @border-d;
+    border: @border_d;
     border-collapse: separate;
     @brv: 3px;
     border-radius: @brv;
@@ -214,8 +237,8 @@ table.table-words {
         border-collapse: collapse;
         td {
             padding: 5px 0px !important;
-            border-top: @border-d;
-            border-left: @border-d;
+            border-top: @border_d;
+            border-left: @border_d;
             text-align: center;
             width: 12.5%;
             height: 34px;
@@ -334,10 +357,10 @@ table.table-words {
 }
 .tag {
     padding: 2px 9px;
-    background: #8BA2FF;
+    background: @sub_color;
     color: white;
     border-radius: 4px;
-    box-shadow: 2px 2px 0px #D4CAFF,0 0 3px #635CFC inset;
+    box-shadow: 2px 2px 0px (@sub_color - #333),0 0 3px (@sub_color - #aaa) inset;
     margin-right: 5px;
     >a {
         color: white;
@@ -347,7 +370,7 @@ table.table-words {
 
 .timer-set {
     width: 80%;
-    border: @border-d;
+    border: @border_d;
     border-bottom: none;
     border-radius: 3px 3px 0 0;
     #timer-toggle-btn {
@@ -377,4 +400,59 @@ table.table-words {
 
 .game-mode-box {
     padding-bottom: 10px;
+    a.btn {
+        &.active, &.disabled {
+            opacity: 1;
+            box-shadow: 0 -10px 5px -5px @sub_color inset;
+        }
+    }
+}
+
+
+/* override */
+.btn-primary {
+    background: @sub_color;
+    &:active {
+        background: @sub_color;
+    }
+    &:hover {
+        background: @sub_color - #333;
+    }
+    &.disabled,[disabled] {
+        background: @sub_color;
+    }
+}
+
+.btn-success {
+    background: @accent_color;
+    &:active {
+        background: @accent_color;
+    }
+    &:hover {
+        background: @accent_color - #333;
+    }
+    &.disabled,[disabled] {
+        background: @accent_color;
+    }
+}
+
+
+.table-hover {
+    tbody {
+        tr {
+            &:hover>td,&:hover>th {
+                background: @sub_color;
+            }
+        }
+    }
+}
+
+.nav-tabs-gamelist {
+    li > a {
+        padding-top: 0px;
+        padding-bottom : 0px;
+    }
+    .sub-title {
+        padding-bottom: 10px;
+    }
 }

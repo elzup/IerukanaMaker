@@ -18,13 +18,9 @@ if (!function_exists('tag_script_js'))
 if (!function_exists('tag_icon'))
 {
 
-	function tag_icon($class, $is_color = FALSE, $color = 'orange')
+	function tag_icon($class_suffix)
 	{
-		if ($is_color)
-		{
-			$class .= ' icon-' . $color;
-		}
-		return '<i class="' . $class . '"></i>';
+		return '<i class="glyphicon glyphicon-' . $class_suffix . '"></i>';
 	}
 
 }
