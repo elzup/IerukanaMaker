@@ -19,6 +19,11 @@
 				消せます.作ったTwitterアカウントからでログインしている状態で,対象のゲームページを開きます.<br />
 				一番下までスクロールすると削除ボタンがあるのでそれを使ってください
 			</p>
+			<h2>賞賛</h2>
+			<p>
+				当サイトは以下のサイトに影響されて作成しました
+				<a href="http://hoget.web.fc2.com/pokesay.html" target="_blank">「初代ポケモン151匹言えるかな？」- http://hoget.web.fc2.com/pokesay.html</a>
+			</p>
 			<h2>サポート</h2>
 				お手数ですがサポートフォームが完成するまで作者に直接問い合わせてください<a <?= attr_href('//twitter.com/' . AUTHOR_TWITTER_SCREEN_NAME , NULL, FALSE) ?>>サポート</a>
 			<h2>ログ</h2>

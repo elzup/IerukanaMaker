@@ -47,7 +47,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
  * BaseSiteInfo
  */
 define('SITE_NAME', '言えるかな？');
-define('SITE_DESCRIPTION', '言えるかなゲームを作成したりプレイできるサイトです');
+define('SITE_DESCRIPTION', '言えるかな？とはお題に沿った単語のリストの中でいくつ答えられるかを試すゲームです');
 
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
