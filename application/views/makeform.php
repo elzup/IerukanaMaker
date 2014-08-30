@@ -8,7 +8,7 @@
 			<label for="input_game_name" class="col-md-2 control-label">タイトル</label>
 			<div class="col-md-10">
 				<input class="" <?= $game ? 'disabled=""' : '' ?> id="input_game_name" name="game_name" value="<?= $game ? $game->name : '' ?>" placeholder="炎ポケモン" type="text" maxlength="20">
-				<span id="num">&nbsp;&nbsp;0</span>
+				<span id="num">&nbsp;&nbsp;<?= $game ? $game->words_num : '0' ?></span>
 				<input class="" id="input_words_unit" name="words_unit" value="<?= $game ? $game->word_unit : '個' ?>" type="text" maxlength="5">
 				言えるかな？
 				<span id="check-name"></span>

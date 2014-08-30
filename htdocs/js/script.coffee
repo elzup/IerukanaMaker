@@ -19,6 +19,7 @@ $ ->
     word_unit          = $('#word-unit').val()
     timer_btn          = $('#timer-toggle-btn')
     timer_input        = $('#timer-input')
+    timer_input_val    = 0
     timer_mode         = 0
     solve_count        = 0
     game_flag          = 0
@@ -59,8 +60,6 @@ $ ->
         data_start_id.push td.attr 'nid'
         solve_count++
         process_count_span.html(solve_count)
-        console.log solve_count
-        console.log all_word_num
         if solve_count == all_word_num
             game_end()
 
@@ -71,6 +70,7 @@ $ ->
         btn_answer.hide()
         btn_start.show()
         btn_tweet.show()
+        timer_btn.removeClass("disabled")
         ng_ids = []
         td_boxs.not('.ok').each ->
             $(@).html($(@).attr('ans'))
@@ -93,6 +93,7 @@ $ ->
         btn_end.attr('disabled', '')
         process_count_span.html(0)
         time_box.css('color', 'red')
+        timer_btn.addClass("disabled")
         td_boxs.each ->
             if game_mode == 'normal'
                 $(@).html("")
@@ -109,8 +110,9 @@ $ ->
         clearInterval(timer_id)
         start_time = new Date().getTime()
         if timer_mode == 1
-            start_time += 60 * 1000 * timer_input.val()
-            console.log("timermode gone: " + timer_input.val())
+            timer_input_val = timer_input.val()
+            start_time += 60 * 1000 * timer_input_val
+#            console.log("timermode gone: " + timer_input_val)
         time_box.css('color', 'black')
         timer_id = setInterval ->
             my_disp()
@@ -157,8 +159,8 @@ $ ->
             return !!e
         ng_ids = ng_ids.filter (e)->
             return !!e
-        console.log start_ids
-        console.log ng_ids
+        #console.log start_ids
+        #console.log ng_ids
         data =
             start_ids: start_ids.join ","
             ng_ids: ng_ids.join ","
@@ -298,8 +300,16 @@ $ ->
 
     btn_tweet.click ->
         hashtags = '言えるかな'
-        time = to_time_str(time_box.html())
-        text = "#{game_name}を#{all_word_num}#{word_unit}中#{solve_count}#{word_unit}言えました[#{time}]"
+        if timer_mode == 1
+            time = to_time_str_r(time_box.html())
+        else
+            time = to_time_str(time_box.html())
+        if game_mode != 'typing'
+            text = "#{game_name}を#{all_word_num}#{word_unit}中#{solve_count}#{word_unit}言えました[#{time}]"
+            if game_mode != 'normal'
+                text += "<#{game_mode}>"
+        else
+            text = "#{game_name}{solve_count}#{word_unit}を[#{time}]でタイプしました"
         share_url = location.href
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}&url=#{share_url}"
         window.open(url)
@@ -311,6 +321,18 @@ $ ->
         window.open(url)
 
     
+    to_time_str_r = (time) ->
+        ts = time.split(':')
+        ts2 = ts[2].split('.')
+        dtime = ((timer_input_val - (ts[0] * 60 + ts[1])) * 60 - ts2[0]) * 1000 - ts2[1] * 10
+        time_h = Math.floor(dtime/(60*60*1000))
+        dtime = dtime-(time_h*60*60*1000)
+        time_m = Math.floor(dtime/(60*1000))
+        dtime = dtime-(time_m*60*1000)
+        time_s = Math.floor(dtime/1000)
+        str = (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
+        return str
+
     to_time_str = (time) ->
         ts = time.split(':')
         time_h = ts[0] * 1
@@ -325,7 +347,6 @@ $ ->
         $('form').submit()
 
     timer_btn.click ->
-        console.log timer_mode
         if timer_mode == 0
             timer_input.removeAttr('disabled')
             $('.timer-set').removeAttr('disabled')

@@ -66,7 +66,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game', 'gamemode' => $gamemode)); ?>
 	<div class="game-container">
 		<div class="control-box">
-			<div class="row">
+			<div class="row game-mode-box">
 				<div class="col-md-6">
 					<div class="btn-group">
 						<span href="#" class="btn btn-info disabled">ゲームモード</span>
