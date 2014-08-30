@@ -324,4 +324,9 @@ class Game_model extends CI_Model {
 		return $tags;
 	}
 
+	function get_tag_count($tag_text) {
+		$this->db->where(DB_CN_TAGS_TEXT, $tag_text);
+		return $this->db->count_all_results(DB_TN_TAGS);
+	}
+
 }

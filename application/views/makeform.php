@@ -26,6 +26,7 @@
 			<label for="input_tags" class="col-md-2 control-label">タグ付け</label>
 			<div class="col-md-10">
 				<input class="form-control" id="input_tags" name="game_tags" value="<?= $game ? implode(',', $game->tags) : '' ?>" placeholder="ポケモン,キャラ" type="text" maxlength="20">
+				<div id="tag-check">---</div>
 				<span class="help-block">,(カンマ)区切りで羅列してください.タグは無くても可</span>
 			</div>
 		</div>

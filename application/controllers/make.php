@@ -86,6 +86,15 @@ class Make extends CI_Controller {
 		$this->load->view('foot');
 	}
 
+	public function tag_check() {
+		$tags = explode(',', $this->input->post('tags_text'));
+		$res = array();
+		foreach ($tags as $tag_text) {
+			$res[] = $this->game->get_tag_count($tag_text);
+		}
+		echo implode(',', $res);
+	}
+
 	public function update_post($game_id) {
 		$user = $this->user->get_main_user();
 		$game = $this->game->get_game($game_id);

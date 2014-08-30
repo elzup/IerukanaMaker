@@ -19,6 +19,8 @@ $ ->
     word_unit          = $('#word-unit').val()
     timer_btn          = $('#timer-toggle-btn')
     timer_input        = $('#timer-input')
+    input_tag_form     = $('#input_tags')
+    tag_check_box      = $('#tag-check')
     timer_input_val    = 0
     timer_mode         = 0
     solve_count        = 0
@@ -215,9 +217,12 @@ $ ->
         words_text = wordlist.join(',')
         game_name = $.trim(input_game_name.val())
         words_unit = $.trim $('#input_words_unit').val()
-        game_description = $.trim $('#input_description').val()
-        game_tags = $.trim $('#input_tags').val()
-        if words_text != '' && game_name? && words_unit? && game_description
+        if ds = $('#input_description').val()
+            game_description = $.trim ds
+        else
+            game_description = ""
+        game_tags = $.trim input_tag_form.val()
+        if words_text != '' && game_name? && words_unit?
             return data =
                 game_name: game_name
                 words_unit: words_unit
@@ -356,4 +361,31 @@ $ ->
             $('.timer-set').attr('disabled', "")
             timer_mode = 0
 
+    # check tag num
+    input_tag_form.change ->
+        # TOOD: loading img
+        tag_check_box.html '---'
+        if (v = input_tag_form.val()) == ""
+            return
+        data =
+            tags_text: v
+        $.ajax(
+            type: "POST",
+            url: "./make/tag_check/"
+            data: data,
+            success: (res) ->
+                console.log res
+                nums = res.split(',')
+                tags = v.split(',')
+                tag_check_box.html ''
+                for i in [0...nums.length]
+                    $tag = generate_tag_check_span(tags[i], nums[i])
+                    tag_check_box.append $tag
+            error: ->
+                console.log 'result post error'
+        )
+
+    generate_tag_check_span = (tag_text, num) ->
+        $badge = $('<span/>').addClass('badge').html(num)
+        return $('<span/>').addClass('tag').html(tag_text).append($badge)
 

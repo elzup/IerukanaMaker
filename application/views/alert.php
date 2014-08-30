@@ -10,7 +10,7 @@ if (count($messages))
 				foreach ($messages as $m)
 				{
 					?>
-					<div class="alert alert-dismissable alert-info">
+					<div class="alert alert-dismissable alert-warning">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<p><?= $m ?></p>
 					</div>
