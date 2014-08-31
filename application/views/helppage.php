@@ -1,44 +1,57 @@
-<?php
-?>
+<?php ?>
 <div class="content">
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
-			<h2>おすすめの遊び方</h2>
-			<ul>
-				<li>ノーマル - ギブアップまたはクリアするまでがんばろう
-				<li>タイムリミット - 制限時間を設けてそれまでにいくつ答えられるかに挑戦しよう　
-				<li>古今東西ゲーム - 友達と順番に回答.記憶力で競おう
-				<li>タイピング練習 - タイピングモードにしてタイピングスキルを磨こう
-				<li>暗記勉強 - 単語帳を登録して学習に役立てよう
-			</ul>
-			<h2>Q&amp;A</h2>
-			<p class="qa qa-q">
-				作った言えるかなは消せないの？
-			</p>
-			<p class="qa qa-a">
-				消せます.作ったTwitterアカウントからでログインしている状態で,対象のゲームページを開きます.<br />
-				一番下までスクロールすると削除ボタンがあるのでそれを使ってください
-			</p>
-			<h2>賞賛</h2>
-			<p>
-				当サイトは以下のサイトに影響されて作成しました
-				<a href="http://hoget.web.fc2.com/pokesay.html" target="_blank">「初代ポケモン151匹言えるかな？」- http://hoget.web.fc2.com/pokesay.html</a>
-			</p>
-			<h2>サポート</h2>
-				お手数ですがサポートフォームが完成するまで作者に直接問い合わせてください<a <?= attr_href('//twitter.com/' . AUTHOR_TWITTER_SCREEN_NAME , NULL, FALSE) ?>>サポート</a>
-			<h2>ログ</h2>
-			追加した機能など
-			<ul>
-				<li>回答時のアニメーションを作成しました 2014/09/01
-				<li>言えるかな作成画面を改善しました 2014/09/01
-				<li>スマートホンに対応しました 2014/08/31
-				<li>サイトデザイン更新 2014/08/30
-				<li>タイピングモードなど3ゲームモードを追加 2014/08/29
-				<li>タイマーモードを追加 2014/08/29
-				<li>ランキングページ追加 2014/08/28
-				<li>編集機能を追加2014/08/27
-				<li>サイト公開 2014/08/26
-			</ul>
+			<div class="plate plate-help">
+				<h3 class="sub-title">おすすめの遊び方</h3>
+				<ul>
+					<li>ノーマル - ギブアップまたはクリアするまでがんばろう
+					<li>タイムリミット - 制限時間を設けてそれまでにいくつ答えられるかに挑戦しよう　
+					<li>古今東西ゲーム - 友達と順番に回答.記憶力で競おう
+					<li>タイピング練習 - タイピングモードにしてタイピングスキルを磨こう
+					<li>暗記勉強 - 単語帳を登録して学習に役立てよう
+				</ul>
+			</div>
+
+			<div class="plate plate-help">
+				<h3 class="sub-title">Q&amp;A</h3>
+				<p class="qa qa-q">
+					作った言えるかなは消せないの？
+				</p>
+				<p class="qa qa-a">
+					消せます.作ったTwitterアカウントからでログインしている状態で,対象のゲームページを開きます.<br />
+					一番下までスクロールすると削除ボタンがあるのでそれを使ってください
+				</p>
+			</div>
+
+			<div class="plate plate-help">
+				<h3 class="sub-title">サポート</h3>
+				言えるかな？アカウントに問い合わせて下さい<a <?= attr_href('//twitter.com/' . AUTHOR_TWITTER_SCREEN_NAME, NULL, FALSE) ?>>@<?= AUTHOR_TWITTER_SCREEN_NAME ?>言えるかな？</a>
+			</div>
+
+			<div class="plate plate-help">
+				<h3 class="sub-title">賞賛</h3>
+				<p>
+					当サイトは以下の素晴らしいサイトに影響されて作成しました<br />
+					<a href="http://hoget.web.fc2.com/pokesay.html" target="_blank">「初代ポケモン151匹言えるかな？」- http://hoget.web.fc2.com/pokesay.html</a>
+				</p>
+			</div>
+
+			<div class="plate plate-help">
+				<h3 class="sub-title">ログ</h3>
+				追加した機能など
+				<ul>
+					<li>回答時のアニメーションを作成しました 2014/09/01
+					<li>言えるかな作成画面を改善しました 2014/09/01
+					<li>スマートホンに対応しました 2014/08/31
+					<li>サイトデザイン更新 2014/08/30
+					<li>タイピングモードなど3ゲームモードを追加 2014/08/29
+					<li>タイマーモードを追加 2014/08/29
+					<li>ランキングページ追加 2014/08/28
+					<li>編集機能を追加2014/08/27
+					<li>サイト公開 2014/08/26
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

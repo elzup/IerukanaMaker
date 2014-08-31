@@ -79,13 +79,17 @@ span.strong-s {
 }
 
 .table-games {
-    td.name {
-        a {
-            display: block;
+    tr {
+        background: @main_color + #ccc;
+        td.name {
+            background: @main_color + #ccc;
+            a {
+                display: block;
+            }
         }
-    }
-    td.count {
-        text-align: right;
+        td.count {
+            text-align: right;
+        }
     }
 }
 
@@ -175,6 +179,30 @@ span.strong-s {
             margin-top: 10px;
         }
     }
+
+    &.plate-wide {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    &.plate-center {
+        text-align: center;
+    }
+
+    &.plate-help {
+        padding: 10px;
+        margin-bottom: 20px;
+        h3 {
+            margin-top: 5px;
+        }
+    }
+}
+
+.list {
+    padding-left: 30px;
+    li {
+        list-style-type: disc;
+    }
 }
 
 .timer {
@@ -262,8 +290,6 @@ table.table-words {
             }
             &.ok {
             color: blue;
-/*                color: #00CC10; */
-/*                box-shadow: inset 0 -2px 1px; */
             }
             &.emp {
                 background: #dddddd;
@@ -283,6 +309,12 @@ table.table-words {
             td {
                 &:first-letter {
                     color: red;
+                }
+                &.ok {
+                    color: blue;
+                    &:first-letter {
+                        color: blue;
+                    }
                 }
             }
         }
@@ -306,7 +338,8 @@ table.table-words {
 
 .qa {
     &.qa-q {
-        font-size: 24px;
+        font-size: 19px;
+        margin-bottom: 5px;
         &:before {
             content: "Q.";
         }
@@ -314,7 +347,7 @@ table.table-words {
     &.qa-a {
         &:before {
             content: "A.";
-            font-size: 24px;
+            font-size: 19px;
         }
     }
 }

@@ -115,7 +115,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 						<span id="process-all"><?= $game->get_words_num() ?></span>
 					</div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-7">
 					<div class="control-forms">
 						<div class="action-box">
 							<span style="display: none" class="judge judge-ok">○</span>

@@ -51,7 +51,7 @@ define('SITE_DESCRIPTION', '言えるかな？とはお題に沿った単語の�
 
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
-define('AUTHOR_TWITTER_SCREEN_NAME', 'arzzup');
+define('AUTHOR_TWITTER_SCREEN_NAME', 'ieru_kana');
 
 define('NUM_GAME_PAR_SEARCHPAGE', 50);
 define('NUM_GAME_PAR_TOPPAGE', 20);
