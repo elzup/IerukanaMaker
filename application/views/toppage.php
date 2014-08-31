@@ -105,7 +105,8 @@
 			<h2 class="sub-title">最近人気のワード</h2>
 			<ul class="aborted-list">
 				<?php
-				foreach ($recent_games as $i => $game) {
+				foreach (array(1,3,5,7,9) as $i) {
+					$game = $recent_games[$i];
 					$words = $game->get_words_popular();
 					list($k, $word) = each($words);
 					?>
@@ -114,16 +115,14 @@
 						<span class="game-name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></span>
 					</li>
 					<?php
-					if ($i >= 4) {
-						break;
-					}
 				}
 				?>
 			</ul>
 			<h2 class="sub-title">最近忘れられたワード</h2>
 			<ul class="aborted-list">
 				<?php
-				foreach ($recent_games as $i => $game) {
+				foreach (array(2,4,6,8,10) as $i) {
+					$game = $recent_games[$i];
 					$words = $game->get_words_abord();
 					list($k, $word) = each($words);
 					?>
@@ -132,9 +131,6 @@
 						<span class="game-name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></span>
 					</li>
 					<?php
-					if ($i >= 4) {
-						break;
-					}
 				}
 				?>
 			</ul>

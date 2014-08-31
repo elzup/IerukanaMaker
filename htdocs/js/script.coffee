@@ -53,8 +53,13 @@ $ ->
         ans = td.attr 'ans'
 #        console.log td
 #        console.log ans
-        if td.size() < 1 || td.hasClass "ok"
+        if td.size() < 1
+            turn_off $('.judge-ng')
             return
+        if td.hasClass "ok"
+            turn_off $('.judge-already')
+            return
+        turn_off $('.judge-ok')
         # 正解した場合
         td.html(ans)
         td.addClass('ok')
@@ -79,7 +84,7 @@ $ ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
-        if all_word_num < 5 || data_start_id.length >= 1
+        if all_word_num < 5 || data_start_id.length >= 1 && game_mode != 'typing'
             post_result(data_start_id, ng_ids)
 
     game_start = ->
@@ -234,7 +239,7 @@ $ ->
         else
             game_description = ""
         game_tags = $.trim input_tag_form.val()
-        if words_text != '' && game_name? && words_unit?
+        if words_text != '' && game_name? && game_name != "" && words_unit? && words_unit != ""
             return data =
                 game_name: game_name
                 words_unit: words_unit
@@ -421,3 +426,7 @@ $ ->
         $badge = $('<span/>').addClass('badge').html(num)
         return $('<span/>').addClass('tag').html(tag_text).append($badge)
 
+    turn_off = ($e)->
+        $('.judge').stop()
+        $('.judge').hide()
+        $e.fadeIn(100).fadeOut(100).fadeIn(300).fadeOut(300)

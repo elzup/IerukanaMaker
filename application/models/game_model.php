@@ -22,6 +22,7 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
 		$this->db->set(DB_CN_GAMES_CREATED_AT, date(MYSQL_TIMESTAMP));
+		$this->db->set(DB_CN_GAMES_UPDATED_AT, date(MYSQL_TIMESTAMP, strtotime('-1 day')));
 		$this->db->insert(DB_TN_GAMES);
 		return $this->db->insert_id();
 	}

@@ -3,7 +3,7 @@
 ?>
 <div id="owner-pnale">
 	あなたはこの言えるかな？の作成者です
-	<a class="btn btn-info" href="<?= base_url(PATH_UPDATE . $game->id) ?>">変更する</a>
+	<a class="btn btn-success" href="<?= base_url(PATH_UPDATE . $game->id) ?>">変更する</a>
 	<input class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" type="button" id="submit-delete-game" value="この言えるかな？を削除する" />
 </div>
 

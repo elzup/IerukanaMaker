@@ -117,6 +117,11 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 				</div>
 				<div class="col-md-5">
 					<div class="control-forms">
+						<div class="action-box">
+							<span style="display: none" class="judge judge-ok">○</span>
+							<span style="display: none" class="judge judge-ng">×</span>
+							<span style="display: none" class="judge judge-already">済</span>
+						</div>
 						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" maxlength="20" />
 						<input class="btn btn-primary" id="submit-answer" type="button" value="答える" />
 						<input class="btn btn-primary" id="submit-start" type="button" value="スタート" />

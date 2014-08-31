@@ -7,6 +7,7 @@
 @font_main_color: @sub_color - #aaa;
 @font_link_color: @accent_color;
 @border_d: solid 1px #dddddd;
+@border_w: solid 1px #fff;
 
 html, body {
     background: @main_color + #aaa;
@@ -244,6 +245,7 @@ table.table-words {
     @brv: 3px;
     border-radius: @brv;
     tbody {
+        background: white;
     }
     tr {
         border-collapse: collapse;
@@ -511,6 +513,35 @@ i {
 }
 .input-add-box {
     margin-bottom: 10px;
+}
+
+.action-box {
+    float: left;
+    text-align: center;
+    width: 40px;
+    padding-top: 9px;
+    margin-right: 5px;
+    .judge {
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        border: @border_w;
+        border-radius: 4px;
+        padding: 3px 11px;
+        &.judge-ok {
+            .deco-judge(orange);
+        }
+        &.judge-ng {
+            .deco-judge(blue);
+        }
+        &.judge-already {
+            .deco-judge(green);
+        }
+    }
+}
+.deco-judge(@col) {
+    background: @col;
+    border-color: @col + #666;
 }
 
 @import "./md.less";
