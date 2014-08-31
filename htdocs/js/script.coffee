@@ -186,9 +186,19 @@ $ ->
         ans_form.focus()
 
     add_list = ->
-#        include_list()
         add_text = $('#input_add').val()
-        add_words = add_text.split(/[,\s]/).filter (e)->
+        reg_text = '['
+        reg_text += "," if $("#checkbox-split-comma").prop('checked')
+        reg_text += "\n" if $("#checkbox-split-return").prop('checked')
+        reg_text += " " if $("#checkbox-split-space").prop('checked')
+        reg_text += "\t" if $("#checkbox-split-tab").prop('checked')
+        reg_text += ']'
+        
+        add_words = add_text.split(new RegExp(reg_text))
+        for i in [0...add_words.length]
+            add_words[i] = add_words[i].replace(/[,\n\t ]/g, '')
+
+        add_words = add_words.filter (e)->
             return !!e
         $.each(add_words, (i, v) ->
             add_words[i] = v.substr(0, 20)
@@ -207,6 +217,7 @@ $ ->
     $('#input_add').on("keypress", (e) ->
         if e.which == 13
             add_list()
+            return false
     )
 
     # チェックボタン押下
@@ -242,6 +253,21 @@ $ ->
 
     word_boxs.change ->
         wordbox_change()
+
+    word_boxs.hover ->
+        $(@).next('.delete-btn').show()
+    ,->
+        $(@).next('.delete-btn').hide()
+
+    $('.delete-btn').hover ->
+        $(@).show()
+    ,->
+        $(@).hide()
+
+    $('.delete-btn').click ->
+        $(@).prev('input').val('')
+        return false
+
 
     wordbox_clear = ->
         word_boxs.each ->
@@ -302,7 +328,9 @@ $ ->
             error: ->
                 console.log 'connect error'
         )
-    $('.wordbox').change -> wordbox_change
+    word_boxs.change -> wordbox_change
+
+
 
     btn_tweet.click ->
         hashtags = '言えるかな'

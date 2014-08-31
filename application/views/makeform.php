@@ -44,20 +44,45 @@
 			<label for="input_add" class="col-md-2 control-label">ワードリスト</label>
 			<div class="col-md-10">
 				<div class="row">
-					<div class="col-md-4">
-						<input class="" id="input_add" name="" placeholder="ヒトカゲ,ブーバー,..." type="text" />
-						<input class="btn btn-primary" id="submit-add" name="" maxlength="20" type="button" value="追加" />
-						<!--<input class="btn btn-info" id="submit-check" name="" maxlength="10" type="button" value="値チェック" />-->
-						<input class="btn btn-danger" id="submit-clear" name="" maxlength="20" type="button" value="全消去" />
+					<div class="col-md-7 input-add-box">
+						<textarea name="" id="input_add" cols="60" rows="3">
+						</textarea>
+						<div class="help-div">
+							<span class="help-block">上のフォームに単語入力して一括追加できます</span>
+							<span class="help-block">単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です</span>
+							<span class="help-block">最大256単語まで,区切り文字の記号は使用できません</span>
+							<span class="help-block">下のリストを直接変更することも出来ます</span>
+						</div>
+						<div class="btn-group pull-right">
+							<input class="btn btn-danger" id="submit-clear" name="" maxlength="20" type="button" value="全消去" />
+							<input class="btn btn-primary" id="submit-add" name="" maxlength="20" type="button" value="追加" />
+						</div>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-2">
+						<div class="checkbox">
+							区切り文字指定
+							<label>
+								<input id="checkbox-split-comma" type="checkbox" checked="">カンマ(,)
+							</label>
+							<label>
+								<input id="checkbox-split-return" type="checkbox" checked="">改行
+							</label>
+							<label>
+								<input id="checkbox-split-space" type="checkbox" checked="">スペース
+							</label>
+							<label>
+								<input id="checkbox-split-tab" type="checkbox" checked="">タブスペース
+							</label>
+						</div>
+					</div>
+					<!--<div class="col-md-8">
 						<p class="">
 							単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です.最大256単語まで<br />
 							記号(改行やスペースなど)は使えません.<br />
 							右のフォームでカンマ,またはスペース区切りで<b>複数同時</b>に追加できます.<br />
 							下のボックスに直接編集することも出来ます.<br />
 						</p>
-					</div>
+					</div>-->
 				</div>
 			</div>
 			<div class="col-md-12" id="word-list-box">
@@ -82,6 +107,7 @@
 						?>
 						<div class="col-md-1">
 							<input class="wordbox" id="input_word<?= $k ?>" name="word-<?= "" + $k ?>" maxlength="20" value="<?= $word ? $word->text : '' ?>" placeholder="---" type="text">
+							<button class="delete-btn btn btn-default" style="display: none">×</button>
 						</div>
 						<?php
 					}

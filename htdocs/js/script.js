@@ -200,9 +200,27 @@
       return ans_form.focus();
     });
     add_list = function() {
-      var add_text, add_words;
+      var add_text, add_words, i, reg_text, _i, _ref;
       add_text = $('#input_add').val();
-      add_words = add_text.split(/[,\s]/).filter(function(e) {
+      reg_text = '[';
+      if ($("#checkbox-split-comma").prop('checked')) {
+        reg_text += ",";
+      }
+      if ($("#checkbox-split-return").prop('checked')) {
+        reg_text += "\n";
+      }
+      if ($("#checkbox-split-space").prop('checked')) {
+        reg_text += " ";
+      }
+      if ($("#checkbox-split-tab").prop('checked')) {
+        reg_text += "\t";
+      }
+      reg_text += ']';
+      add_words = add_text.split(new RegExp(reg_text));
+      for (i = _i = 0, _ref = add_words.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        add_words[i] = add_words[i].replace(/[,\n\t ]/g, '');
+      }
+      add_words = add_words.filter(function(e) {
         return !!e;
       });
       $.each(add_words, function(i, v) {
@@ -223,7 +241,8 @@
     $('#submit-add').click(add_list);
     $('#input_add').on("keypress", function(e) {
       if (e.which === 13) {
-        return add_list();
+        add_list();
+        return false;
       }
     });
     get_forms = function() {
@@ -268,6 +287,20 @@
     };
     word_boxs.change(function() {
       return wordbox_change();
+    });
+    word_boxs.hover(function() {
+      return $(this).next('.delete-btn').show();
+    }, function() {
+      return $(this).next('.delete-btn').hide();
+    });
+    $('.delete-btn').hover(function() {
+      return $(this).show();
+    }, function() {
+      return $(this).hide();
+    });
+    $('.delete-btn').click(function() {
+      $(this).prev('input').val('');
+      return false;
     });
     wordbox_clear = function() {
       return word_boxs.each(function() {
@@ -343,7 +376,7 @@
         }
       });
     });
-    $('.wordbox').change(function() {
+    word_boxs.change(function() {
       return wordbox_change;
     });
     btn_tweet.click(function() {
