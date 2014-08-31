@@ -67,6 +67,12 @@ class Metaobj
 		$this->type = 'website';
 	}
 
+	public function setup_user(Userobj $user) {
+		$this->set_title("マイページ");
+		$this->description = '@' . $user->screen_name . "のマイページ";
+		$this->no_meta = TRUE;
+	}
+
 	public function setup_help()
 	{
 		$this->set_title("ヘルプ");

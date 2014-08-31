@@ -47,9 +47,7 @@ switch ($gamemode) {
 	<div class="tag-box">
 		<?php
 		foreach ($game->tags as $tag) {
-			echo '<span class="tag">';
-			echo wrap_taglink_only($tag);
-			echo '</span>';
+			echo '<div class="tag">' . wrap_taglink_only($tag) . '</div>';
 		}
 		?>
 	</div>

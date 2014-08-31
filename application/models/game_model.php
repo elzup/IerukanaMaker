@@ -114,12 +114,15 @@ class Game_model extends CI_Model {
 		return $words;
 	}
 
-	function to_gameobjs($rows, $get_words = FALSE) {
+	function to_gameobjs($rows, $set_words = FALSE, $set_tags = FALSE) {
 		$games = array();
 		foreach ($rows as $row) {
 			$game = new Gameobj($row);
-			if ($get_words) {
+			if ($set_words) {
 				$game->set_word_list($this->get_words($game->id));
+			}
+			if ($set_tags) {
+				$game->tags = $this->get_tags($game->id);
 			}
 			$games[] = $game;
 		}
@@ -325,6 +328,14 @@ class Game_model extends CI_Model {
 	function get_tag_count($tag_text) {
 		$this->db->where(DB_CN_TAGS_TEXT, $tag_text);
 		return $this->db->count_all_results(DB_TN_TAGS);
+	}
+
+	function get_games_owner($user_id) {
+		$this->db->where(DB_CN_USERS_ID, $user_id);
+		$this->db->order_by(DB_CN_GAMES_CREATED_AT, 'DESC');
+		$query = $this->db->get(DB_TN_GAMES);
+		$result = $query->result();
+		return $this->to_gameobjs($result, FALSE, TRUE);
 	}
 
 }

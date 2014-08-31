@@ -144,6 +144,10 @@ span.strong-s {
     margin-bottom: 10px;
 }
 
+.info {
+    margin-bottom: 5px;
+}
+
 .plate {
     width: 100%;
     border: @border_d;
@@ -195,6 +199,10 @@ span.strong-s {
         h3 {
             margin-top: 5px;
         }
+    }
+
+    &.tag-box {
+        padding: 10px;
     }
 }
 
@@ -399,8 +407,8 @@ table.table-words {
     float: left;
 }
 
-.tag-box {
-    padding: 10px;
+div.tag-box {
+    padding: 2px;
     overflow: auto;
     >span {
         float: left;
@@ -417,9 +425,11 @@ table.table-words {
     border-radius: 4px;
     box-shadow: 2px 2px 0px (@sub_color - #333),0 0 3px (@sub_color - #aaa) inset;
     margin-right: 5px;
+    display: block;
+    float: left;
     >a {
         color: white;
-/*        display: block; */
+        display: block;
     }
     .badge {
         padding: 2px 6px 2px;
