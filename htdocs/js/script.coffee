@@ -36,7 +36,7 @@ $ ->
     input_game_name = $('#input_game_name')
 
     to_ans_kana = (str) ->
-        str = str.replace(/[-ー]/g, 'h').replace(/\./g, 'd').replace(/\+/g, 'p').replace(/#/g, 's')
+        str = str.replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[・\s]/, '')
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
             convert:
                 punctuation: false

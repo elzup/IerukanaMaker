@@ -9,7 +9,7 @@
  * @return string
  */
 function to_ans_kana($str) {
-	return str_replace(array('ー', '-', '+', '.', '#'), array('h', 'h','p','d','s'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+	return str_replace(array('ー', '-', '+', '.', '#', '・', ' '), array('__h', '__h', '__p', '__d', '__s', '', ''), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {
@@ -30,7 +30,7 @@ function strtosilhouette($str, $head_view = FALSE) {
 	$strs = mbStringToArray($str);
 	$silhouette = '';
 	$lib = 'ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮ.。、';
-	foreach($strs as $i => $c) {
+	foreach ($strs as $i => $c) {
 		if ($i == 0 && $head_view && count($strs) != 1) {
 			$silhouette .= $c;
 			continue;
@@ -61,15 +61,29 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 	return $aRes;
 }
 ?>
+<?php if ($game->words_num > 32) { ?>
+	<div class="row">
+		<div class="col-xs-12 visible-xs">
+			<div class="alerts-div">
+				<div class="alert alert-dismissable alert-warning">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<p>ワード数30を超える言えるかなはPCでのプレイをおすすめしています</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>
 
 <div class="content">
 	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game', 'gamemode' => $gamemode)); ?>
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row game-mode-box">
-				<div class="col-md-6">
+				<div class="col-xs-12">
+					<span href="#" class="ruby-btn">ゲームモード</span>
+				</div>
+				<div class="col-xs-12">
 					<div class="btn-group">
-						<span href="#" class="btn btn-primary disabled">ゲームモード</span>
 						<a href="<?= base_url(PATH_GAME . $game->id) ?>" class="btn btn-default<?= $gamemode == GAME_MODE_NORMAL ? ' active disabled' : '' ?>">ノーマル</a>
 						<a href="<?= base_url(PATH_GAME . $game->id . '?easy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_EASY ? ' active disabled' : '' ?>">やさしい</a>
 						<a href="<?= base_url(PATH_GAME . $game->id . '?soeasy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_SO_EASY ? ' active disabled' : '' ?>">超やさしい</a>
@@ -125,7 +139,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 						echo '<tr>';
 					}
 					$value = to_valuetext($word->text, $gamemode);
-					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '">' . $value.'</td>';
+					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '">' . $value . '</td>';
 					$i++;
 				}
 				while ($i % $p != 0) {

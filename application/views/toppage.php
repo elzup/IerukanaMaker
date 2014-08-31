@@ -14,7 +14,7 @@
 			このサイトはいろいろな人が作った<span class="strong-s">言えるかな？</span>で遊ぶことが出来るサイトです<br />
 			あなたの作りたい言えるかな？を作ることも出来ます
 		</p>
-		<div class="row">
+		<div class="row sub-btns">
 			<div class="col-md-3">
 				<a class="btn btn-primary btn-lg btn-block" href="<?= base_url(PATH_MAKE) ?>">言えるかな？を作る</a>
 			</div>
@@ -41,8 +41,8 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
 			<div class="tag-box plate">
-				<?= tag_icon('tags')?>
-				注目のタグ: 
+				<span><?= tag_icon('tags')?>
+					注目のタグ: </span>
 				<?php
 				foreach ($tags as $tag) {
 					echo '<span class="tag">';

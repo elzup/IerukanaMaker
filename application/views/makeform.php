@@ -1,8 +1,18 @@
 <?php
 /* @var $game Gameobj */
 ?>
+<div class="row">
+	<div class="col-xs-12 visible-xs">
+		<div class="alerts-div">
+			<div class="alert alert-dismissable alert-warning">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<p>単語数の多い言えるかな？の場合<br />PC環境での作成をおすすめです</p>
+			</div>
+		</div>
+	</div>
+</div>
 <form id="make-form" class="form-horizontal" method="POST" action="<?= base_url($game ? PATH_UPDATE_POST . $game->id : PATH_MAKE_POST) ?>">
-<fieldset>
+	<fieldset>
 		<!--<legend>Legend</legend>-->
 		<div class="form-group">
 			<label for="input_game_name" class="col-md-2 control-label">タイトル</label>

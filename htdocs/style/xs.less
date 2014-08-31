@@ -1,4 +1,73 @@
 @charset "utf-8";
 
 @media screen and (max-width: 480px) {
+    #game-info {
+        padding: 8px;
+        .page-title {
+            font-size: 20px;
+        }
+        .tweet-btn-box {
+            text-align: right;
+        }
+    }
+
+    #topjumbo.jumbotron {
+        overflow: hidden;
+        padding: 0 10px;
+        h1 {
+            font-size: 34px;
+        }
+
+        p.description {
+            font-size: 12px;
+        }
+
+        .sub-btns {
+            padding: 0 15px;
+            >div {
+                padding: 2px;
+            }
+        }
+    }
+    .table-games {
+        .over-text-wrap {
+            white-space: normal;
+        }
+    }
+
+    .game-mode-box {
+        a.btn {
+            padding: 8px;
+            font-size: 12px;
+        }
+    }
+
+    @h: 30px;
+    #timer-toggle-btn {
+        height: @h;
+        width: 100px;
+    }
+    .timer-set {
+        width: 100%;
+        #timer-input {
+            font-size: 10px;
+            height: 30px;
+            border: none;
+        }
+        .input-group-addon {
+        }
+    }
+
+    .control-box {
+        padding: 0;
+        padding-top: 10px;
+        .control-forms {
+            input.btn {
+                width: 23%;
+                font: 10px;
+                padding: 5px;
+            }
+        }
+    }
+
 }

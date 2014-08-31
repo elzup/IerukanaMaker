@@ -38,7 +38,7 @@ switch ($gamemode) {
 	<div class="description">
 		<p><?= $game->get_wraped_description() ?></p>
 		<?php
-		echo '<div>';
+		echo '<div class="tweet-btn-box">';
 		$text = $game->get_full_title(TRUE);
 		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
 		echo '</div>';

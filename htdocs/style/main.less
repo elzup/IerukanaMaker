@@ -1,9 +1,6 @@
 @charset "utf-8";
 @import "../lib/less/mixins.less";
 
-@import "./md.less";
-@import "./xs.less";
-
 @main_color: #FFFB00;
 @sub_color: #FFC201;
 @accent_color: #25B9FF;
@@ -60,6 +57,7 @@ img.log-img {
     background: @main_color + #666;
     .deco_inbox(@sub_color + #333);
     border: @border_d;
+    border-color: white;
     padding: 10px 30px 20px;
     border-radius: 10px;
     overflow: auto;
@@ -132,6 +130,7 @@ span.strong-s {
     width: 100%;
     border: @border_d;
     border-radius: 3px;
+    background: @main_color + #ccc;
     &.plate-game {
         padding: .5em 10px;
         .name {
@@ -354,6 +353,13 @@ table.table-words {
 
 .tag-box {
     padding: 10px;
+    overflow: auto;
+    >span {
+        float: left;
+        &:first-child {
+            margin-right: 1em;
+        }
+    }
 }
 .tag {
     padding: 2px 9px;
@@ -408,10 +414,22 @@ table.table-words {
 
 .game-mode-box {
     padding-bottom: 10px;
+    @br: 3px;
+    .ruby-btn {
+        background: @sub_color;
+        color: white;
+        border: @border_d;
+        border-bottom: none;
+        border-radius: @br @br 0 0;
+        padding: 3px 10px;
+    }
     a.btn {
         &.active, &.disabled {
             opacity: 1;
-            box-shadow: 0 -10px 5px -5px @sub_color inset;
+            box-shadow: 0 -10px 5px -8px @sub_color inset, 0 10px 5px -8px @sub_color inset;
+        }
+        &:first-child {
+            border-top-left-radius: 0;
         }
     }
 }
@@ -464,3 +482,5 @@ table.table-words {
         padding-bottom: 10px;
     }
 }
+@import "./md.less";
+@import "./xs.less";
