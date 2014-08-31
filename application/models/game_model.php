@@ -213,13 +213,10 @@ class Game_model extends CI_Model {
 
 	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
 		$data = array();
-		$max = count($active_points) < 10 ? count($active_points) : 10;
+		$max = count($active_points) < 100 ? count($active_points) : 100;
 		foreach ($active_points as $i => $p) {
 			if (is_null($p) || "" === $p) {
 				continue;
-			}
-			if ($i > 10) {
-				break;
 			}
 			$data[] = array(
 				DB_CN_WORDS_ID => $p,

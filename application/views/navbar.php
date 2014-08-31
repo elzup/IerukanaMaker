@@ -19,11 +19,11 @@ if ($user == null) {
 	<div class="navbar-collapse collapse navbar-categlyes">
 		<ul class="nav navbar-nav navbar-right">
 			<li>
-				<a <?= attr_href(base_url(PATH_MAKE)) ?>>作成</a>
+				<a <?= attr_href(base_url(PATH_MAKE)) ?>><?= tag_icon('pencil')?>作成</a>
 			<li>
-				<a <?= attr_href(base_url(PATH_SEARCH)) ?>>検索</a>
+				<a <?= attr_href(base_url(PATH_SEARCH)) ?>><?= tag_icon('search')?>検索</a>
 			<li>
-				<a <?= attr_href(base_url(PATH_HELP)) ?>>ヘルプ</a>
+				<a <?= attr_href(base_url(PATH_HELP)) ?>><?= tag_icon('question-sign')?>ヘルプ</a>
 				<?php
 				if (empty($user)) {
 					?>

@@ -11,7 +11,7 @@ if (!$meta->no_meta) {
 		<meta property="og:title" content="<?= $meta->get_title(TRUE) ?>">
 		<meta property="og:type" content="<?= $meta->get_type() ?>">
 		<meta property="og:url" content="<?= $meta->url ?>">
-		<meta property="og:image" content="<?= base_url(PATH_IMG . 'logo.png')?>">
+		<meta property="og:image" content="<?= base_url(PATH_IMG . 'logo_fill.png')?>">
 		<meta property="og:site_name" content="<?= SITE_NAME ?>">
 		<meta property="og:description" content="<?= $meta->description ?>">
 		<meta property="og:locale" content="ja_JP">
@@ -21,7 +21,7 @@ if (!$meta->no_meta) {
 		<meta name="twitter:creater" content="@<?= AUTHOR_TWITTER_SCREEN_NAME ?>">
 		<meta name="twitter:title" content="<?= $meta->get_title() ?>">
 		<meta name="twitter:description" content="<?= $meta->description ?>">
-		<meta name="twitter:image:src" content="<?= base_url(PATH_IMG . 'logo.png')?>">
+		<meta name="twitter:image:src" content="<?= base_url(PATH_IMG . 'logo_fill.png')?>">
 		<?php
 	}
 }

@@ -4,7 +4,7 @@ $ ->
 
     # init variables
     td_boxs            = $('table.table-words td').not('.emp')
-    ans_form               = $('#answer-form')
+    ans_form           = $('#answer-form')
     process_count_span = $('span#process_count')
     btn_end            = $('#submit-end')
     btn_start          = $('#submit-start')
