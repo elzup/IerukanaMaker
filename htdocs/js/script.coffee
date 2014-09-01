@@ -406,9 +406,12 @@ $ ->
             return
         data =
             tags_text: v
+        url = "./make/tag_check/"
+        if location.href.indexOf('update') != -1
+            url = "../make/tag_check/"
         $.ajax(
             type: "POST",
-            url: "./make/tag_check/"
+            url: url
             data: data,
             success: (res) ->
                 console.log res
@@ -430,3 +433,27 @@ $ ->
         $('.judge').stop()
         $('.judge').hide()
         $e.fadeIn(100).fadeOut(100).fadeIn(300).fadeOut(300)
+
+    $('#favorite-btn').click ->
+        favorite(1)
+        $(@).hide()
+        $('#unfavorite-btn').show()
+
+    $('#unfavorite-btn').click ->
+        favorite(0)
+        $(@).hide()
+        $('#favorite-btn').show()
+
+    favorite = (is_regist)->
+        data =
+            is_regist : is_regist
+        $.ajax(
+            type: "POST",
+            url: "./favorite/" + game_id
+            data: data,
+            success: (res) ->
+                console.log res
+            error: ->
+                console.log 'result post error'
+        )
+

@@ -26,6 +26,12 @@ switch ($gamemode) {
 			<h1 class="page-title"><?= $title ?></h1>
 		</div>
 		<div class="col-md-2">
+			<?php if (isset($game->is_favorited)): ?>
+				<button id="favorite-btn" class="btn btn-default" <?= $game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り登録</button>
+				<button id="unfavorite-btn" class="btn btn-default" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り解除</button>
+			<?php endif; ?>
+		</div>
+		<div class="col-md-2">
 			<?php
 			if ($gamemode != GAME_MODE_RANK) {
 				?> <a class="btn btn-default" href="<?= base_url(PATH_RANK . $game->id) ?>">単語ランキングを見る</a> <?php

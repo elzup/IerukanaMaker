@@ -74,6 +74,7 @@ define('PATH_MAKE_POST', 'make/post');
 define('PATH_UPDATE', 'update/');
 define('PATH_UPDATE_POST', 'update/post/');
 define('PATH_DELETE', 'del/');
+define('PATH_FAVORITE', 'fav/');
 define('PATH_HELP', 'help/');
 
 define('PATH_AUTH_LOGIN', 'login');
@@ -120,6 +121,10 @@ define('DB_CN_WORDS_POINT_NEGATIVE', 'point_negative');
 define('DB_TN_TAGS', 'tags');
 define('DB_CN_TAGS_GAME_ID', 'game_id');
 define('DB_CN_TAGS_TEXT', 'tag_text');
+
+define('DB_TN_FAVORITES', 'favorites');
+define('DB_CN_FAVORITES_USER_ID', 'user_id');
+define('DB_CN_FAVORITES_GAME_ID', 'game_id');
 
 define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 

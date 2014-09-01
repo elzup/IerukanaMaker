@@ -23,7 +23,7 @@ class Game extends CI_Controller {
 			$this->rank($game_id);
 		}
 		$user = $this->user->get_main_user();
-		$game = $this->game->get_game($game_id);
+		$game = $this->game->get_game($game_id, @$user->id_user);
 
 		// gamemode
 		$get = $this->input->get();
@@ -128,6 +128,18 @@ class Game extends CI_Controller {
 		$this->game->remove_game($game_id);
 		$this->session->set_userdata('alert', '「' . $game->get_full_title() . '」を削除しました');
 		jump(base_url());
+	}
+
+	public function favorite($game_id) {
+		$user = $this->user->get_main_user();
+		$game = $this->game->get_game($game_id);
+		$is_regist = $this->input->post('is_regist');
+		if (empty($user) || empty($game) || $user->id_user != $game->user_id || !isset($is_regist)) {
+			// TODO: error処理
+			die("e:0");
+		}
+		$this->game->favorite_toggle($user->id_user, $game_id, $is_regist);
+		die("s:1");
 	}
 
 	public static function get_game_id($url) {

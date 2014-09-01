@@ -82,13 +82,16 @@ class Game_model extends CI_Model {
 	 * @param int $game_id
 	 * @return null|\Gameobj
 	 */
-	function get_game($game_id) {
+	function get_game($game_id, $user_id = NULL) {
 		if (!$game_res = $this->select_game($game_id)) {
 			return NULL;
 		}
 		$game = new Gameobj($game_res);
 		$game->set_word_list($this->to_wordobjs($this->select_words($game_id)));
 		$game->tags = $this->get_tags($game_id);
+		if ($user_id) {
+			$game->is_favorited = $this->is_favorite($user_id, $game_id);
+		}
 		return $game;
 	}
 
@@ -240,8 +243,8 @@ class Game_model extends CI_Model {
 	}
 
 	public function remove_game($game_id) {
-		$this->delete_words($game_id);
-		$this->delete_tags($game_id);
+//		$this->delete_words($game_id);
+//		$this->delete_tags($game_id);
 		$this->delete_game($game_id);
 	}
 
@@ -336,6 +339,50 @@ class Game_model extends CI_Model {
 		$query = $this->db->get(DB_TN_GAMES);
 		$result = $query->result();
 		return $this->to_gameobjs($result, FALSE, TRUE);
+	}
+
+	function favorite_toggle($user_id, $game_id, $is_regist = NULL) {
+		if (!isset($is_regist)) {
+			$this->favorite_toggle($user_id, $game_id, !$this->is_favorite($user_id, $game_id));
+			return;
+		}
+		echo $is_regist;
+		if ($is_regist) {
+			// お気に入り登録
+			echo "regist";
+			$this->insert_favorite($user_id, $game_id);
+		} else {
+			// お気に入り解除
+			echo "delete";
+			$this->delete_favorite($user_id, $game_id);
+		}
+	}
+
+	function delete_favorite($user_id, $game_id) {
+		$this->db->where(DB_CN_FAVORITES_USER_ID, $user_id);
+		$this->db->where(DB_CN_FAVORITES_GAME_ID, $game_id);
+		$this->db->delete(DB_TN_FAVORITES);
+		echo $this->db->last_query();
+	}
+
+	function insert_favorite($user_id, $game_id) {
+		$this->db->set(DB_CN_FAVORITES_USER_ID, $user_id);
+		$this->db->set(DB_CN_FAVORITES_GAME_ID, $game_id);
+		$this->db->insert(DB_TN_FAVORITES);
+	}
+
+	function is_favorite($user_id, $game_id) {
+		$this->db->where(DB_CN_FAVORITES_USER_ID, $user_id);
+		$this->db->where(DB_CN_FAVORITES_GAME_ID, $game_id);
+		$query = $this->db->get(DB_TN_FAVORITES);
+		$result = $query->result();
+		return !empty($result[0]);
+	}
+
+	function select_favorite_user($user_id) {
+		$this->db->where(DB_CN_FAVORITES_USER_ID, $user_id);
+		$query = $this->db->get(DB_TN_FAVORITES);
+		return $query->result();
 	}
 
 }

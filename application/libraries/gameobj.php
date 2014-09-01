@@ -12,6 +12,8 @@ class Gameobj {
 	public $timestamp;
 	public $created_timestamp;
 
+	public $is_favorited;
+
 	/**
 	 * ワードリスト
 	 * @var Wordobj[]
