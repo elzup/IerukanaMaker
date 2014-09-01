@@ -444,6 +444,11 @@ $ ->
         $(@).hide()
         $('#favorite-btn').show()
 
+    $('#unfavorite-btn').hover ->
+        $(@).html('★お気に入り解除')
+    , ->
+        $(@).html('★お気に入り中')
+
     favorite = (is_regist)->
         data =
             is_regist : is_regist

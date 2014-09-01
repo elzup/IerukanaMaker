@@ -587,5 +587,26 @@ i {
     border-color: @col + #666;
 }
 
+.btn-favorite {
+    &#favorite-btn {
+        &:hover {
+            &:first-letter {
+                color: @main_color;
+            }
+        }
+    }
+    &#unfavorite-btn {
+        margin-top: 0px;
+        &:first-letter {
+            color: @main_color;
+        }
+        &:hover {
+            &:first-letter {
+                color: gray;
+            }
+        }
+    }
+}
+
 @import "./md.less";
 @import "./xs.less";

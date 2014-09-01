@@ -21,6 +21,7 @@
 					<strong>ログインユーザは以下の機能を使用できます</strong>
 					<ul class="list">
 						<li>言えるかなの作成
+						<li>言えるかなのブックマーク
 					</ul>
 					<strong>安心してご利用下さい</strong>
 					<ul class="list">

@@ -510,6 +510,11 @@
       $(this).hide();
       return $('#favorite-btn').show();
     });
+    $('#unfavorite-btn').hover(function() {
+      return $(this).html('★お気に入り解除');
+    }, function() {
+      return $(this).html('★お気に入り中');
+    });
     return favorite = function(is_regist) {
       var data;
       data = {

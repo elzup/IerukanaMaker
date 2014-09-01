@@ -385,4 +385,24 @@ class Game_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_games_favorited($user_id) {
+		$ids = $this->get_ids_favorited($user_id);
+		if (empty($ids)) {
+			return array();
+		}
+		$this->db->where_in(DB_CN_GAMES_ID, $ids);
+		$this->db->order_by(DB_CN_GAMES_CREATED_AT, 'DESC');
+		$query = $this->db->get(DB_TN_GAMES);
+		$result = $query->result();
+		return $this->to_gameobjs($result);
+	}
+
+	function get_ids_favorited($user_id) {
+		$rows = $this->select_favorite_user($user_id);
+		$ids = array();
+		foreach ($rows as $row) {
+			$ids[] = $row->{DB_CN_FAVORITES_GAME_ID};
+		}
+		return $ids;
+	}
 }
