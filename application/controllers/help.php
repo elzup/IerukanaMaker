@@ -17,6 +17,7 @@ class Help extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ヘルプ' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('helppage');
 		$this->load->view('bodywrapper_foot');

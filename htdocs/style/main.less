@@ -5,7 +5,7 @@
 @sub_color: #FFC201;
 @accent_color: #25B9FF;
 @font_main_color: @sub_color - #aaa;
-@font_link_color: @accent_color;
+@font_link_color: @sub_color;
 @border_d: solid 1px #dddddd;
 @border_w: solid 1px #fff;
 
@@ -15,6 +15,10 @@ html, body {
 }
 a {
     color: @font_link_color;
+    &:hover {
+        color: @font_link_color + #333;
+        text-decoration: none;
+    }
 }
 h1.page-title {
     font-size: 37px;
@@ -32,8 +36,16 @@ h2 {
 
 .navbar {
     color: @font_main_color;
-    a {
-        color: @font_main_color;
+    .navbar-nav {
+        li {
+            a {
+                color: @font_main_color;
+                &:hover, &:focus {
+                    color: @sub_color - #666;
+                    box-shadow: 0 -10px 10px -10px @sub_color inset;
+                }
+            }
+        }
     }
     background: @main_color;
     li.img {
@@ -526,7 +538,7 @@ div.tag-box {
     tbody {
         tr {
             &:hover>td,&:hover>th {
-                background: @sub_color;
+                background: @sub_color - #222;
             }
         }
     }
@@ -606,6 +618,10 @@ i {
             }
         }
     }
+}
+
+.breadcrumb {
+    background: @main_color + #ccc;
 }
 
 @import "./md.less";

@@ -94,7 +94,7 @@ class Metaobj
 
 	public function setup_update()
 	{
-		$this->set_title("言えるかな？の更新");
+		$this->set_title("言えるかな？の変更");
 		$this->description = "言えるかな？再設定";
 		$this->no_meta = TRUE;
 	}

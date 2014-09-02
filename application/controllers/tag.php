@@ -37,6 +37,7 @@ class Tag extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'タグ検索' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('listpage', array('games' => $games, 'page_index' => $page_index, 'q' => $tag, 'is_tag' => TRUE));
