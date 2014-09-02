@@ -40,6 +40,7 @@ class Index extends CI_Controller
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games, 'recent_games' => $recent_games, 'tags' => $tags));
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 

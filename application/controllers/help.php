@@ -21,6 +21,7 @@ class Help extends CI_Controller {
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('helppage');
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 

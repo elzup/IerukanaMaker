@@ -49,6 +49,20 @@ class Game extends CI_Controller {
 
 		$is_owner = isset($user) && $user->id_user == $game->user_id;
 
+		$games_hot = $this->game->search_games(NULL, SORT_HOT, 5);
+		$games_new = $this->game->search_games(NULL, SORT_NEW, 5);
+		$games_tag = array();
+		if ($game->tags) {
+			$games_tag = $this->game->get_games_tag($game->tags, 5, 0, DB_CN_GAMES_UPDATED_AT);
+			shuffle($games_tag);
+			$games_tag = array_slice($games_tag, 0, 5);
+			if (count($games_tag) < 5) {
+				$games_tag = array_merge($games_tag, $this->game->get_recent_games(5 - count($games_tag)));
+			}
+		} else {
+			$games_tag = $this->game->get_recent_games(5);
+		}
+
 		$meta = new Metaobj();
 		$meta->setup_game($game);
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
@@ -57,7 +71,13 @@ class Game extends CI_Controller {
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => TRUE)));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode));
+		$this->load->view('listparts_head');
+		$this->load->view('listparts', array('games' => $games_tag, 'title' => 'おすすめ'));
+		$this->load->view('listparts', array('games' => $games_hot, 'title' => '人気言えるかな'));
+		$this->load->view('listparts', array('games' => $games_new, 'title' => '新着言えるかな'));
+		$this->load->view('listparts_foot');
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 
@@ -86,6 +106,7 @@ class Game extends CI_Controller {
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('rankpage', array('game' => $game, 'is_owner' => $is_owner));
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 
@@ -100,6 +121,7 @@ class Game extends CI_Controller {
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('nogamepage');
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 

@@ -26,6 +26,7 @@ class Make extends CI_Controller {
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('makepage', array('user' => $user));
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 
@@ -85,6 +86,7 @@ class Make extends CI_Controller {
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('makepage', array('user' => $user, 'game' => $game));
 		$this->load->view('bodywrapper_foot');
+		$this->load->view('footer');
 		$this->load->view('foot');
 	}
 

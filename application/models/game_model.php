@@ -201,8 +201,12 @@ class Game_model extends CI_Model {
 		return $result;
 	}
 
-	public function get_games_tag($tag, $limit, $offset) {
-		$ids = $this->get_ids_tag($tag);
+	public function get_games_tag($tag, $limit, $offset = 0, $sort = DB_CN_GAMES_PLAY_COUNT) {
+		if (is_array($tag)) {
+			$ids = $this->get_ids_taglist($tag);
+		} else {
+			$ids = $this->get_ids_tag($tag);
+		}
 		if (empty($ids)) {
 			return array();
 		}
@@ -298,6 +302,16 @@ class Game_model extends CI_Model {
 		$rows = $this->select_tags_id($tag_text);
 		$ids = array();
 		foreach ($rows as $row) {
+			$ids[] = $row->{DB_CN_TAGS_GAME_ID};
+		}
+		return $ids;
+	}
+
+	function get_ids_taglist(array $tag_text_list) {
+		$this->db->where_in(DB_CN_TAGS_TEXT, $tag_text_list);
+		$query = $this->db->get(DB_TN_TAGS);
+		$ids = array();
+		foreach ($query->result() as $row) {
 			$ids[] = $row->{DB_CN_TAGS_GAME_ID};
 		}
 		return $ids;
@@ -405,4 +419,5 @@ class Game_model extends CI_Model {
 		}
 		return $ids;
 	}
+
 }
