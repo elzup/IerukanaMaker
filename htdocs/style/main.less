@@ -66,6 +66,20 @@ img.log-img {
     height: 1.2em;
 }
 
+#footer {
+    background: @main_color + #bbb;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top: solid @sub_color;
+    box-shadow: 0 20px 20px -20px @sub_color inset;
+    b {
+        font-size: 1.2em;
+    }
+    ul {
+        padding-left: 1em;
+    }
+}
+
 #topjumbo.jumbotron {
     background: @main_color + #666;
     .deco_inbox(@sub_color + #333);
@@ -623,6 +637,7 @@ i {
 .breadcrumb {
     background: @main_color + #ccc;
 }
+
 
 @import "./md.less";
 @import "./xs.less";
