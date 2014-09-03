@@ -9,7 +9,7 @@
  * @return string
  */
 function to_ans_kana($str) {
-	return str_replace(array('ー', '-', '+', '.', '#', '・', ' '), array('__h', '__h', '__p', '__d', '__s', '', ''), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+	return str_replace(array('ー', '-', '+', '.', '#', '・', ' ', '?', '？', '！', '!'), array('__h', '__h', '__p', '__d', '__s', '', '', '__q', '__q', '__e', '__e'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {
@@ -122,7 +122,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 							<span style="display: none" class="judge judge-ng">×</span>
 							<span style="display: none" class="judge judge-already">済</span>
 						</div>
-						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" maxlength="20" />
+						<input id="answer-form" class="form-control" type="text" placeholder="解答欄" />
 						<input class="btn btn-primary" id="submit-answer" type="button" value="答える" />
 						<input class="btn btn-primary" id="submit-start" type="button" value="スタート" />
 						<input class="btn btn-danger" id="submit-end" type="button" value="降参する" />

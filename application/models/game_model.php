@@ -168,7 +168,7 @@ class Game_model extends CI_Model {
 				$order_asc = 'DESC';
 				break;
 			case SORT_NEW:
-				$order_by = DB_CN_GAMES_UPDATED_AT;
+				$order_by = DB_CN_GAMES_CREATED_AT;
 				$order_asc = 'DESC';
 				break;
 			default :

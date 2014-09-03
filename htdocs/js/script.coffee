@@ -35,8 +35,12 @@ $ ->
     btn_tweet.hide()
     input_game_name = $('#input_game_name')
 
+    JUDGE_NG = 0
+    JUDGE_OK = 1
+    JUDGE_ALREADY = 2
+
     to_ans_kana = (str) ->
-        str = str.replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[・\s]/, '')
+        str = str.replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[・\s\t]/, '').replace(/[?？]/, '__q').replace(/[!！]/, '__e')
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
             convert:
                 punctuation: false
@@ -49,27 +53,44 @@ $ ->
         # 全角ひらがな半角英数字に統一する
         word_k = to_ans_kana(word)
         console.log word_k
-        td = $("td[ansc=#{word_k}]")
-        ans = td.attr 'ans'
-#        console.log td
-#        console.log ans
-        if td.size() < 1
-            turn_off $('.judge-ng')
-            return
-        if td.hasClass "ok"
-            turn_off $('.judge-already')
-            return
-        turn_off $('.judge-ok')
-        # 正解した場合
-        td.html(ans)
-        td.addClass('ok')
-        ans_form.val('')
-        # 人気アイテムの統計
-        data_start_id.push td.attr 'nid'
-        solve_count++
-        process_count_span.html(solve_count)
-        if solve_count == all_word_num
-            game_end()
+
+        c = word_k.length
+        judge = JUDGE_NG
+        loop
+            word_kp = word_k
+            for sp_end in [0...c]
+                sp_end = c - sp_end
+                word_kt = word_k.substr(0, sp_end)
+                td = $("td[ansc=#{word_kt}]")
+                if td.size() < 1
+                    continue
+                if td.hasClass "ok"
+                    judge = JUDGE_ALREADY if judge != JUDGE_OK
+                    continue
+                judge = JUDGE_OK
+                ans = td.attr 'ans'
+                word_k = word_k.substr(sp_end)
+                ans_form.val(word_k)
+                # 正解した場合
+                td.html(ans)
+                td.addClass('ok')
+                # 人気アイテムの統計
+                data_start_id.push td.attr 'nid'
+                solve_count++
+                process_count_span.html(solve_count)
+                if solve_count == all_word_num
+                    game_end()
+                break if word_k == ""
+            console.log word_k
+            break if word_k == "" || word_k == word_kp
+
+        switch judge
+            when JUDGE_OK
+                turn_off $('.judge-ok')
+            when JUDGE_NG
+                turn_off $('.judge-ng')
+            when JUDGE_ALREADY
+                turn_off $('.judge-already')
 
     game_end = ->
         game_flag = 0
