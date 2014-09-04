@@ -64,7 +64,7 @@
             continue;
           }
           if (td.hasClass("ok")) {
-            if (judge !== JUDGE_OK) {
+            if (judge !== JUDGE_OK && word_k === word_kt) {
               judge = JUDGE_ALREADY;
             }
             continue;

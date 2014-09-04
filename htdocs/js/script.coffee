@@ -62,10 +62,9 @@ $ ->
                 sp_end = c - sp_end
                 word_kt = word_k.substr(0, sp_end)
                 td = $("td[ansc=#{word_kt}]")
-                if td.size() < 1
-                    continue
+                continue if td.size() < 1
                 if td.hasClass "ok"
-                    judge = JUDGE_ALREADY if judge != JUDGE_OK
+                    judge = JUDGE_ALREADY if judge != JUDGE_OK && word_k == word_kt
                     continue
                 judge = JUDGE_OK
                 ans = td.attr 'ans'

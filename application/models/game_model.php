@@ -420,4 +420,13 @@ class Game_model extends CI_Model {
 		return $ids;
 	}
 
+	/**
+	 * 
+	 * @return \Gameobj
+	 */
+	function get_game_tweet() {
+		$games = $this->get_recent_games(1);
+		return $games[0];
+	}
+
 }
