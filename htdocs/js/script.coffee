@@ -467,7 +467,7 @@ $ ->
     $('#unfavorite-btn').hover ->
         $(@).html('★お気に入り解除')
     , ->
-        $(@).html('★お気に入り中')
+        $(@).html('★お気に入り中　')
 
     favorite = (is_regist)->
         data =
@@ -481,4 +481,7 @@ $ ->
             error: ->
                 console.log 'result post error'
         )
+
+    $('[data-toggle=tooltip]').tooltip()
+
 

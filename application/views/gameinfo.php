@@ -28,7 +28,9 @@ switch ($gamemode) {
 		<div class="col-md-2">
 			<?php if (isset($game->is_favorited)): ?>
 				<button id="favorite-btn" class="btn btn-default btn-block btn-favorite" <?= $game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り登録</button>
-				<button id="unfavorite-btn" class="btn btn-default btn-block btn-favorite" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り中</button>
+				<button id="unfavorite-btn" class="btn btn-default btn-block btn-favorite" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り中　</button>
+			<?php else: ?>
+				<button class="btn btn-default btn-block btn-favorite disabled disabled-tmp" data-toggle="tooltip" data-placement="top" title="ログインが必要です">★お気に入り登録</button>
 			<?php endif; ?>
 		</div>
 		<div class="col-md-2">

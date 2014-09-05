@@ -542,9 +542,9 @@
     $('#unfavorite-btn').hover(function() {
       return $(this).html('★お気に入り解除');
     }, function() {
-      return $(this).html('★お気に入り中');
+      return $(this).html('★お気に入り中　');
     });
-    return favorite = function(is_regist) {
+    favorite = function(is_regist) {
       var data;
       data = {
         is_regist: is_regist
@@ -561,6 +561,7 @@
         }
       });
     };
+    return $('[data-toggle=tooltip]').tooltip();
   });
 
 }).call(this);
