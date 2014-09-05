@@ -15,7 +15,6 @@ class Game extends CI_Controller {
 	}
 
 	public function index() {
-		
 	}
 
 	public function play($game_id, $rank = NULL) {
@@ -70,11 +69,11 @@ class Game extends CI_Controller {
 		$this->load->view('navbar');
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => TRUE)));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode));
+		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode, 'games_tag' => $games_tag));
 		$this->load->view('listparts_head');
-		$this->load->view('listparts', array('games' => $games_tag, 'title' => 'おすすめ'));
-		$this->load->view('listparts', array('games' => $games_hot, 'title' => '人気言えるかな'));
-		$this->load->view('listparts', array('games' => $games_new, 'title' => '新着言えるかな'));
+		$this->load->view('listparts', array('games' => $games_tag, 'col' => 4, 'title' => 'おすすめ'));
+		$this->load->view('listparts', array('games' => $games_hot, 'col' => 4, 'title' => '人気言えるかな'));
+		$this->load->view('listparts', array('games' => $games_new, 'col' => 4, 'title' => '新着言えるかな'));
 		$this->load->view('listparts_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');

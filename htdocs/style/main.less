@@ -132,11 +132,17 @@ span.strong-s {
 
 #game-info {
     padding: 20px;
+    border: @border_d;
 }
 
 .help-div {
     width: 70%;
     float: left;
+}
+
+.recommend-top {
+    .plate.plate-wide {
+    }
 }
 
 #word-list-box {
@@ -187,7 +193,7 @@ span.strong-s {
 
 .plate {
     width: 100%;
-    border: @border_d;
+    border: @border_w;
     border-radius: 3px;
     background: @main_color + #ccc;
     &.plate-game {
@@ -224,6 +230,9 @@ span.strong-s {
     &.plate-wide {
         padding: 10px;
         margin-top: 10px;
+        li>p {
+            font-size: 12px;
+        }
     }
 
     &.plate-center {

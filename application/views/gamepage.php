@@ -2,6 +2,7 @@
 /* @var $game Gameobj */
 /* @var $is_owner bool */
 /* @var $gamemode string */
+/* @var $games_tag Gameobj[] */
 
 /**
  * 
@@ -10,8 +11,7 @@
  */
 function to_ans_kana($str) {
 	return preg_replace(
-		array('#[・ ()（）「」/]#u', '#[ー-]#u', '#\+#', '#\.#', '/#/', '#[?？]#u', '#[！!]#u'), 
-		array('',        '__h',      '__p',  '__d',  '__s', '__q',      '__e'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+		array('#[・ ()（）「」/]#u', '#[ー-]#u', '#\+#', '#\.#', '/#/', '#[?？]#u', '#[！!]#u'), array('', '__h', '__p', '__d', '__s', '__q', '__e'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {
@@ -77,7 +77,14 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 <?php } ?>
 
 <div class="content">
-	<?php $this->load->view('gameinfo', array("game" => $game, 'page' => 'game', 'gamemode' => $gamemode)); ?>
+	<?php
+	$this->load->view('gameinfo', array("game" => $game, 'page' => 'game', 'gamemode' => $gamemode));
+	?>
+	<div class="row recommend-top">
+		<?php
+		$this->load->view('listparts', array('games' => $games_tag, 'title' => 'おすすめ', 'col' => 6, 'num' => 3));
+		?>
+	</div>
 	<div class="game-container">
 		<div class="control-box">
 			<div class="row game-mode-box">
