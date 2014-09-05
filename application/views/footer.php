@@ -24,6 +24,8 @@
 					<div class="col-md-4">
 						<b>リンク</b>
 						<ul>
+							<li><a href="//tohyomaker.com/" target="_blank">投票メーカー</a>
+							<li><a href="//www.hima-tsubu.net/other/amusing/" target="_blank">ヒマツブネット</a>
 							<li><a href="https://twitter.com/ierukana" class="twitter-follow-button" data-show-count="false">Follow @ierukana</a>
 								<script>!function(d, s, id) {
 										var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -35,14 +37,18 @@
 										}
 									}(document, 'script', 'twitter-wjs');</script>
 						</ul>
-						<b>シェア</b>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<b>言えるかな？をシェアしよう</b>
 						<ul>
 							<li>
 								<div class="tweet-btn">
-<?php
-$text = '言えるかな？ゲームに挑戦しよう';
-sharebtn_twitter($text, base_url(), TRUE, TRUE);
-?>
+									<?php
+									$text = '言えるかな？ゲームに挑戦しよう';
+									sharebtn_twitter($text, base_url(), TRUE, TRUE);
+									?>
 								</div>
 						</ul>
 					</div>
