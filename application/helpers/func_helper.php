@@ -277,8 +277,8 @@ if (!function_exists('wrap_taglink')) {
 
 if (!function_exists('wrap_taglink_only')) {
 
-	function wrap_taglink_only($str) {
-		return '<a class="tag-link" href="' . base_url(PATH_TAG . urlencode($str)) . '">#' . $str . '</a>';
+	function wrap_taglink_only(Tagobj $tag) {
+		return '<a class="tag-link" href="' . base_url(PATH_TAG . urlencode($tag->text)) . '">#' . $tag->text . '<span class="badge">' . $tag->count . '</span></a>';
 	}
 
 }

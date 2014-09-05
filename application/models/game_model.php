@@ -203,7 +203,11 @@ class Game_model extends CI_Model {
 
 	public function get_games_tag($tag, $limit, $offset = 0, $sort = DB_CN_GAMES_PLAY_COUNT) {
 		if (is_array($tag)) {
-			$ids = $this->get_ids_taglist($tag);
+			$tag_texts = array();
+			foreach($tag as $t) {
+				$tag_texts[] = $t->text;
+			}
+			$ids = $this->get_ids_taglist($tag_texts);
 		} else {
 			$ids = $this->get_ids_tag($tag);
 		}
@@ -293,7 +297,7 @@ class Game_model extends CI_Model {
 		$rows = $this->select_tags($game_id);
 		$tags = array();
 		foreach ($rows as $row) {
-			$tags[] = $row->{DB_CN_TAGS_TEXT};
+			$tags[] = new Tagobj($row);
 		}
 		return $tags;
 	}
@@ -318,8 +322,11 @@ class Game_model extends CI_Model {
 	}
 
 	function select_tags($game_id) {
+		$this->db->select('*, count(' . DB_CN_TAGS_TEXT. ') as `' . DB_CN_AS_COUNT . '`');
 		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
-		return $this->db->get(DB_TN_TAGS)->result();
+		$this->db->group_by(DB_CN_TAGS_TEXT);
+		$rows = $this->db->get(DB_TN_TAGS)->result();
+		return $rows;
 	}
 
 	function select_tags_id($tag_text) {
@@ -333,11 +340,16 @@ class Game_model extends CI_Model {
 	}
 
 	function get_hot_tags($limit) {
-		$query = $this->db->query('SELECT distinct ' . DB_CN_TAGS_TEXT . ' FROM ie_' . DB_TN_TAGS . ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' order by ' . DB_CN_GAMES_UPDATED_AT . ') limit ' . $limit);
+		$sql  = 'SELECT distinct ' . DB_CN_TAGS_TEXT . ', count(' . DB_CN_TAGS_TEXT . ') as ' . DB_CN_AS_COUNT;
+		$sql .= ' FROM ie_' . DB_TN_TAGS;
+		$sql .= ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' order by ' . DB_CN_GAMES_UPDATED_AT . ')';
+		$sql .= ' group by ' . DB_CN_TAGS_TEXT;
+		$sql .= ' limit ' . $limit;
+		$query = $this->db->query($sql);
 		$result = $query->result();
 		$tags = array();
 		foreach ($result as $row) {
-			$tags[] = $row->{DB_CN_TAGS_TEXT};
+			$tags[] = new Tagobj($row);
 		}
 		return $tags;
 	}

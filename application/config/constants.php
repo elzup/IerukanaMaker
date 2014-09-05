@@ -126,6 +126,8 @@ define('DB_TN_FAVORITES', 'favorites');
 define('DB_CN_FAVORITES_USER_ID', 'user_id');
 define('DB_CN_FAVORITES_GAME_ID', 'game_id');
 
+define('DB_CN_AS_COUNT', 'ascount');
+
 define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 
 define('SORT_HOT', 'hot');

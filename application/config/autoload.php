@@ -54,6 +54,7 @@ $autoload['packages'] = array();
 
 $autoload['libraries'] = array(
 	'metaobj',
+	'tagobj',
 	'userobj',
 	'session',
 	'gameobj',
