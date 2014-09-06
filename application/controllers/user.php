@@ -18,7 +18,7 @@ class User extends CI_Controller {
 		$user = $this->user->get_main_user();
 		if (empty($user)) {
 			$this->session->set_userdata('alert', 'マイページを見るにはログインが必要です');
-			jump(base_url(PATH_GAME . $game_id));
+			jump(base_url());
 		}
 		$games_maked = $this->game->get_games_owner($user->id_user);
 		$games_favrorited = $this->game->get_games_favorited($user->id_user);

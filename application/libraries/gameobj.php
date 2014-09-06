@@ -105,4 +105,8 @@ class Gameobj {
 		Wordobj::$point_negative_maxs[$this->id] = $max_n;
 	}
 
+	public function get_link($tail = '') {
+		return base_url(PATH_GAME . $this->id) . $tail;
+	}
+
 }

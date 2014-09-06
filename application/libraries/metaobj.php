@@ -83,7 +83,7 @@ class Metaobj
 	{
 		// TODO: for game obj
 		$this->set_title($game->get_full_title());
-		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう ' .  implode(' ', $game->tags);
+		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう。' .  $game->description .  '[' . implode(',', $game->tags) . ']';
 	}
 
 	public function setup_make()

@@ -23,7 +23,7 @@ class Job extends CI_Controller {
 		$twitter_config = $this->config->item('TWITTER_BOT');
 		$connection = new TwitterOAuth($twitter_config['consumer_key'], $twitter_config['consumer_secret'], $twitter_config['token_key'], $twitter_config['token_secret']);
 		$url = 'statuses/update';
-		$text = $game->get_full_title() . ' ' . base_url() . PATH_GAME .$game->id;
+		$text = $game->get_full_title() . ' ' . $game->get_link();
 		$parameters = array(
 			'status' => $text,
 		);

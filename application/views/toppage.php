@@ -67,7 +67,7 @@
 					<table class="table table-hover table-games games-hot">
 						<?php foreach ($hot_games as $i => $game) { ?>
 							<tr>
-								<td class="name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><span class="over-text-wrap"><?= $game->get_full_title() ?></span></a></td>
+								<td class="name"><a href="<?= $game->get_link() ?>"><span class="over-text-wrap"><?= $game->get_full_title() ?></span></a></td>
 								<!--<td class="count"><?= $game->play_count ?></td>-->
 							</tr>
 						<?php } ?>
@@ -80,7 +80,7 @@
 					<table class="table table-hover table-games games-new">
 						<?php foreach ($new_games as $game) { ?>
 							<tr>
-								<td class="name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></td>
+								<td class="name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></td>
 							</tr>
 						<?php } ?>
 					</table>
@@ -92,7 +92,7 @@
 					<table class="table table-hover table-games games-recent">
 						<?php foreach ($recent_games as $game) { ?>
 							<tr>
-								<td class="name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></td>
+								<td class="name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></td>
 							</tr>
 						<?php } ?>
 					</table>
@@ -113,7 +113,7 @@
 					?>
 					<li>
 						<span class="word"><?= $word->text ?></span>
-						<span class="game-name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></span>
+						<span class="game-name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></span>
 					</li>
 					<?php
 				}
@@ -129,7 +129,7 @@
 					?>
 					<li>
 						<span class="word"><?= $word->text ?></span>
-						<span class="game-name"><a href="<?= base_url(PATH_GAME . $game->id) ?>"><?= $game->get_full_title() ?></a></span>
+						<span class="game-name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></span>
 					</li>
 					<?php
 				}

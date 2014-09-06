@@ -36,9 +36,9 @@ switch ($gamemode) {
 		<div class="col-md-2">
 			<?php
 			if ($gamemode != GAME_MODE_RANK) {
-				?> <a class="btn btn-default" href="<?= base_url(PATH_RANK . $game->id) ?>">単語ランキングを見る</a> <?php
+				?> <a class="btn btn-default" href="<?= $game->get_link() ?>">単語ランキングを見る</a> <?php
 			} else {
-				echo '<a class="btn btn-default" href="' . base_url(PATH_GAME . $game->id) . '">ゲームページヘ</a>';
+				echo '<a class="btn btn-default" href="' . $game->get_link() . '">ゲームページヘ</a>';
 			}
 			?>
 		</div>
@@ -48,7 +48,7 @@ switch ($gamemode) {
 		<?php
 		echo '<div class="tweet-btn-box">';
 		$text = $game->get_full_title(TRUE);
-		sharebtn_twitter($text, base_url(PATH_GAME . $game->id), 'tweet');
+		sharebtn_twitter($text, $game->get_link(), 'tweet');
 		echo '</div>';
 		?>
 	</div>
