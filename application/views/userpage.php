@@ -18,7 +18,7 @@
 							<p class="description"><?= $game->get_wraped_description() ?></p>
 							<div class="tag-box">
 								<?php
-								foreach ($game->tags as $tag) {
+								foreach ($game->tag_list as $tag) {
 									echo '<div class="tag">' . wrap_taglink_only($tag) . '</div>';
 								}
 								?>
@@ -52,7 +52,7 @@
 							<p class="description"><?= $game->get_wraped_description() ?></p>
 							<div class="tag-box">
 								<?php
-								foreach ($game->tags as $tag) {
+								foreach ($game->tag_list as $tag) {
 									echo '<div class="tag">' . wrap_taglink_only($tag) . '</div>';
 								}
 								?>

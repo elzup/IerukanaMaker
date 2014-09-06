@@ -20,11 +20,15 @@ class Gameobj {
 	 */
 	public $word_list;
 
-	public $tags;
+	/**
+	 * タグリスト
+	 * @var Tagobj[] 
+	 */
+	public $tag_list;
 
 	public function __construct($obj = NULL) {
 		$this->word_list = array();
-		$this->tags = array();
+		$this->tag_list = array();
 		$this->description = '';
 		if (is_null($obj)) {
 			return;

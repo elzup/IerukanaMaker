@@ -9,8 +9,8 @@ class Game_model extends CI_Model {
 	function regist_game(Gameobj $game) {
 		$game_id = $this->insert_game($game);
 		$this->insert_words($game_id, $game->word_list);
-		if (!empty($game->tags)) {
-			$this->insert_tags($game_id, $game->tags);
+		if (!empty($game->tag_list)) {
+			$this->insert_tags($game_id, $game->tag_list);
 		}
 		return $game_id;
 	}
@@ -88,7 +88,7 @@ class Game_model extends CI_Model {
 		}
 		$game = new Gameobj($game_res);
 		$game->set_word_list($this->to_wordobjs($this->select_words($game_id)));
-		$game->tags = $this->get_tags($game_id);
+		$game->tag_list = $this->get_tags($game_id);
 		if ($user_id) {
 			$game->is_favorited = $this->is_favorite($user_id, $game_id);
 		}
@@ -125,7 +125,7 @@ class Game_model extends CI_Model {
 				$game->set_word_list($this->get_words($game->id));
 			}
 			if ($set_tags) {
-				$game->tags = $this->get_tags($game->id);
+				$game->tag_list = $this->get_tags($game->id);
 			}
 			$games[] = $game;
 		}
@@ -271,7 +271,7 @@ class Game_model extends CI_Model {
 		$this->delete_words($game->id);
 		$this->insert_words($game->id, $game->word_list);
 		$this->delete_tags($game->id);
-		$this->insert_tags($game->id, $game->tags);
+		$this->insert_tags($game->id, $game->tag_list);
 	}
 
 	private function _update_game($game) {
@@ -282,12 +282,17 @@ class Game_model extends CI_Model {
 		$this->db->update(DB_TN_GAMES);
 	}
 
+	/**
+	 * 
+	 * @param type $game_id
+	 * @param Tagobj[] $tags
+	 */
 	function insert_tags($game_id, array $tags) {
 		$data = array();
 		foreach ($tags as $tag) {
 			$data[] = array(
 				DB_CN_TAGS_GAME_ID => $game_id,
-				DB_CN_TAGS_TEXT => $tag
+				DB_CN_TAGS_TEXT => $tag->text
 			);
 		}
 		$this->db->insert_batch(DB_TN_TAGS, $data);

@@ -51,8 +51,8 @@ class Game extends CI_Controller {
 		$games_hot = $this->game->search_games(NULL, SORT_HOT, 5);
 		$games_new = $this->game->search_games(NULL, SORT_NEW, 5);
 		$games_tag = array();
-		if ($game->tags) {
-			$games_tag = $this->game->get_games_tag($game->tags, 5, 0, DB_CN_GAMES_UPDATED_AT);
+		if ($game->tag_list) {
+			$games_tag = $this->game->get_games_tag($game->tag_list, 5, 0, DB_CN_GAMES_UPDATED_AT);
 			shuffle($games_tag);
 			$games_tag = array_slice($games_tag, 0, 5);
 			if (count($games_tag) < 5) {

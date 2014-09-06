@@ -43,7 +43,11 @@ class Make extends CI_Controller {
 		$game->name = $name;
 		$game->description = $post['game_description'];
 		if ($post['game_tags']) {
-			$game->tags = explode(',', $post['game_tags']);
+			foreach (explode(',', $post['game_tags']) as $text) {
+				$tag = new Tagobj();
+				$tag->text = $text;
+				$game->tag_list[] = $tag;
+			}
 		}
 		$game->user_id = $user->id_user;
 		$game->word_unit = $post['words_unit'];
@@ -110,7 +114,11 @@ class Make extends CI_Controller {
 		$game->description = $post['game_description'];
 		$game->word_unit = $post['words_unit'];
 		if ($post['game_tags']) {
-			$game->tags = explode(',', $post['game_tags']);
+			foreach (explode(',', $post['game_tags']) as $text) {
+				$tag = new Tagobj();
+				$tag->text = $text;
+				$game->tag_list[] = $tag;
+			}
 		}
 		$word_list_tmp = $game->word_list;
 		$game->word_list = array();
