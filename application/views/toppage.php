@@ -1,37 +1,12 @@
 <?php
-/* @var $hot_games Gameobj[] */
-/* @var $new_games Gameobj[] */
-/* @var $word Word */
+/* @var $games_hot Gameobj[] */
+/* @var $games_new Gameobj[] */
+/* @var $games_recent Gameobj[] */
 /* @var $tags string[] */
-/* @var $recent_games Gameobj[] */
 ?>
-	
+
 <div class="content">
-	<div id="topjumbo" class="jumbotron">
-		<h1>言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png') ?>" /></h1>
-		<p class="description">
-			<strong>腕試し</strong>に<strong>暇つぶし</strong>に<strong>学習</strong>に<br />
-			<span class="strong-s">言えるかな？</span>とは、お題に沿った単語のリストの中でいくつ答えられるかを試すゲームです<br />
-			このサイトはいろいろな人が作った<span class="strong-s">言えるかな？</span>で遊ぶことが出来るサイトです<br />
-			あなたの作りたい言えるかな？を作ることも出来ます
-		</p>
-		<div class="row sub-btns">
-			<div class="col-md-3">
-				<a class="btn btn-primary btn-lg btn-block" href="<?= base_url(PATH_MAKE) ?>">言えるかな？を作る</a>
-			</div>
-			<div class="col-md-3">
-				<button id="btn-please" class="btn btn-primary btn-lg btn-block">誰か作ってと頼む</button>
-			</div>
-			<div class="col-md-3">
-				<div class="tweet-btn">
-					<?php
-					$text = '言えるかな？ゲームに挑戦しよう';
-					sharebtn_twitter($text, base_url(), TRUE, TRUE);
-					?>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php $this->load->view('jumbotron'); ?>
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8">
 			<?php
@@ -39,111 +14,9 @@
 			?>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-offset-2 col-md-8">
-			<div class="tag-box plate">
-				<span><?= tag_icon('tags')?>
-					注目のタグ: </span>
-				<?php
-				foreach ($tags as $tag) {
-					echo '<span class="tag">';
-					echo wrap_taglink_only($tag);
-					echo '</span>';
-				}
-				?>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-offset-1 col-md-10">
-			<?php
-			$this->load->view('categorynav', array('current_page' => GAME_CATEGORY_ALL));
-			?>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-5 col-md-offset-1">
-			<ul class="nav nav-tabs nav-tabs-gamelist">
-				<li class="active"><a href="#gamelist-hot" data-toggle="tab"><h3 class="sub-title">人気</h3></a></li>
-				<li class=""><a href="#gamelist-new" data-toggle="tab"><h3 class="sub-title">新着</h3></a></li>
-				<li class=""><a href="#gamelist-recent" data-toggle="tab"><h3 class="sub-title">おすすめ</h3></a></li>
-			</ul>
-			<div id="tab-content-gamelist" class="tab-content">
-				<div class="tab-pane fade active in" id="gamelist-hot">
-					<table class="table table-hover table-games games-hot">
-						<?php foreach ($hot_games as $i => $game) { ?>
-							<tr>
-								<td class="name"><a href="<?= $game->get_link() ?>"><span class="over-text-wrap"><?= $game->get_full_title() ?></span></a></td>
-								<!--<td class="count"><?= $game->play_count ?></td>-->
-							</tr>
-						<?php } ?>
-					</table>
-					<ul class="pager">
-						<li class="next"><a href="<?= PATH_HOT ?>" class="">もっと見る</a>
-					</ul>
-				</div>
-				<div class="tab-pane fade" id="gamelist-new">
-					<table class="table table-hover table-games games-new">
-						<?php foreach ($new_games as $game) { ?>
-							<tr>
-								<td class="name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></td>
-							</tr>
-						<?php } ?>
-					</table>
-					<ul class="pager">
-						<li class="next"><a href="<?= PATH_NEW ?>" class="">もっと見る</a>
-					</ul>
-				</div>
-				<div class="tab-pane fade" id="gamelist-recent">
-					<table class="table table-hover table-games games-recent">
-						<?php foreach ($recent_games as $game) { ?>
-							<tr>
-								<td class="name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></td>
-							</tr>
-						<?php } ?>
-					</table>
-					<ul class="pager">
-						<li class="next"><a href="<?= PATH_NEW ?>" class="">もっと見る</a>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-5">
-			<h2 class="sub-title">最近人気のワード</h2>
-			<ul class="aborted-list">
-				<?php
-				foreach (array(1,3,5,7,9) as $i) {
-					$game = $recent_games[$i];
-					$words = $game->get_words_popular();
-					list($k, $word) = each($words);
-					?>
-					<li>
-						<span class="word"><?= $word->text ?></span>
-						<span class="game-name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></span>
-					</li>
-					<?php
-				}
-				?>
-			</ul>
-			<h2 class="sub-title">最近忘れられたワード</h2>
-			<ul class="aborted-list">
-				<?php
-				foreach (array(2,4,6,8,10) as $i) {
-					$game = $recent_games[$i];
-					$words = $game->get_words_abord();
-					list($k, $word) = each($words);
-					?>
-					<li>
-						<span class="word"><?= $word->text ?></span>
-						<span class="game-name"><a href="<?= $game->get_link() ?>"><?= $game->get_full_title() ?></a></span>
-					</li>
-					<?php
-				}
-				?>
-			</ul>
-		</div>
-	</div>
+	<?php $this->load->view('topmain', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags)); ?>
+
 	<div class="row">
 		<div class="col-md-6">
 		</div>

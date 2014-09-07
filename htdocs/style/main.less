@@ -29,6 +29,10 @@ h2 {
     font-size: 35px;
 }
 
+p {
+    margin-bottom: 5px;
+}
+
 .deco_inbox(@col: @sub_color) {
     @size_in: 8px;
     box-shadow: -@size_in -@size_in 10px (@col) inset, @size_in @size_in 10px (@col) inset;
@@ -140,11 +144,6 @@ span.strong-s {
     float: left;
 }
 
-.recommend-top {
-    .plate.plate-wide {
-    }
-}
-
 #word-list-box {
     .row.row-word {
         >div {
@@ -196,6 +195,10 @@ span.strong-s {
     border: @border_w;
     border-radius: 3px;
     background: @main_color + #ccc;
+    .sub-title {
+        font-size: 15px;
+    }
+
     &.plate-game {
         padding: .5em 10px;
         .name {
@@ -247,7 +250,8 @@ span.strong-s {
         }
     }
 
-    &.tag-box {
+    &.plate-left {
+        margin-top: 10px;
         padding: 10px;
     }
 }
@@ -406,18 +410,58 @@ table.table-words {
     }
 }
 
-.aborted-list {
-    .word {
-        font-size: 20px;
-        font-weight: bold;
-        &:before {
-            content: "\"";
-        }
-        &:after {
-            content: "\"";
+.topmain-list {
+    .list-min {
+        li {
+            a {
+                font-size: 18px;
+            }
         }
     }
-    .game-name {
+}
+
+.words-list-pane {
+    ul.words-list {
+        margin-bottom: 0px;
+        padding-left: 1em;
+        li {
+            color: @sub_color;
+        }
+        .word {
+            font-size: 20px;
+            font-weight: bold;
+            color: @sub_color;
+            border-bottom: solid 1px @sub_color - #333;
+            &:before {
+                content: "\"";
+            }
+            &:after {
+                content: "\"";
+            }
+        }
+    }
+}
+
+.after-square() {
+    &:after {
+        background: none repeat scroll 0 0 @sub_color;
+        content: "";
+        height: 6px;
+        width: 6px;
+        position: absolute;
+        top: 8px;
+        left: 2px;
+        .rotate(15deg);
+    }
+    &:before {
+        background: none repeat scroll 0 0 @sub_color;
+        content: "";
+        height: 6px;
+        width: 6px;
+        position: absolute;
+        top: 8px;
+        left: 2px;
+        .rotate(15deg);
     }
 }
 
@@ -473,6 +517,7 @@ div.tag-box {
     margin-right: 5px;
     display: block;
     float: left;
+    margin-bottom: 3px;
     >a {
         color: white;
         display: block;

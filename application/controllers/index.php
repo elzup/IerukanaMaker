@@ -18,12 +18,12 @@ class Index extends CI_Controller
 	public function index()
 	{
 		$user = $this->user->get_main_user();
-		$hot_games = $this->game->search_games(NULL, SORT_HOT);
-		$new_games = $this->game->search_games(NULL, SORT_NEW);
+		$games_hot = $this->game->search_games(NULL, SORT_HOT);
+		$games_new = $this->game->search_games(NULL, SORT_NEW);
 
 		$tags = $this->game->get_hot_tags(10);
 
-		$recent_games = $this->game->get_recent_games(20);
+		$games_recent = $this->game->get_recent_games(20);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
@@ -38,7 +38,7 @@ class Index extends CI_Controller
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games, 'recent_games' => $recent_games, 'tags' => $tags));
+		$this->load->view('toppage', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');
