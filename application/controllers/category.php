@@ -22,8 +22,8 @@ class Category extends CI_Controller
 
 	public function view($category) {
 		$user = $this->user->get_main_user();
-		$games_hot = $this->game->search_games(NULL, SORT_HOT);
-		$games_new = $this->game->search_games(NULL, SORT_NEW);
+		$games_hot = $this->game->get_games(NULL, SORT_HOT);
+		$games_new = $this->game->get_games(NULL, SORT_NEW);
 		$games_recent = $this->game->get_recent_games(20);
 
 		$tags = $this->game->get_hot_tags(10);

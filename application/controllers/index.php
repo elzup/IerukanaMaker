@@ -18,18 +18,17 @@ class Index extends CI_Controller
 	public function index()
 	{
 		$user = $this->user->get_main_user();
-		$games_hot = $this->game->search_games(NULL, SORT_HOT);
-		$games_new = $this->game->search_games(NULL, SORT_NEW);
-		$games_recent = $this->game->get_recent_games(20);
+		$games_hot = $this->game->get_games_hot();
+		$games_new = $this->game->get_games_new();
+		$games_recent = $this->game->get_games_recent();
 
-		$tags = $this->game->get_hot_tags(10);
+		$tags = $this->game->get_hot_tags();
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
 			$this->session->unset_userdata('alert');
 			$messages[] = $posted;
 		}
-
 
 		$meta = new Metaobj();
 		$meta->setup_top();

@@ -55,7 +55,9 @@ define('AUTHOR_TWITTER_SCREEN_NAME', 'ieru_kana');
 define('AUTHOR_NAME', 'elzup');
 
 define('NUM_GAME_PAR_SEARCHPAGE', 50);
-define('NUM_GAME_PAR_TOPPAGE', 20);
+define('NUM_GAME_PAR_TOPPAGE', 5);
+define('NUM_GAME_PAR_TOPPAGE_RECENT', 10);
+define('NUM_TAG_PAR_TOPPAGE', 10);
 
 /* path */
 define('PATH_IMG', 'images/');
@@ -135,6 +137,7 @@ define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 
 define('SORT_HOT', 'hot');
 define('SORT_NEW', 'new');
+define('SORT_RECENT', 'new');
 
 define('GAME_MODE_NORMAL', 'normal');
 define('GAME_MODE_EASY', 'easy');

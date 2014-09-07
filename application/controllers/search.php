@@ -20,7 +20,7 @@ class Search extends CI_Controller {
 
 	public function main($method, $page_index = 0) {
 		$q = $this->input->get('q') ? : NULL;
-		$games = $this->game->search_games($q, $method, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
+		$games = $this->game->get_games($q, $method, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
 		$meta = new Metaobj();
 		if (empty($q)) {
 			// 検索クエリがない場合は固定ページとして扱う

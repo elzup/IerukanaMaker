@@ -48,11 +48,11 @@ class Game extends CI_Controller {
 
 		$is_owner = isset($user) && $user->id_user == $game->user_id;
 
-		$games_hot = $this->game->search_games(NULL, SORT_HOT, 5);
-		$games_new = $this->game->search_games(NULL, SORT_NEW, 5);
+		$games_hot = $this->game->get_games(NULL, SORT_HOT, 5);
+		$games_new = $this->game->get_games(NULL, SORT_NEW, 5);
 		$games_tag = array();
 		if ($game->tag_list) {
-			$games_tag = $this->game->get_games_tag($game->tag_list, 5, 0, DB_CN_GAMES_UPDATED_AT);
+			$games_tag = $this->game->get_games_from_tags($game->tag_list, 5, 0, DB_CN_GAMES_UPDATED_AT);
 			shuffle($games_tag);
 			$games_tag = array_slice($games_tag, 0, 5);
 			if (count($games_tag) < 5) {
