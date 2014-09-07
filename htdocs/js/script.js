@@ -308,7 +308,7 @@
         words_unit: words_unit,
         game_description: game_description,
         game_tags: game_tags,
-        category: category,
+        game_category: category,
         words_list_text: words_text
       };
     };
@@ -391,6 +391,7 @@
         console.log('form no comp');
         return false;
       }
+      console.log(data);
       return $.ajax({
         type: "POST",
         url: "make/post",

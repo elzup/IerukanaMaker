@@ -51,7 +51,7 @@ class Make extends CI_Controller {
 		}
 		$game->user_id = $user->id_user;
 		$game->word_unit = $post['words_unit'];
-		$game->category = $post['category'];
+		$game->category = $post['game_category'];
 		foreach (explode(',', $post['words_list_text']) as $word_text) {
 			$word = new Wordobj();
 			$word->text = $word_text;

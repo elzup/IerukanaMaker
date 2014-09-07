@@ -63,6 +63,7 @@ define('PATH_LIB', 'lib/');
 define('PATH_JS', 'js/');
 define('PATH_STYLE', 'style/');
 define('PATH_GAME', 'g/');
+define('PATH_CATEGORY', 'c/');
 define('PATH_RANK', PATH_GAME . 'r/');
 define('PATH_USER', 'u/');
 define('PATH_SEARCH', 's/');
@@ -141,18 +142,22 @@ define('GAME_MODE_SO_EASY', 'soeasy');
 define('GAME_MODE_TYPING', 'typing');
 define('GAME_MODE_RANK', 'ranking');
 
-define('GAME_CATEGORY_OTHER', '0');
-define('GAME_CATEGORY_ANIME', '1');
-define('GAME_CATEGORY_SPORTS', '2');
-define('GAME_CATEGORY_SCIENCE', '3');
-define('GAME_CATEGORY_ARTS', '4');
-define('GAME_CATEGORY_NUM', '5');
+define('GAME_CATEGORY_OTHER', 0);
+define('GAME_CATEGORY_ENTER', 1);
+define('GAME_CATEGORY_SCIENCE', 2);
+define('GAME_CATEGORY_ARTS', 3);
+define('GAME_CATEGORY_SPORTS', 4);
+define('GAME_CATEGORY_ANIME', 5);
+define('GAME_CATEGORY_ALL', -1);
+define('GAME_CATEGORY_NUM', 6);
 
 $category_map = array(
-	GAME_CATEGORY_ANIME => 'アニメ,漫画,ゲーム',
-	GAME_CATEGORY_SPORTS => 'スポーツ',
+	GAME_CATEGORY_ALL => '総合',
+	GAME_CATEGORY_ENTER => 'エンタメ・音楽',
 	GAME_CATEGORY_SCIENCE => '理系分野',
 	GAME_CATEGORY_ARTS => '文系分野',
+	GAME_CATEGORY_ANIME => 'アニメ,漫画,ゲーム',
+	GAME_CATEGORY_SPORTS => '一般・スポーツ',
 	GAME_CATEGORY_OTHER  => 'その他',
 );
 define('GAME_CATEGORY_MAP', serialize($category_map));

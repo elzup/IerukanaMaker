@@ -267,7 +267,7 @@ $ ->
             words_unit: words_unit
             game_description: game_description
             game_tags: game_tags
-            category: category
+            game_category: category
             words_list_text: words_text
 
     # 合計numの更新
@@ -338,6 +338,7 @@ $ ->
         if !(data = get_forms())
             console.log 'form no comp'
             return false
+        console.log data
         $.ajax(
             type: "POST",
             url: "make/post",
