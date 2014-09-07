@@ -277,8 +277,12 @@ if (!function_exists('wrap_taglink')) {
 
 if (!function_exists('wrap_taglink_only')) {
 
-	function wrap_taglink_only(Tagobj $tag) {
-		return '<a class="tag-link" href="' . base_url(PATH_TAG . urlencode($tag->text)) . '">#' . $tag->text . '<span class="badge">' . $tag->count . '</span></a>';
+	function wrap_taglink_only(Tagobj $tag, $view_count = TRUE) {
+		$badge = '';
+		if ($view_count) {
+			$badge = '<span class="badge">' . $tag->count . '</span>';
+		}
+		return '<a class="tag-link" href="' . base_url(PATH_TAG . urlencode($tag->text)) . '">#' . $tag->text . $badge . '</a>';
 	}
 
 }

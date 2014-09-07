@@ -9,9 +9,9 @@ class Gameobj {
 	public $word_unit;
 	public $words_num;
 	public $play_count;
+	public $category;
 	public $timestamp;
 	public $created_timestamp;
-
 	public $is_favorited;
 
 	/**
@@ -40,6 +40,7 @@ class Gameobj {
 		$this->word_unit = $obj->{DB_CN_GAMES_WORDS_UNIT};
 		$this->words_num = $obj->{DB_CN_GAMES_WORDS_NUM};
 		$this->play_count = $obj->{DB_CN_GAMES_PLAY_COUNT};
+		$this->category = $obj->{DB_CN_GAMES_CATEGORY};
 		$this->timestamp = strtotime($obj->{DB_CN_GAMES_CREATED_AT});
 		$this->created_timestamp = strtotime($obj->{DB_CN_GAMES_UPDATED_AT});
 	}
@@ -80,6 +81,15 @@ class Gameobj {
 		return $words;
 	}
 
+	public function get_category_str() {
+		$lib = unserialize(GAME_CATEGORY_MAP);
+		return $lib[$this->category];
+	}
+
+	public function get_category_tag() {
+		return '<a href="' . '#' . '">' . tag_icon('bookmark') . $this->get_category_str() . '</a>';
+	}
+
 	/**
 	 * 
 	 * @return Wordobj[]
@@ -101,7 +111,7 @@ class Gameobj {
 	public function rate_words_max() {
 		$max_p = 0;
 		$max_n = 0;
-		foreach($this->word_list as $word) {
+		foreach ($this->word_list as $word) {
 			$max_p = max($word->point_positive, $max_p);
 			$max_n = max($word->point_negative, $max_n);
 		}

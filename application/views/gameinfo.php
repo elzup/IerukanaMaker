@@ -52,11 +52,18 @@ switch ($gamemode) {
 		echo '</div>';
 		?>
 	</div>
-	<div class="tag-box">
-		<?php
-		foreach ($game->tag_list as $tag) {
-			echo '<div class="tag">' . wrap_taglink_only($tag) . '</div>';
-		}
-		?>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="category"><?= $game->get_category_tag() ?></div>
+		</div>
+		<div class="col-md-10">
+			<div class="tag-box">
+				<?php
+				foreach ($game->tag_list as $tag) {
+					echo '<div class="tag">' . wrap_taglink_only($tag, FALSE) . '</div>';
+				}
+				?>
+			</div>
+		</div>
 	</div>
 </div>

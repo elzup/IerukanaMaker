@@ -109,6 +109,7 @@ define('DB_CN_GAMES_DESCRIPTION', 'game_description');
 define('DB_CN_GAMES_WORDS_NUM', 'words_num');
 define('DB_CN_GAMES_WORDS_UNIT', 'words_unit');
 define('DB_CN_GAMES_PLAY_COUNT', 'play_count');
+define('DB_CN_GAMES_CATEGORY', 'game_category');
 define('DB_CN_GAMES_CREATED_AT', 'created_at');
 define('DB_CN_GAMES_UPDATED_AT', 'updated_at');
 
@@ -139,6 +140,21 @@ define('GAME_MODE_EASY', 'easy');
 define('GAME_MODE_SO_EASY', 'soeasy');
 define('GAME_MODE_TYPING', 'typing');
 define('GAME_MODE_RANK', 'ranking');
+
+define('GAME_CATEGORY_OTHER', '0');
+define('GAME_CATEGORY_ANIME', '1');
+define('GAME_CATEGORY_SPORTS', '2');
+define('GAME_CATEGORY_SCIENCE', '3');
+define('GAME_CATEGORY_ARTS', '4');
+
+$category_map = array(
+	GAME_CATEGORY_ANIME => 'アニメ,漫画,ゲーム',
+	GAME_CATEGORY_SPORTS => 'スポーツ',
+	GAME_CATEGORY_SCIENCE => '理系分野',
+	GAME_CATEGORY_ARTS => '文系分野',
+	GAME_CATEGORY_OTHER  => 'その他',
+);
+define('GAME_CATEGORY_MAP', serialize($category_map));
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
