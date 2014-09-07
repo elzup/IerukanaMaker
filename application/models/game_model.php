@@ -263,7 +263,7 @@ class Game_model extends CI_Model {
 	 * @param string $order_asc
 	 * @return Gameobj[]
 	 */
-	public function get_games_from_tag($tag, $limit, $offset = 0, $order_by = DB_CN_GAMES_PLAY_COUNT, $order_asc = 'DESC') {
+	public function get_games_from_tag(Tagobj $tag, $limit, $offset = 0, $order_by = DB_CN_GAMES_PLAY_COUNT, $order_asc = 'DESC') {
 		return $this->get_games_from_tags(array($tag), $limit, $offset, $order_by, $order_asc);
 	}
 
@@ -370,10 +370,11 @@ class Game_model extends CI_Model {
 		$this->db->delete(DB_TN_TAGS);
 	}
 
-	function get_hot_tags($limit = NUM_TAG_PAR_TOPPAGE) {
+	function get_hot_tags($category = NULL, $limit = NUM_TAG_PAR_TOPPAGE) {
 		$sql = 'SELECT distinct ' . DB_CN_TAGS_TEXT . ', count(' . DB_CN_TAGS_TEXT . ') as ' . DB_CN_AS_COUNT;
 		$sql .= ' FROM ie_' . DB_TN_TAGS;
-		$sql .= ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' order by ' . DB_CN_GAMES_UPDATED_AT . ')';
+		$where = isset($category) ? ' WHERE ' . DB_CN_GAMES_CATEGORY . ' = ' . $category : '';
+		$sql .= ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' ' . $where . ' order by ' . DB_CN_GAMES_UPDATED_AT. ')';
 		$sql .= ' group by ' . DB_CN_TAGS_TEXT;
 		$sql .= ' limit ' . $limit;
 		$query = $this->db->query($sql);

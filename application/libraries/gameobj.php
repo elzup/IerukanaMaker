@@ -86,6 +86,10 @@ class Gameobj {
 		return base_url(PATH_CATEGORY . $lib[$category]);
 	}
 
+	public function get_category_link() {
+		return Gameobj::to_category_link($this->category);
+	}
+
 	public static function to_category_str($category) {
 		$lib = unserialize(GAME_CATEGORY_MAP);
 		return $lib[$category];
@@ -96,7 +100,7 @@ class Gameobj {
 	}
 
 	public function get_category_tag() {
-		return '<a href="' . '#' . '">' . tag_icon('bookmark') . $this->get_category_str() . '</a>';
+		return '<a href="' . $this->get_category_link() . '">' . tag_icon('bookmark') . $this->get_category_str() . '</a>';
 	}
 
 	/**

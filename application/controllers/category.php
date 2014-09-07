@@ -21,12 +21,12 @@ class Category extends CI_Controller
 	}
 
 	public function view($category) {
-		$user = $this->user->get_main_user();
-		$games_hot = $this->game->get_games(NULL, SORT_HOT);
-		$games_new = $this->game->get_games(NULL, SORT_NEW);
-		$games_recent = $this->game->get_recent_games(20);
+		$user = $this->user->get_main_user($category);
+		$games_hot = $this->game->get_games_hot($category);
+		$games_new = $this->game->get_games_new($category);
+		$games_recent = $this->game->get_games_recent($category);
 
-		$tags = $this->game->get_hot_tags(10);
+		$tags = $this->game->get_hot_tags($category);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {

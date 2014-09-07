@@ -171,7 +171,7 @@ $category_en_map = array(
 	GAME_CATEGORY_SCIENCE => 'science',
 	GAME_CATEGORY_ARTS => 'arts',
 	GAME_CATEGORY_ANIME => 'anime',
-	GAME_CATEGORY_SPORTS => 'sport',
+	GAME_CATEGORY_SPORTS => 'sports',
 	GAME_CATEGORY_OTHER  => 'other',
 );
 define('GAME_CATEGORY_EN_MAP', serialize($category_en_map));

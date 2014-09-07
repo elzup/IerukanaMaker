@@ -5,9 +5,7 @@
 	<ul class="nav nav-tabs nav-category">
 		<?php
 		$tab_codes = array();
-		if ($category != GAME_CATEGORY_ALL) {
-			$tab_codes[] = GAME_CATEGORY_ALL;
-		}
+		$tab_codes[] = GAME_CATEGORY_ALL;
 		for ($i = 1; $i < GAME_CATEGORY_NUM; $i++) {
 			$tab_codes[] = $i;
 		}

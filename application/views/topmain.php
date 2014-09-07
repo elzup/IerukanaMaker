@@ -20,12 +20,16 @@
 
 		$words_games_positive = array();
 		foreach (array(1, 3, 5, 7, 9) as $i) {
-			$words_games_positive[] = $games_recent[$i];
+			if (isset($games_recent[$i])) {
+				$words_games_positive[] = $games_recent[$i];
+			}
 		}
 		$this->load->view('wordslistpane', array('title' => '最近の人気ワード', 'games' => $words_games_positive, 'icon' => 'sort-by-attributes-alt'));
 		$words_games_negative = array();
 		foreach (array(0, 2, 4, 6, 8) as $i) {
-			$words_games_negative[] = $games_recent[$i];
+			if (isset($games_recent[$i])) {
+				$words_games_negative[] = $games_recent[$i];
+			}
 		}
 		$this->load->view('wordslistpane', array('title' => '最近忘れられたワード', 'games' => $words_games_negative, 'icon' => 'sort-by-attributes'));
 		?>

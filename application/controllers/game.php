@@ -48,18 +48,18 @@ class Game extends CI_Controller {
 
 		$is_owner = isset($user) && $user->id_user == $game->user_id;
 
-		$games_hot = $this->game->get_games(NULL, SORT_HOT, 5);
-		$games_new = $this->game->get_games(NULL, SORT_NEW, 5);
+		$games_hot = $this->game->get_games_hot();
+		$games_new = $this->game->get_games_new();
 		$games_tag = array();
 		if ($game->tag_list) {
-			$games_tag = $this->game->get_games_from_tags($game->tag_list, 5, 0, DB_CN_GAMES_UPDATED_AT);
-			shuffle($games_tag);
-			$games_tag = array_slice($games_tag, 0, 5);
+			$games_tag_tmp = $this->game->get_games_from_tags($game->tag_list, 5, 0, DB_CN_GAMES_UPDATED_AT);
+			shuffle($games_tag_tmp);
+			$games_tag = array_slice($games_tag_tmp, 0, 5);
 			if (count($games_tag) < 5) {
-				$games_tag = array_merge($games_tag, $this->game->get_recent_games(5 - count($games_tag)));
+				$games_tag = array_merge($games_tag, $this->game->get_games_recent(NULL, 5 - count($games_tag)));
 			}
 		} else {
-			$games_tag = $this->game->get_recent_games(5);
+			$games_tag = $this->game->get_games_recent();
 		}
 
 		$meta = new Metaobj();
@@ -67,7 +67,7 @@ class Game extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
-		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => TRUE)));
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), $game->get_category_str() => $game->get_category_link(), $game->get_full_title() => TRUE)));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode, 'games_tag' => $games_tag));
 		$this->load->view('listparts_head');
