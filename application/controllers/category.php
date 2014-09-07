@@ -17,13 +17,16 @@ class Category extends CI_Controller
 
 	public function index()
 	{
+		jump(base_url());
+	}
+
+	public function view($category) {
 		$user = $this->user->get_main_user();
-		$hot_games = $this->game->search_games(NULL, SORT_HOT);
-		$new_games = $this->game->search_games(NULL, SORT_NEW);
+		$games_hot = $this->game->search_games(NULL, SORT_HOT);
+		$games_new = $this->game->search_games(NULL, SORT_NEW);
+		$games_recent = $this->game->get_recent_games(20);
 
 		$tags = $this->game->get_hot_tags(10);
-
-		$recent_games = $this->game->get_recent_games(20);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
@@ -31,20 +34,18 @@ class Category extends CI_Controller
 			$messages[] = $posted;
 		}
 
-
 		$meta = new Metaobj();
-		$meta->setup_top();
+		$meta->setup_category($category);
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar');
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'カテゴリ' => base_url(), Gameobj::to_category_str($category) => TRUE)));
+		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('toppage', array('hot_games' => $hot_games, 'new_games' => $new_games, 'recent_games' => $recent_games, 'tags' => $tags));
+		$this->load->view('categorypage', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags, 'category' => $category));
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');
-	}
-
-	public function view($category_code) {
 	}
 
 }

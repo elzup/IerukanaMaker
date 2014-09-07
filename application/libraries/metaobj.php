@@ -79,6 +79,12 @@ class Metaobj
 		$this->description = "このサイトについてやその他サポート";
 	}
 
+	public function setup_category($category)
+	{
+		$this->set_title(Gameobj::to_category_str($category) . "カテゴリ");
+		$this->description = Gameobj::to_category_str($category) . "カテゴリのトップページ 人気の言えるかなを紹介";
+	}
+
 	public function setup_game(Gameobj $game)
 	{
 		// TODO: for game obj

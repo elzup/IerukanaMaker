@@ -20,10 +20,9 @@ class Index extends CI_Controller
 		$user = $this->user->get_main_user();
 		$games_hot = $this->game->search_games(NULL, SORT_HOT);
 		$games_new = $this->game->search_games(NULL, SORT_NEW);
+		$games_recent = $this->game->get_recent_games(20);
 
 		$tags = $this->game->get_hot_tags(10);
-
-		$games_recent = $this->game->get_recent_games(20);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {

@@ -59,10 +59,11 @@ $route['update/(:num)'] = 'make/update/$1';
 $route['update/post/(:num)'] = 'make/update_post/$1';
 
 $route['c/other'] = 'category/view/0';
-$route['c/anime'] = 'category/view/1';
-$route['c/sports'] = 'category/view/2';
-$route['c/science'] = 'category/view/3';
-$route['c/arts'] = 'category/view/4';
+$route['c/enter'] = 'category/view/1';
+$route['c/science'] = 'category/view/2';
+$route['c/arts'] = 'category/view/3';
+$route['c/anime'] = 'category/view/4';
+$route['c/sports'] = 'category/view/5';
 
 $route['s'] = 'search';
 $route['s/(:num)'] = 'search/main/hot/$1';
