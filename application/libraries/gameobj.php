@@ -81,9 +81,13 @@ class Gameobj {
 		return $words;
 	}
 
-	public function get_category_str() {
+	public static function to_category_str($category_code) {
 		$lib = unserialize(GAME_CATEGORY_MAP);
-		return $lib[$this->category];
+		return $lib[$category_code];
+	}
+
+	public function get_category_str() {
+		return Gameobj::to_category_str($this->category);
 	}
 
 	public function get_category_tag() {

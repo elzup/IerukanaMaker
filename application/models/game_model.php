@@ -21,6 +21,7 @@ class Game_model extends CI_Model {
 		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
 		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
+		$this->db->set(DB_CN_GAMES_CATEGORY, $game->category);
 		$this->db->set(DB_CN_GAMES_CREATED_AT, date(MYSQL_TIMESTAMP));
 		$this->db->set(DB_CN_GAMES_UPDATED_AT, date(MYSQL_TIMESTAMP, strtotime('-1 day')));
 		$this->db->insert(DB_TN_GAMES);
@@ -274,11 +275,12 @@ class Game_model extends CI_Model {
 		$this->insert_tags($game->id, $game->tag_list);
 	}
 
-	private function _update_game($game) {
+	private function _update_game(Gameobj $game) {
 		$this->db->where(DB_CN_GAMES_ID, $game->id);
 		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
 		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
 		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
+		$this->db->set(DB_CN_GAMES_CATEGORY, $game->category);
 		$this->db->update(DB_TN_GAMES);
 	}
 

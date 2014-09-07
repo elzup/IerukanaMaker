@@ -258,15 +258,17 @@ $ ->
             game_description = $.trim ds
         else
             game_description = ""
+        category = $.trim $('#input_category').val()
         game_tags = $.trim input_tag_form.val()
-        if words_text != '' && game_name? && game_name != "" && words_unit? && words_unit != ""
-            return data =
-                game_name: game_name
-                words_unit: words_unit
-                game_description: game_description
-                game_tags: game_tags
-                words_list_text: words_text
-        return false
+        if words_text == '' || !game_name? || game_name == "" || !words_unit? || words_unit == "" || !category?
+            return false
+        return data =
+            game_name: game_name
+            words_unit: words_unit
+            game_description: game_description
+            game_tags: game_tags
+            category: category
+            words_list_text: words_text
 
     # 合計numの更新
     wordbox_change = ->
@@ -354,8 +356,6 @@ $ ->
                 console.log 'connect error'
         )
     word_boxs.change -> wordbox_change
-
-
 
     btn_tweet.click ->
         hashtags = '言えるかな'

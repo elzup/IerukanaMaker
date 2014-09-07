@@ -281,7 +281,7 @@
       }
     });
     get_forms = function() {
-      var data, ds, game_description, game_tags, wordlist, words_text, words_unit;
+      var category, data, ds, game_description, game_tags, wordlist, words_text, words_unit;
       wordlist = [];
       word_boxs.each(function() {
         var v;
@@ -298,17 +298,19 @@
       } else {
         game_description = "";
       }
+      category = $.trim($('#input_category').val());
       game_tags = $.trim(input_tag_form.val());
-      if (words_text !== '' && (game_name != null) && game_name !== "" && (words_unit != null) && words_unit !== "") {
-        return data = {
-          game_name: game_name,
-          words_unit: words_unit,
-          game_description: game_description,
-          game_tags: game_tags,
-          words_list_text: words_text
-        };
+      if (words_text === '' || (game_name == null) || game_name === "" || (words_unit == null) || words_unit === "" || (category == null)) {
+        return false;
       }
-      return false;
+      return data = {
+        game_name: game_name,
+        words_unit: words_unit,
+        game_description: game_description,
+        game_tags: game_tags,
+        category: category,
+        words_list_text: words_text
+      };
     };
     wordbox_change = function() {
       var c;

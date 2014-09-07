@@ -33,6 +33,20 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="input_category" class="col-md-2 control-label">カテゴリー</label>
+			<div class="col-md-4">
+				<select multiple="" class="form-control" id="input_category" name="game_category">
+					<?php
+					$category = @$game->category ?: 0;
+					for ($i = 0; $i < GAME_CATEGORY_NUM; $i++) {
+						echo '<option value="' . $i . '"' . ($category == $i ? 'selected' : '') . '>' . Gameobj::to_category_str($i) . '</option>';
+					}
+					?>
+				</select>
+				<span class="help-block">最大50文字</span>
+			</div>
+		</div>
+		<div class="form-group">
 			<label for="input_tags" class="col-md-2 control-label">タグ付け</label>
 			<div class="col-md-10">
 				<input class="form-control" id="input_tags" name="game_tags" value="<?= $game ? implode(',', $game->tag_list) : '' ?>" placeholder="ポケモン,キャラ" type="text" maxlength="20">
@@ -125,7 +139,7 @@
 					<button id="update-btn" type="button" class="btn btn-block btn-primary">変更</button>
 				<?php } else { ?>
 					<button id="submit-btn" type="button" class="btn btn-block btn-primary">作成</button>
-				<?php } ?>
+<?php } ?>
 			</div>
 		</div>
 	</fieldset>

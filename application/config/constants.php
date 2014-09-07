@@ -146,6 +146,7 @@ define('GAME_CATEGORY_ANIME', '1');
 define('GAME_CATEGORY_SPORTS', '2');
 define('GAME_CATEGORY_SCIENCE', '3');
 define('GAME_CATEGORY_ARTS', '4');
+define('GAME_CATEGORY_NUM', '5');
 
 $category_map = array(
 	GAME_CATEGORY_ANIME => 'アニメ,漫画,ゲーム',
