@@ -58,6 +58,7 @@ $route['fav/(:num)'] = 'game/favorite/$1';
 $route['update/(:num)'] = 'make/update/$1';
 $route['update/post/(:num)'] = 'make/update_post/$1';
 
+$route['c'] = 'category';
 $route['c/other'] = 'category/view/0';
 $route['c/enter'] = 'category/view/1';
 $route['c/science'] = 'category/view/2';

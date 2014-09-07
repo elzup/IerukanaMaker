@@ -8,7 +8,7 @@
 
 <div class="content">
 	<div class="row">
-		<div class="col-md-offset-2 col-md-8">
+		<div class="col-md-offset-7 col-md-5">
 			<?php
 			$this->load->view('searchform');
 			?>

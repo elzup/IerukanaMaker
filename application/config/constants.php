@@ -156,11 +156,22 @@ $category_map = array(
 	GAME_CATEGORY_ENTER => 'エンタメ・音楽',
 	GAME_CATEGORY_SCIENCE => '理系分野',
 	GAME_CATEGORY_ARTS => '文系分野',
-	GAME_CATEGORY_ANIME => 'アニメ,漫画,ゲーム',
+	GAME_CATEGORY_ANIME => 'アニメ・漫画・ゲーム',
 	GAME_CATEGORY_SPORTS => '一般・スポーツ',
 	GAME_CATEGORY_OTHER  => 'その他',
 );
 define('GAME_CATEGORY_MAP', serialize($category_map));
+
+$category_en_map = array(
+	GAME_CATEGORY_ALL => '',
+	GAME_CATEGORY_ENTER => 'enter',
+	GAME_CATEGORY_SCIENCE => 'science',
+	GAME_CATEGORY_ARTS => 'arts',
+	GAME_CATEGORY_ANIME => 'anime',
+	GAME_CATEGORY_SPORTS => 'sport',
+	GAME_CATEGORY_OTHER  => 'other',
+);
+define('GAME_CATEGORY_EN_MAP', serialize($category_en_map));
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
