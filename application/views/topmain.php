@@ -9,9 +9,9 @@
 <div class="row">
 	<div class="col-md-7 col-md-offset-1 topmain-list">
 		<?php
-		$this->load->view('listparts', array('games' => $games_hot, 'title' => '人気の言えるかな？', 'icon' => 'fire'));
-		$this->load->view('listparts', array('games' => $games_new, 'title' => '新着の言えるかな？', 'icon' => 'leaf'));
-		$this->load->view('listparts', array('games' => $games_recent, 'title' => 'おすすめの言えるかな？', 'icon' => 'bullhorn'));
+		$this->load->view('listparts', array('games' => $games_hot, 'title' => '人気の言えるかな？', 'icon' => 'fire', 'more_link' => base_url(PATH_HOT)));
+		$this->load->view('listparts', array('games' => $games_new, 'title' => '新着の言えるかな？', 'icon' => 'leaf', 'more_link' => base_url(PATH_NEW)));
+		$this->load->view('listparts', array('games' => $games_recent, 'title' => 'おすすめの言えるかな？', 'icon' => 'bullhorn', 'more_link' => NULL));
 		?>
 	</div>
 	<div class="col-md-3">

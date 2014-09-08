@@ -263,8 +263,18 @@ span.strong-s {
     &.plate-wide {
         padding: 10px;
         margin-top: 10px;
+        overflow: auto;
         li>p {
             font-size: 12px;
+        }
+
+        .btn-more-wrap {
+            margin-right: -10px;
+            .btn-ribbon-head {
+                width: 0px;
+                border: solid 10px @sub_color;
+                border-left: solid 10px transparent;
+            }
         }
     }
 
@@ -730,6 +740,18 @@ i {
             &:first-letter {
                 color: gray;
             }
+        }
+    }
+}
+
+.btn {
+    &.btn-ribbon {
+        background: @sub_color;
+        border-right: 0px;
+        border-radius: 5px 0 0 5px;
+        color: white;
+        &:hover {
+            background: @sub_color + #111;
         }
     }
 }

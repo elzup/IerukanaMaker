@@ -4,6 +4,7 @@
 /* @var $col int */
 /* @var $num int */
 /* @var $icon string */
+/* @var $more_link string */
 if (!isset($num)) {
 	$num = 5;
 }
@@ -34,9 +35,14 @@ if (isset($col)) {
 		}
 		?>
 	</ul>
+	<?php if (isset($more_link)) { ?>
+	<div class="pull-right btn-more-wrap">
+		<!--<div class="btn-ribbon-head"> </div>-->
+		<a href="<?= $more_link ?>" class="btn btn-default btn-ribbon">もっと見る</a>
+	</div>
+	<?php } ?>
 </div>
 <?php
 if (isset($col)) {
 	echo '</div>';
 }
-?>

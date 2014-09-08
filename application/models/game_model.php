@@ -247,7 +247,7 @@ class Game_model extends CI_Model {
 		foreach ($tags as $t) {
 			$tag_texts[] = $t->text;
 		}
-		$ids = $this->select_ids_from_tagtexts($tag_texts);
+		$ids = $this->_select_ids_from_tagtexts($tag_texts);
 		if (empty($ids)) {
 			return array();
 		}
@@ -334,7 +334,7 @@ class Game_model extends CI_Model {
 	}
 
 	function get_tags($game_id) {
-		$rows = $this->select_tags($game_id);
+		$rows = $this->_select_tags($game_id);
 		$tags = array();
 		foreach ($rows as $row) {
 			$tags[] = new Tagobj($row);
@@ -342,7 +342,7 @@ class Game_model extends CI_Model {
 		return $tags;
 	}
 
-	function select_ids_from_tagtexts(array $tag_text_list) {
+	private function _select_ids_from_tagtexts(array $tag_text_list) {
 		$this->db->where_in(DB_CN_TAGS_TEXT, $tag_text_list);
 		$query = $this->db->get(DB_TN_TAGS);
 		$ids = array();
@@ -352,17 +352,12 @@ class Game_model extends CI_Model {
 		return $ids;
 	}
 
-	function select_tags($game_id) {
+	private function _select_tags($game_id) {
 		$this->db->select('*, count(' . DB_CN_TAGS_TEXT . ') as `' . DB_CN_AS_COUNT . '`');
 		$this->db->where(DB_CN_TAGS_GAME_ID, $game_id);
 		$this->db->group_by(DB_CN_TAGS_TEXT);
 		$rows = $this->db->get(DB_TN_TAGS)->result();
 		return $rows;
-	}
-
-	function select_tags_id($tag_text) {
-		$this->db->where(DB_CN_TAGS_TEXT, $tag_text);
-		return $this->db->get(DB_TN_TAGS)->result();
 	}
 
 	function delete_tags($game_id) {
@@ -429,14 +424,14 @@ class Game_model extends CI_Model {
 		return !empty($result[0]);
 	}
 
-	function select_favorite_user($user_id) {
+	private function _select_favorite_user($user_id) {
 		$this->db->where(DB_CN_FAVORITES_USER_ID, $user_id);
 		$query = $this->db->get(DB_TN_FAVORITES);
 		return $query->result();
 	}
 
 	function get_ids_favorited($user_id) {
-		$rows = $this->select_favorite_user($user_id);
+		$rows = $this->_select_favorite_user($user_id);
 		$ids = array();
 		foreach ($rows as $row) {
 			$ids[] = $row->{DB_CN_FAVORITES_GAME_ID};

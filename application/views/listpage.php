@@ -8,8 +8,8 @@ $is_startpage = $page_index == 0;
 
 function tag_pager($is_startpage, $is_nogame, $page_index, $q, $is_tag) {
 	if ($is_tag) {
-		$prev_url = base_url(PATH_TAG . $q .'/' . ($page_index - 1));
-		$next_url = base_url(PATH_TAG . $q .'/' . ($page_index + 1));
+		$prev_url = base_url(PATH_TAG . $q . '/' . ($page_index - 1));
+		$next_url = base_url(PATH_TAG . $q . '/' . ($page_index + 1));
 	} else {
 		$prev_url = ($page_index - 1) . ($q ? '?q=' . urlencode($q) : "");
 		$next_url = ($page_index + 1) . ($q ? '?q=' . urlencode($q) : "");
