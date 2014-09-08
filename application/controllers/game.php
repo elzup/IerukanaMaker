@@ -161,7 +161,7 @@ class Game extends CI_Controller {
 			// TODO: error処理
 			die("e:0");
 		}
-		$this->game->favorite_toggle($user->id_user, $game_id, $is_regist);
+		$this->game->toggle_favorite($user->id_user, $game_id, $is_regist);
 		die("s:1");
 	}
 
