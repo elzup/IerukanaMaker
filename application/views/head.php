@@ -7,10 +7,10 @@
 <title><?= $meta->get_title(TRUE) ?></title>
 
 <!-- 評価中 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" type="text/css" href="<?= URL_YAHOO_RESET_CSS ?>">
-<link rel="icon" href="favicon.ico"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" type="text/css" href="<?= URL_YAHOO_RESET_CSS ?>" />
+<link rel="icon" href="favicon.ico" /> 
 
 <!-- Bootstrap -->
 <link rel="stylesheet" charset="UTF-8" href="<?= base_url(PATH_BOOTSTRAP_CSS) ?>" media="screen" />

@@ -52,12 +52,15 @@ define('SITE_DESCRIPTION', '言えるかな？とはお題に沿った単語の�
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
 define('AUTHOR_TWITTER_SCREEN_NAME', 'ieru_kana');
-define('AUTHOR_NAME', 'elzup');
+define('AUTHOR_NAME', 'ierukana');
+define('AUTHOR_MAIL', 'support@elzup.com');
 
 define('NUM_GAME_PAR_SEARCHPAGE', 50);
 define('NUM_GAME_PAR_TOPPAGE', 5);
 define('NUM_GAME_PAR_TOPPAGE_RECENT', 10);
 define('NUM_TAG_PAR_TOPPAGE', 10);
+
+define('FORMAT_RSS_TITLE_CATEGORY', '[%CATEGORY%] - 言えるかな？');
 
 /* path */
 define('PATH_IMG', 'images/');
@@ -80,6 +83,8 @@ define('PATH_UPDATE_POST', 'update/post/');
 define('PATH_DELETE', 'del/');
 define('PATH_FAVORITE', 'fav/');
 define('PATH_HELP', 'help/');
+define('PATH_RSS', 'rss/');
+define('PATH_RSS_CATEGORY', 'rss/category/');
 
 define('PATH_AUTH_LOGIN', 'login');
 define('PATH_AUTH_END', PATH_AUTH . 'end');

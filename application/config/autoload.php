@@ -54,6 +54,8 @@ $autoload['packages'] = array();
 
 $autoload['libraries'] = array(
 	'metaobj',
+	'itemobj',
+	'channelobj',
 	'tagobj',
 	'userobj',
 	'session',

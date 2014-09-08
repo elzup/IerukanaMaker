@@ -136,4 +136,7 @@ class Gameobj {
 		return base_url(PATH_GAME . $this->id) . $tail;
 	}
 
+	public function get_guid() {
+		return $this->id . '@' . base_url();
+	}
 }
