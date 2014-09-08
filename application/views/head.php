@@ -14,6 +14,7 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" charset="UTF-8" href="<?= base_url(PATH_BOOTSTRAP_CSS) ?>" media="screen" />
+<link rel="stylesheet" charset="UTF-8" href="<?= base_url(PATH_BOOTSTRAP_CSS_FA) ?>" media="screen" />
 <link rel="stylesheet" charset="UTF-8" href="<?= base_url(PATH_STYLE_CSS_MAIN) ?>" media="screen" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

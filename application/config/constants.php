@@ -53,7 +53,7 @@ define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
 define('AUTHOR_TWITTER_SCREEN_NAME', 'ieru_kana');
 define('AUTHOR_NAME', 'ierukana');
-define('AUTHOR_MAIL', 'support@elzup.com');
+define('AUTHOR_MAIL', 'ierukana.help@gmail.com');
 
 define('NUM_GAME_PAR_SEARCHPAGE', 50);
 define('NUM_GAME_PAR_TOPPAGE', 5);
@@ -94,6 +94,7 @@ define('PATH_STYLE_CSS_MAIN', PATH_STYLE . 'main.css');
 define('PATH_GOOGLE', 'google');
 define('PATH_GOOGLE_ANALYTICS', PATH_GOOGLE . '/analyticstracking.php');
 define('PATH_BOOTSTRAP_CSS', PATH_LIB . 'bootstrap/css/bootstrap.min.css');
+define('PATH_BOOTSTRAP_CSS_FA', PATH_LIB . 'bootstrap/css/font-awesome.min.css');
 define('PATH_BOOTSTRAP_JS', PATH_LIB . 'bootstrap/js/bootstrap.min.js');
 
 define('PATH_JQUERY_TEXT_CONVERT', PATH_LIB . 'jquery-supertextconverter-plugin.min.js');

@@ -18,9 +18,19 @@ if (!function_exists('tag_script_js'))
 if (!function_exists('tag_icon'))
 {
 
-	function tag_icon($class_suffix)
+	function tag_icon($class_suffix, $class_prefix = 'glyphicon')
 	{
-		return '<i class="glyphicon glyphicon-' . $class_suffix . '"></i>';
+		return '<i class="' . $class_prefix . ' ' . $class_prefix . '-' . $class_suffix . '"></i>';
+	}
+
+}
+
+if (!function_exists('tag_icon_fa'))
+{
+
+	function tag_icon_fa($class_suffix)
+	{
+		return tag_icon($class_suffix, 'fa');
 	}
 
 }

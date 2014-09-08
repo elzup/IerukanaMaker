@@ -83,10 +83,29 @@ ul.nav {
 .nav-wrap {
     @l: 5px;
     box-shadow: 0 @l 10px -@l @sub_color;
+    margin-bottom: 10px;
     &:after, &:before {
         content: '';
         width: 50px;
         box-shadow: 0 @l 10px -@l @sub_color;
+    }
+}
+
+.rss-list {
+    &:before {
+        content: ' ' !important;
+    }
+    i {
+        &.fa-rss {
+            @bc: orange;
+            background: @bc;
+            color: white;
+            border-radius: 3px;
+            padding: 4px 4px 3px 6px;
+            &:hover {
+                background: @bc + #111;
+            }
+        }
     }
 }
 

@@ -59,7 +59,7 @@ class Game_model extends CI_Model {
 			return NULL;
 		}
 		$game = new Gameobj($game_res);
-		$game->set_word_list(Gameobj::to_wordobjs($this->_select_words($game_id)));
+		$game->set_word_list(Game_model::to_wordobjs($this->_select_words($game_id)));
 		$game->tag_list = $this->get_tags($game_id);
 		if ($user_id) {
 			$game->is_favorited = $this->is_favorite($user_id, $game_id);
