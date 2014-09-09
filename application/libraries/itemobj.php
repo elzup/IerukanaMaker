@@ -22,7 +22,7 @@ class Itemobj {
 		}
 		$this->author = AUTHOR_MAIL . ' (' . AUTHOR_NAME . ')';
 		$this->category = str_replace('・', ' ', $game->get_category_str());
-		$this->pub_date = date(DATE_RFC2822, $game->created_timestamp);
+		$this->pub_date = date(DATE_RFC2822, $game->timestamp);
 		$this->guid = $game->get_guid();
 	}
 

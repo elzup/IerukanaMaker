@@ -11,7 +11,7 @@ class Gameobj {
 	public $play_count;
 	public $category;
 	public $timestamp;
-	public $created_timestamp;
+	public $updated_timestamp;
 	public $is_favorited;
 
 	/**
@@ -42,7 +42,7 @@ class Gameobj {
 		$this->play_count = $obj->{DB_CN_GAMES_PLAY_COUNT};
 		$this->category = $obj->{DB_CN_GAMES_CATEGORY};
 		$this->timestamp = strtotime($obj->{DB_CN_GAMES_CREATED_AT});
-		$this->created_timestamp = strtotime($obj->{DB_CN_GAMES_UPDATED_AT});
+		$this->updated_timestamp = strtotime($obj->{DB_CN_GAMES_UPDATED_AT});
 	}
 
 	public function set_word_list(array $list) {
