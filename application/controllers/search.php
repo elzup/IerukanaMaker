@@ -51,9 +51,9 @@ class Search extends CI_Controller {
 			$this->session->unset_userdata('alert');
 			$messages[] = $posted;
 		}
-		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '検索' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));

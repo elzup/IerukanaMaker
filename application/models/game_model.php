@@ -122,8 +122,8 @@ class Game_model extends CI_Model {
 	 * @param int $limit
 	 * @return Gameobj[]
 	 */
-	public function get_games_hot($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE) {
-		return $this->get_games_top_sort($category, $limit, SORT_HOT);
+	public function get_games_hot($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE, $is_set_words = FALSE, $is_set_tags = FALSE) {
+		return $this->get_games_top_sort($category, $limit, SORT_HOT, $is_set_words, $is_set_tags);
 	}
 
 	/**
@@ -132,8 +132,8 @@ class Game_model extends CI_Model {
 	 * @param int $limit
 	 * @return Gameobj[]
 	 */
-	public function get_games_new($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE) {
-		return $this->get_games_top_sort($category, $limit, SORT_NEW);
+	public function get_games_new($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE, $is_set_words = FALSE, $is_set_tags = FALSE) {
+		return $this->get_games_top_sort($category, $limit, SORT_NEW, $is_set_words, $is_set_tags);
 	}
 
 	/**
@@ -142,8 +142,8 @@ class Game_model extends CI_Model {
 	 * @param int $limit
 	 * @return Gameobj[]
 	 */
-	public function get_games_recent($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE_RECENT) {
-		return $this->get_games_top_sort($category, $limit, SORT_RECENT, TRUE);
+	public function get_games_recent($category = NULL, $limit = NUM_GAME_PAR_TOPPAGE_RECENT, $is_set_words = TRUE, $is_set_tags = FALSE) {
+		return $this->get_games_top_sort($category, $limit, SORT_RECENT, $is_set_words, $is_set_tags);
 	}
 
 	/**
@@ -154,9 +154,9 @@ class Game_model extends CI_Model {
 	 * @param int $is_set_words
 	 * @return Gameobj[]
 	 */
-	public function get_games_top_sort($category, $limit, $sort, $is_set_words = FALSE) {
+	public function get_games_top_sort($category, $limit, $sort, $is_set_words = FALSE, $is_set_tags = FALSE) {
 		$rows = $this->get_games(NULL, $category, NULL, $sort, $limit, 0, TRUE);
-		return $this->to_gameobjs($rows, $is_set_words);
+		return $this->to_gameobjs($rows, $is_set_words, $is_set_tags);
 	}
 
 	/**
@@ -263,18 +263,18 @@ class Game_model extends CI_Model {
 	/**
 	 * 
 	 * @param array $rows
-	 * @param bool $set_words
-	 * @param bool $set_tags
+	 * @param bool $is_set_words
+	 * @param bool $is_set_tags
 	 * @return \Gameobj
 	 */
-	public function to_gameobjs($rows, $set_words = FALSE, $set_tags = FALSE) {
+	public function to_gameobjs($rows, $is_set_words = FALSE, $is_set_tags = FALSE) {
 		$games = array();
 		foreach ($rows as $row) {
 			$game = new Gameobj($row);
-			if ($set_words) {
+			if ($is_set_words) {
 				$game->set_word_list($this->get_words($game->id));
 			}
-			if ($set_tags) {
+			if ($is_set_tags) {
 				$game->tag_list = $this->get_tags($game->id);
 			}
 			$games[] = $game;

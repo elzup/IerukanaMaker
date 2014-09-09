@@ -59,6 +59,7 @@ define('NUM_GAME_PAR_SEARCHPAGE', 50);
 define('NUM_GAME_PAR_TOPPAGE', 5);
 define('NUM_GAME_PAR_TOPPAGE_RECENT', 10);
 define('NUM_TAG_PAR_TOPPAGE', 10);
+define('NUM_GAME_FEED', 5);
 
 define('FORMAT_RSS_TITLE_CATEGORY', '[%CATEGORY%] - 言えるかな？');
 

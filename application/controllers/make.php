@@ -19,9 +19,9 @@ class Make extends CI_Controller {
 
 		$meta = new Metaobj();
 		$meta->setup_make();
-		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '作成' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('makepage', array('user' => $user));
@@ -86,7 +86,8 @@ class Make extends CI_Controller {
 		$meta->setup_update();
 		$this->load->view('head', array('meta' => $meta, 'user' => $user));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '作成' => TRUE)));
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => $game->get_link(), '変更' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('makepage', array('user' => $user, 'game' => $game));

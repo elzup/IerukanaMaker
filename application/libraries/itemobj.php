@@ -14,9 +14,12 @@ class Itemobj {
 		if (!isset($game)) {
 			return ;
 		}
-		$this->title = $game->get_full_title();
+		$this->title = $game->get_full_title(TRUE);
 		$this->link = $game->get_link();
-		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう。' .  $game->description .  '[' . implode(',', $game->tag_list) . ']';
+		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう。' .  $game->description;
+		if ($tag_text = $game->get_tags_text()) {
+			$this->description .= '[' . $tag_text . ']';
+		}
 		$this->author = AUTHOR_MAIL . ' (' . AUTHOR_NAME . ')';
 		$this->category = str_replace('・', ' ', $game->get_category_str());
 		$this->pub_date = date(DATE_RFC2822, $game->created_timestamp);

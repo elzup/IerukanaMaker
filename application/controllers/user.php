@@ -25,9 +25,9 @@ class User extends CI_Controller {
 
 		$meta = new Metaobj();
 		$meta->setup_user($user);
-		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'マイページ' => TRUE)));
 		$this->load->view('title', array('title' => '@' . $user->screen_name . ' - ' . $meta->get_title()));
 		$this->load->view('userpage', array('games_maked' => $games_maked, 'games_favorited' => $games_favrorited));

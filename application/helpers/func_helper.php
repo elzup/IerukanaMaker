@@ -286,3 +286,59 @@ if (!function_exists('wrap_taglink_only')) {
 	}
 
 }
+
+
+function updatePing($host, $path, $title, $url) {
+  $content = <<<EOF
+<?xml version=\"1.0\"?>
+<methodCall>
+<methodName>weblogUpdates.ping</methodName>
+<params>
+<param>
+<value>" . htmlspecialchars($title) . "</value>
+</param>
+<param>
+<value>$url</value>
+</param>
+</params>
+</methodCall>
+EOF;
+
+  // HTTPで送付する内容を作成する
+  $req =
+    "POST $path HTTP/1.0\r\n"
+    . "Host: $host\r\n"
+    . "Content-Type: text/xml\r\n"
+    . "Content-Length: ". strlen($content) . "\r\n"
+    . "\r\n"
+    . $content;
+
+  // 送付する
+  $sock = @fsockopen($host, 80, $errno, $errstr, 2.0);
+  $result = "";
+  if ($sock) {
+    fputs($sock, $req);
+    while(!feof($sock)) {$result .= fread($sock, 1024);}
+  }
+
+  // Ping送信先からの戻り内容を返す
+  return $result;
+}
+
+
+// Ping送信を、送付したいところに送付する。
+function sendPings () {
+       
+  $title = "YoheiM .NET  - 世の中のWeb情報に、体験と意見を添えて発信します";
+  $url = "http://www.yoheim.net/";       
+       
+  echo updatePing("blogsearch.google.com", "/ping/RPC2", $title, $url) . "\r\n";
+  echo updatePing("rpc.technorati.com", "/rpc/ping", $title, $url) . "\r\n";
+  echo updatePing("api.my.yahoo.com", "/RPC2", $title, $url) . "\r\n";
+  echo updatePing("api.my.yahoo.co.jp", "/RPC2", $title, $url) . "\r\n";
+  echo updatePing("rpc.weblogs.com", "/RPC2", $title, $url) . "\r\n";
+  echo updatePing("ping.ask.jp", "/xmlrpc.m", $title, $url) . "\r\n";
+  echo updatePing("blog.goo.ne.jp", "/XMLRPC", $title, $url) . "\r\n";
+  echo updatePing("ping.fc2.com", "/", $title, $url) . "\r\n";
+}
+

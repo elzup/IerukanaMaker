@@ -19,13 +19,16 @@ class Rss extends CI_Controller
 	}
 
 	public function category($category_en) {
+		if ($category_en == 'new') {
+			$category_en = '';
+		}
 		$lib = array_flip(unserialize(GAME_CATEGORY_EN_MAP));
 		if (!isset($lib[$category_en])) {
 			show_404();
 		}
 		$category = $lib[$category_en];
 		// NOTE: とりあえず新着の配信
-		$games_new = $this->game->get_games_new($category);
+		$games_new = $this->game->get_games_new($category, NUM_GAME_FEED, FALSE, TRUE);
 		$channel = new Channelobj();
 		$channel->title = str_replace(array('%CATEGORY%'), array(Gameobj::to_category_str($category)), FORMAT_RSS_TITLE_CATEGORY);
 		$channel->link = base_url(PATH_RSS_CATEGORY . $category_en);

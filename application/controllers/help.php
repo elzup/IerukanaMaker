@@ -14,9 +14,9 @@ class Help extends CI_Controller {
 		$user = $this->user->get_main_user();
 		$meta = new Metaobj();
 		$meta->setup_help();
-		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ヘルプ' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('helppage');

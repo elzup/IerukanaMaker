@@ -103,6 +103,14 @@ class Gameobj {
 		return '<a href="' . $this->get_category_link() . '">' . tag_icon('bookmark') . $this->get_category_str() . '</a>';
 	}
 
+	public function get_tags_text() {
+		$tag_texts = array();
+		foreach($this->tag_list as $tag) {
+			$tag_texts[] = $tag->text;
+		}
+		return implode(',', $tag_texts);
+	}
+
 	/**
 	 * 
 	 * @return Wordobj[]

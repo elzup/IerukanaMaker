@@ -35,9 +35,9 @@ class Category extends CI_Controller {
 		$lib = unserialize(GAME_CATEGORY_EN_MAP);
 		$meta = new Metaobj();
 		$meta->setup_category($category);
-		$this->load->view('head', array('meta' => $meta, 'user' => $user));
+		$this->load->view('head', array('meta' => $meta, 'rss_link' => Gameobj::to_category_link($category)));
 		$this->load->view('bodywrapper_head');
-		$this->load->view('navbar');
+		$this->load->view('navbar', array('user' => $user));
 		$breaadcrumbs_param = array(
 			'list' => array(
 				'TOP' => base_url(),

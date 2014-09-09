@@ -1,5 +1,6 @@
 <?php
 /* @var $meta Metaobj */
+/* @var $rss_link string */
 ?>
 
 <!DOCTYPE HTML>
@@ -11,6 +12,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" type="text/css" href="<?= URL_YAHOO_RESET_CSS ?>" />
 <link rel="icon" href="favicon.ico" /> 
+
+<?php if (isset($rss_link)) { ?>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $rss_link ?>" />
+<?php } ?>
 
 <!-- Bootstrap -->
 <link rel="stylesheet" charset="UTF-8" href="<?= base_url(PATH_BOOTSTRAP_CSS) ?>" media="screen" />
