@@ -82,6 +82,9 @@ class Gameobj {
 	}
 
 	public static function to_category_link($category) {
+		if ($category == GAME_CATEGORY_ALL) {
+			return base_url();
+		}
 		$lib = unserialize(GAME_CATEGORY_EN_MAP);
 		return base_url(PATH_CATEGORY . $lib[$category]);
 	}

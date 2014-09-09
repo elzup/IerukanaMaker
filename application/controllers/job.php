@@ -37,11 +37,14 @@ class Job extends CI_Controller {
 		if (empty($key) || $key != $keys_config['tweet_post_key']) {
 			show_404();
 		}
-		$lib_en = unserialize(GAME_CATEGORY_EN_MAP);
-		$lib = unserialize(GAME_CATEGORY_EN_MAP);
-		foreach ($lib_en as $i => $ping) {
-			$title = '[' . $lib[$i] . '] - 言えるかな？';
-			$url = Gameobj::to_category_link($i);
+		$lib = unserialize(GAME_CATEGORY_MAP);
+		foreach ($lib as $category => $category_str) {
+			$title = str_replace(FORMAT_RSS_TITLE_CATEGORY_KEYWORD, $category_str, FORMAT_RSS_TITLE_CATEGORY);
+			if ($category == GAME_CATEGORY_ALL) {
+				$title = '言えるかな？'; 
+
+			}
+			$url = Gameobj::to_category_link($category);
 			$this->_sendPings($title, $url);
 		}
 	}

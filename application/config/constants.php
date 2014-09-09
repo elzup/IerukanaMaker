@@ -61,7 +61,8 @@ define('NUM_GAME_PAR_TOPPAGE_RECENT', 10);
 define('NUM_TAG_PAR_TOPPAGE', 10);
 define('NUM_GAME_FEED', 5);
 
-define('FORMAT_RSS_TITLE_CATEGORY', '言えるかな？ - [%CATEGORY%]');
+define('FORMAT_RSS_TITLE_CATEGORY_KEYWORD', '%CATEGORY%');
+define('FORMAT_RSS_TITLE_CATEGORY', '言えるかな？ - [' . FORMAT_RSS_TITLE_CATEGORY_KEYWORD . ']');
 
 /* path */
 define('PATH_IMG', 'images/');

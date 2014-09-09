@@ -290,18 +290,19 @@ if (!function_exists('wrap_taglink_only')) {
 if (!function_exists('updatePing')) {
 
 	function updatePing($host, $path, $title, $url) {
+		$title_esc = htmlspecialchars($title);
 		$content = <<<EOF
-<?xml version=\"1.0\"?>
+<?xml version="1.0"?>
 <methodCall>
-<methodName>weblogUpdates.ping</methodName>
-<params>
-<param>
-<value>" . htmlspecialchars($title) . "</value>
-</param>
-<param>
-<value>$url</value>
-</param>
-</params>
+    <methodName>weblogUpdates.ping</methodName>
+    <params>
+        <param>
+            <value>$title_esc</value>
+        </param>
+        <param>
+            <value>$url</value>
+        </param>
+    </params>
 </methodCall>
 EOF;
 		$req = "POST $path HTTP/1.0\r\n"
@@ -311,13 +312,15 @@ EOF;
 			. "\r\n"
 			. $content;
 		$sock = @fsockopen($host, 80, $errno, $errstr, 2.0);
-		$result = "";
+		$result = "$host";
 		if ($sock) {
 			fputs($sock, $req);
 			while (!feof($sock)) {
 				$result .= fread($sock, 1024);
 			}
 		}
+		$res = (strpos($result, '<boolean>0</boolean>') !== FALSE) ? 'OK' : 'NG';
+		echo "[${res}] $host <br>";
 		return $result;
 	}
 
@@ -339,6 +342,7 @@ if (!function_exists('array_flatten')) {
 
 
 if (!function_exists('array_rand_values')) {
+
 	function array_rand_values(array $array, $num = 1) {
 		$keys = array_rand($array, $num);
 		if ($num == 1) {
@@ -350,4 +354,5 @@ if (!function_exists('array_rand_values')) {
 		}
 		return $tmp;
 	}
+
 }
