@@ -31,6 +31,9 @@ class Rss extends CI_Controller
 		$games_new = $this->game->get_games_new($category, NUM_GAME_FEED, FALSE, TRUE);
 		$channel = new Channelobj();
 		$channel->title = str_replace(array('%CATEGORY%'), array(Gameobj::to_category_str($category)), FORMAT_RSS_TITLE_CATEGORY);
+		if ($category == GAME_CATEGORY_ALL) {
+			$channel->title = '言えるかな？';
+		}
 		$channel->link = base_url(PATH_RSS_CATEGORY . $category_en);
 		$channel->items = Itemobj::to_items($games_new);
 

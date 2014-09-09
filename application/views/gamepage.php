@@ -3,6 +3,8 @@
 /* @var $is_owner bool */
 /* @var $gamemode string */
 /* @var $games_tag Gameobj[] */
+/* @var $feed_items Itemobj[] */
+
 
 /**
  * 
@@ -82,7 +84,8 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 	?>
 	<div class="row recommend-top">
 		<?php
-		$this->load->view('listparts', array('games' => $games_tag, 'title' => 'おすすめ', 'col' => 6, 'num' => 3));
+		$this->load->view('listparts', array('items' => $games_tag, 'title' => 'おすすめ言えるかな', 'col' => 6, 'num' => 5));
+		$this->load->view('listparts', array('items' => $feed_items, 'title' => '記事紹介', 'col' => 6, 'num' => 5));
 		?>
 	</div>
 	<div class="game-container">

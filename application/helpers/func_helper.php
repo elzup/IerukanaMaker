@@ -287,8 +287,10 @@ if (!function_exists('wrap_taglink_only')) {
 
 }
 
-function updatePing($host, $path, $title, $url) {
-	$content = <<<EOF
+if (!function_exists('updatePing')) {
+
+	function updatePing($host, $path, $title, $url) {
+		$content = <<<EOF
 <?xml version=\"1.0\"?>
 <methodCall>
 <methodName>weblogUpdates.ping</methodName>
@@ -302,26 +304,50 @@ function updatePing($host, $path, $title, $url) {
 </params>
 </methodCall>
 EOF;
-
-	// HTTPで送付する内容を作成する
-	$req = "POST $path HTTP/1.0\r\n"
-		. "Host: $host\r\n"
-		. "Content-Type: text/xml\r\n"
-		. "Content-Length: " . strlen($content) . "\r\n"
-		. "\r\n"
-		. $content;
-
-	// 送付する
-	$sock = @fsockopen($host, 80, $errno, $errstr, 2.0);
-	$result = "";
-	if ($sock) {
-		fputs($sock, $req);
-		while (!feof($sock)) {
-			$result .= fread($sock, 1024);
+		$req = "POST $path HTTP/1.0\r\n"
+			. "Host: $host\r\n"
+			. "Content-Type: text/xml\r\n"
+			. "Content-Length: " . strlen($content) . "\r\n"
+			. "\r\n"
+			. $content;
+		$sock = @fsockopen($host, 80, $errno, $errstr, 2.0);
+		$result = "";
+		if ($sock) {
+			fputs($sock, $req);
+			while (!feof($sock)) {
+				$result .= fread($sock, 1024);
+			}
 		}
+		return $result;
 	}
 
-	// Ping送信先からの戻り内容を返す
-	return $result;
 }
 
+if (!function_exists('array_flatten')) {
+
+	function array_flatten($array) {
+		static $tmp;
+		if (is_array($array))
+			foreach ($array as $val)
+				array_flatten($val);
+		else
+			$tmp[] = $array;
+		return $tmp;
+	}
+
+}
+
+
+if (!function_exists('array_rand_values')) {
+	function array_rand_values(array $array, $num = 1) {
+		$keys = array_rand($array, $num);
+		if ($num == 1) {
+			return $array[$keys];
+		}
+		$tmp = array();
+		foreach ($keys as $key) {
+			$tmp[] = $array[$key];
+		}
+		return $tmp;
+	}
+}

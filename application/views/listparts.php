@@ -1,5 +1,5 @@
 <?php
-/* @var $games Gameobj[] */
+/* @var $items array */
 /* @var $title string */
 /* @var $col int */
 /* @var $num int */
@@ -15,20 +15,31 @@ if (isset($col)) {
 	echo '<div class="col-md-' . $col . '">';
 }
 ?>
-<div class="plate plate-wide">
-	<p class="sub-title">
+<div class="plate plate-tab">
+	<span class="sub-title">
 		<?php
 		if (isset($icon)) {
 			echo tag_icon($icon);
 		}
 		?>
 		<?= $title ?>
-	</p>
+	</span>
+</div>
+<div class="plate plate-wide">
 	<ul class="list-min">
 		<?php
-		foreach ($games as $i => $game) {
+		foreach ($items as $i => $item) {
+			$target_blank = ' target="_blank"';
+			if ($item instanceof Gameobj) {
+				$item_url = $item->get_link();
+				$item_title = $item->get_full_title();
+				$target_blank = '';
+			} elseif ($item instanceof Itemobj) {
+				$item_url = $item->link;
+				$item_title = $item->title;
+			}
 			echo '<li>';
-			echo '<p><a href="' . base_url(PATH_GAME . $game->id) . '">' . $game->get_full_title() . '</a></p>';
+			echo '<p><a href="' . $item_url . '"' . $target_blank . '>' . $item_title . '</a></p>';
 			if ($i == $num - 1) {
 				break;
 			}
@@ -36,10 +47,10 @@ if (isset($col)) {
 		?>
 	</ul>
 	<?php if (isset($more_link)) { ?>
-	<div class="pull-right btn-more-wrap">
-		<!--<div class="btn-ribbon-head"> </div>-->
-		<a href="<?= $more_link ?>" class="btn btn-default btn-ribbon">もっと見る</a>
-	</div>
+		<div class="pull-right btn-more-wrap">
+			<!--<div class="btn-ribbon-head"> </div>-->
+			<a href="<?= $more_link ?>" class="btn btn-default btn-ribbon">もっと見る</a>
+		</div>
 	<?php } ?>
 </div>
 <?php

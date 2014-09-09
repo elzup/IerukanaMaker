@@ -49,6 +49,7 @@ class Job extends CI_Controller {
 	private function _sendPings($title, $url) {
 
 		$ping_list = array(
+			array("nyan.eggtree.net", "/rpc/ping"),
 			array("api.my.yahoo.co.jp", "/RPC2"),
 			array("blog.goo.ne.jp", "/XMLRPC"),
 			array("blog.with2.net", "/ping.php/"),

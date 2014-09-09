@@ -8,13 +8,22 @@ class Game extends CI_Controller {
 	/** @var Game_model */
 	public $game;
 
+	/** @var Rss_model */
+	public $rss;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('User_model', 'user', TRUE);
 		$this->load->model('Game_model', 'game', TRUE);
+		$this->load->model('Rss_model', 'rss', TRUE);
 	}
 
 	public function index() {
+		
+	}
+
+	public function test() {
+		$url = 'http://ssimas.blog.fc2.com/?xml';
 	}
 
 	public function play($game_id, $rank = NULL) {
@@ -62,18 +71,34 @@ class Game extends CI_Controller {
 			$games_tag = $this->game->get_games_recent();
 		}
 
+		$feed_items = $this->rss->get_feeds($game->category);
+
 		$meta = new Metaobj();
 		$meta->setup_game($game);
 		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar', array('user' => $user));
-		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), $game->get_category_str() => $game->get_category_link(), $game->get_full_title() => TRUE)));
+		$breaadcrumbs_param = array(
+			'list' => array(
+				'TOP' => base_url(),
+				$game->get_category_str() => $game->get_category_link(),
+				$game->get_full_title() => TRUE
+			),
+		);
+		$this->load->view('breadcrumbs', $breaadcrumbs_param);
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('gamepage', array('game' => $game, 'is_owner' => $is_owner, 'gamemode' => $gamemode, 'games_tag' => $games_tag));
+		$gamepage_param = array(
+			'game' => $game,
+			'is_owner' => $is_owner,
+			'gamemode' => $gamemode,
+			'games_tag' => $games_tag,
+			'feed_items' => $feed_items,
+		);
+		$this->load->view('gamepage', $gamepage_param);
 		$this->load->view('listparts_head');
-		$this->load->view('listparts', array('games' => $games_tag, 'col' => 4, 'title' => 'おすすめ'));
-		$this->load->view('listparts', array('games' => $games_hot, 'col' => 4, 'title' => '人気言えるかな'));
-		$this->load->view('listparts', array('games' => $games_new, 'col' => 4, 'title' => '新着言えるかな'));
+		$this->load->view('listparts', array('items' => $games_tag, 'col' => 4, 'title' => 'おすすめ'));
+		$this->load->view('listparts', array('items' => $games_hot, 'col' => 4, 'title' => '人気言えるかな'));
+		$this->load->view('listparts', array('items' => $games_new, 'col' => 4, 'title' => '新着言えるかな'));
 		$this->load->view('listparts_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');

@@ -14,10 +14,13 @@ html, body {
     color: @font_main_color;
 }
 a {
-    color: @font_link_color;
+    color: @font_link_color - #111;
     &:hover {
-        color: @font_link_color + #333;
+        color: @font_link_color;
         text-decoration: none;
+    }
+    &:visited {
+        color: @font_link_color - #222;
     }
 }
 h1.page-title {
@@ -279,12 +282,20 @@ span.strong-s {
         }
     }
 
+    &.plate-tab {
+        margin-top: 10px;
+        width: 45%;
+        padding: 0 10px;
+        border-bottom-left-radius: 0px;
+    }
+
     &.plate-wide {
         padding: 10px;
-        margin-top: 10px;
         overflow: auto;
+        border-top-left-radius: 0px;
         li>p {
             font-size: 12px;
+            .over-text-wrap;
         }
 
         .btn-more-wrap {
