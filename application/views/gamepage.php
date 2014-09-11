@@ -168,11 +168,6 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 			</table>
 		</div>
 	</div>
-	<?php
-	if ($is_owner) {
-		$this->load->view('ownerpanel', array('game' => $game));
-	}
-	?>
 	<input type="hidden" id="game-id" value="<?= $game->id ?>" />
 	<input type="hidden" id="game-name" value="<?= $game->name ?>" />
 	<input type="hidden" id="word-unit" value="<?= $game->word_unit ?>" />

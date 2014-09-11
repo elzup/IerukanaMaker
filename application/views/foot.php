@@ -21,3 +21,5 @@ if (!empty($jss)) {
 	}
 }
 ?>
+</body>
+</html>

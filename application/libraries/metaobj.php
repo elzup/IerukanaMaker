@@ -17,7 +17,7 @@ class Metaobj
 
 	public function __construct()
 	{
-		$this->url = $_SERVER['REQUEST_URI'];
+		$this->url = base_url(uri_string());
 		$this->title = SITE_NAME;
 		$this->title_meta = SITE_NAME;
 		$this->keywords = META_KEYWORDS ? explode(',', META_KEYWORDS) : array();

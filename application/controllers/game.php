@@ -100,6 +100,9 @@ class Game extends CI_Controller {
 		$this->load->view('listparts', array('items' => $games_hot, 'col' => 4, 'title' => '人気言えるかな'));
 		$this->load->view('listparts', array('items' => $games_new, 'col' => 4, 'title' => '新着言えるかな'));
 		$this->load->view('listparts_foot');
+		if ($is_owner) {
+			$this->load->view('ownerpanel', array('game' => $game));
+		}
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');
@@ -129,6 +132,7 @@ class Game extends CI_Controller {
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => $game->get_link(), '単語ランキング' => TRUE)));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('rankpage', array('game' => $game, 'is_owner' => $is_owner));
+
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');

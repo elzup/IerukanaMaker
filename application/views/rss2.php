@@ -27,7 +27,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				<description><?= $item->description ?></description>
 				<author><?= $item->author ?></author>
 				<category><?= $item->category ?></category>
-				<pubDate><?= $item->pub_date ?></pubDate>
+				<pubDate><?= $item->get_pub_date() ?></pubDate>
 				<guid isPermaLink="false"><?= $item->guid ?></guid>
 			</item>
 		<?php } ?>
