@@ -11,6 +11,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 		<meta charset="UTF-8" />
 		<?php $this->load->view('meta', array('meta' => $meta)) ?>
 		<title><?= $meta->get_title(TRUE) ?></title>
+		<meta name="date" content="" />
 		<link rel="canonical" href="<?= $meta->url ?>" />
 		<link rel="alternate" media="handheld" href="<?= $meta->url ?>" />
 		<!-- 評価中 -->

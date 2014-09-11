@@ -49,6 +49,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('SITE_NAME', '言えるかな？');
 define('SITE_DESCRIPTION', '言えるかな？とはお題に沿った単語のリストの中でいくつ答えられるかを試すゲームです');
 
+define('LAST_MOD', date(DateTime::ISO8601));
+
 define('META_KEYWORDS', '言えるかな,いえるかな,ierukana');
 
 define('AUTHOR_TWITTER_SCREEN_NAME', 'ieru_kana');
