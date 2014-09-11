@@ -1,9 +1,9 @@
 <div id="topjumbo" class="jumbotron">
-	<h1>言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png') ?>" /></h1>
+	<h1>言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png') ?>" alt="言えるかなロゴ" /></h1>
 	<p class="description">
-		<strong>腕試し</strong>に<strong>暇つぶし</strong>に<strong>学習</strong>に<br />
-		<span class="strong-s">言えるかな？</span>とは、お題に沿った単語のリストの中でいくつ答えられるかを試すゲームです<br />
-		このサイトはいろいろな人が作った<span class="strong-s">言えるかな？</span>で遊ぶことが出来るサイトです<br />
+		<span class="strong-s">腕試し</span>に<span class="strong-s">暇つぶし</span>に<span class="strong-s">学習</span>に<br />
+		<strong>言えるかな？</strong>とは、お題に沿った単語のリストの中でいくつ答えられるかを試すゲームです<br />
+		このサイトはいろいろな人が作った<strong>言えるかな？</strong>で遊ぶことが出来るサイトです<br />
 		あなたの作りたい言えるかな？を作ることも出来ます
 	</p>
 	<div class="row sub-btns">

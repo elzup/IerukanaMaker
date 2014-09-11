@@ -78,6 +78,7 @@ class Game extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar', array('user' => $user));
+		$this->load->view('container_head');
 		$breaadcrumbs_param = array(
 			'list' => array(
 				'TOP' => base_url(),
@@ -103,6 +104,7 @@ class Game extends CI_Controller {
 		if ($is_owner) {
 			$this->load->view('ownerpanel', array('game' => $game));
 		}
+		$this->load->view('container_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');
@@ -129,10 +131,12 @@ class Game extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar', array('user' => $user));
+		$this->load->view('container_head');
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), 'ゲーム' => base_url(PATH_SEARCH), $game->get_full_title() => $game->get_link(), '単語ランキング' => TRUE)));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('rankpage', array('game' => $game, 'is_owner' => $is_owner));
 
+		$this->load->view('container_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');

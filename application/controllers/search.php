@@ -54,10 +54,12 @@ class Search extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar', array('user' => $user));
-		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '検索' => TRUE)));
+		$this->load->view('container_head');
+		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '検索 言えるかな' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('listpage', array('games' => $games, 'page_index' => $page_index, 'q' => $q));
+		$this->load->view('container_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');

@@ -18,7 +18,6 @@ if (!$meta->no_meta) {
 
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@<?= AUTHOR_TWITTER_SCREEN_NAME ?>" />
-		<meta name="twitter:creater" content="@<?= AUTHOR_TWITTER_SCREEN_NAME ?>" />
 		<meta name="twitter:title" content="<?= $meta->get_title() ?>" />
 		<meta name="twitter:description" content="<?= $meta->description ?>" />
 		<meta name="twitter:image:src" content="<?= base_url(PATH_IMG . 'logo_fill.png')?>" />

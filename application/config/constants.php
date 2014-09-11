@@ -95,6 +95,7 @@ define('PATH_AUTH_LOGOUT', 'logout');
 define('PATH_STYLE_CSS_MAIN', PATH_STYLE . 'main.css');
 define('PATH_GOOGLE', 'google');
 define('PATH_GOOGLE_ANALYTICS', PATH_GOOGLE . '/analyticstracking.php');
+define('PATH_GOOGLE_ANALYTICS_JS', PATH_GOOGLE . '/analyticstracking.js');
 define('PATH_BOOTSTRAP_CSS', PATH_LIB . 'bootstrap/css/bootstrap.min.css');
 define('PATH_BOOTSTRAP_CSS_FA', PATH_LIB . 'bootstrap/css/font-awesome.min.css');
 define('PATH_BOOTSTRAP_JS', PATH_LIB . 'bootstrap/js/bootstrap.min.js');

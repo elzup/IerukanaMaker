@@ -69,14 +69,14 @@ class Metaobj
 
 	public function setup_user(Userobj $user) {
 		$this->set_title("マイページ");
-		$this->description = '@' . $user->screen_name . "のマイページ";
+		$this->description = '@' . $user->screen_name . "のマイページ - 言えるかな";
 		$this->no_meta = TRUE;
 	}
 
 	public function setup_help()
 	{
 		$this->set_title("ヘルプ");
-		$this->description = "このサイトについてやその他サポート";
+		$this->description = "このサイトについてやその他サポート - 言えるかな";
 	}
 
 	public function setup_category($category)
@@ -89,19 +89,19 @@ class Metaobj
 	{
 		// TODO: for game obj
 		$this->set_title($game->get_full_title());
-		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう。' .  $game->description .  '[' . $game->get_tags_text() . ']';
+		$this->description = $game->get_full_title(TRUE) . 'に挑戦しよう。' .  $game->description .  '[' . $game->get_tags_text() . '] - 言えるかな';
 	}
 
 	public function setup_make()
 	{
 		$this->set_title("言えるかな？の作成");
-		$this->description = "新しい言えるかなゲームの作成ページ";
+		$this->description = "新しい言えるかなゲームの作成ページ - 言えるかな";
 	}
 
 	public function setup_update()
 	{
 		$this->set_title("言えるかな？の変更");
-		$this->description = "言えるかな？再設定";
+		$this->description = "言えるかな？再設定 - 言えるかな";
 		$this->no_meta = TRUE;
 	}
 

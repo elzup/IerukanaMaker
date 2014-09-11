@@ -27,16 +27,7 @@
 							<li><a href="//tohyomaker.com/" target="_blank">投票メーカー</a>
 							<li><a href="//www.hima-tsubu.net/other/amusing/" target="_blank">ヒマツブネット</a>
 							<li><a href="//nyan.eggtree.net/" target="_blank">にゃんてな！</a>
-							<li><a href="https://twitter.com/ierukana" class="twitter-follow-button" data-show-count="false">Follow @ierukana</a>
-								<script>!function(d, s, id) {
-										var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-										if (!d.getElementById(id)) {
-											js = d.createElement(s);
-											js.id = id;
-											js.src = p + '://platform.twitter.com/widgets.js';
-											fjs.parentNode.insertBefore(js, fjs);
-										}
-									}(document, 'script', 'twitter-wjs');</script>
+							<li><a href="https://twitter.com/ieru_kana" class="twitter-follow-button" data-show-count="false">Follow @ierukana</a>
 						</ul>
 					</div>
 				</div>

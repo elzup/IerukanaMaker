@@ -9,6 +9,7 @@ plan/
 htdocs/pro/
 htdocs/google/
 htdocs/test/
+htdocs/mobile/
 htdocs/robots.txt
 htdocs/sitemap.xml
 htdocs/.htaccess

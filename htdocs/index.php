@@ -18,6 +18,25 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+
+/**
+ * url floating
+ */
+if($_SERVER['SERVER_NAME'] !== 'localhost') {
+    if($_SERVER['REQUEST_URI'] != "/" && substr($_SERVER['REQUEST_URI'],-1) == '/'){
+        header("Location: http://ierukana.elzup.com".substr($_SERVER['REQUEST_URI'],0,-1), TRUE, 301);
+        exit;
+    }
+    if(substr($_SERVER['SERVER_NAME'],0,3) == "www"){
+        header("Location: http://ierukana.elzup.com".$_SERVER['REQUEST_URI'], TRUE, 301);
+        exit;
+    }
+    if(substr($_SERVER['REQUEST_URI'],-10) == "index.html"){
+        header("Location: http://ierukana.elzup.com".substr($_SERVER['REQUEST_URI'],0,-10), TRUE, 301);
+        exit;
+    }
+}
+
 $home_path = '../';
 
 define ('ENVIRONMENT_DEVELOPMENT', 'development');

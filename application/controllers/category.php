@@ -38,6 +38,7 @@ class Category extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'rss_link' => Gameobj::to_category_link($category)));
 		$this->load->view('bodywrapper_head');
 		$this->load->view('navbar', array('user' => $user));
+		$this->load->view('container_head');
 		$breaadcrumbs_param = array(
 			'list' => array(
 				'TOP' => base_url(),
@@ -50,6 +51,7 @@ class Category extends CI_Controller {
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('categorypage', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags, 'category' => $category));
+		$this->load->view('container_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
 		$this->load->view('foot');
