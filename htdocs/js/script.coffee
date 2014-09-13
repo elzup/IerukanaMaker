@@ -278,9 +278,6 @@ $ ->
         # 半角スペース3桁埋め
         $('#num').html(('   ' + c).substr(-3).replace(' ', '&nbsp;'))
 
-    word_boxs.change ->
-        wordbox_change()
-
     word_boxs.hover ->
         $(@).next('.delete-btn').show()
     ,->
@@ -335,6 +332,7 @@ $ ->
         $('#input_descripiton').val()
     # 送信ボタン押下
     $('#submit-btn').click ->
+        console.log "submit-btn get!"
         if !(data = get_forms())
             console.log 'form no comp'
             return false
@@ -356,6 +354,7 @@ $ ->
             error: ->
                 console.log 'connect error'
         )
+
     word_boxs.change -> wordbox_change
 
     btn_tweet.click ->
@@ -424,7 +423,7 @@ $ ->
         # TOOD: loading img
         tag_check_box.html '---'
         if (v = input_tag_form.val()) == ""
-            return
+            return false
         data =
             tags_text: v
         url = "./make/tag_check/"
@@ -445,6 +444,7 @@ $ ->
             error: ->
                 console.log 'result post error'
         )
+        return false
 
     generate_tag_check_span = (tag_text, num) ->
         $badge = $('<span/>').addClass('badge').html(num)
@@ -485,4 +485,11 @@ $ ->
 
     $('[data-toggle=tooltip]').tooltip()
 
+    $('input[type=text]').on("keypress", (e) ->
+        if e.which == 13
+            id = $(@).attr('id')
+            if (id == "input_game_name")
+                return
+            return false
+    )
 

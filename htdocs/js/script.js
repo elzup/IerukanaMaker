@@ -322,9 +322,6 @@
       });
       return $('#num').html(('   ' + c).substr(-3).replace(' ', '&nbsp;'));
     };
-    word_boxs.change(function() {
-      return wordbox_change();
-    });
     word_boxs.hover(function() {
       return $(this).next('.delete-btn').show();
     }, function() {
@@ -387,6 +384,7 @@
     });
     $('#submit-btn').click(function() {
       var data;
+      console.log("submit-btn get!");
       if (!(data = get_forms())) {
         console.log('form no comp');
         return false;
@@ -491,7 +489,7 @@
       var data, url, v;
       tag_check_box.html('---');
       if ((v = input_tag_form.val()) === "") {
-        return;
+        return false;
       }
       data = {
         tags_text: v
@@ -500,7 +498,7 @@
       if (location.href.indexOf('update') !== -1) {
         url = "../make/tag_check/";
       }
-      return $.ajax({
+      $.ajax({
         type: "POST",
         url: url,
         data: data,
@@ -521,6 +519,7 @@
           return console.log('result post error');
         }
       });
+      return false;
     });
     generate_tag_check_span = function(tag_text, num) {
       var $badge;
@@ -564,7 +563,17 @@
         }
       });
     };
-    return $('[data-toggle=tooltip]').tooltip();
+    $('[data-toggle=tooltip]').tooltip();
+    return $('input[type=text]').on("keypress", function(e) {
+      var id;
+      if (e.which === 13) {
+        id = $(this).attr('id');
+        if (id === "input_game_name") {
+          return;
+        }
+        return false;
+      }
+    });
   });
 
 }).call(this);
