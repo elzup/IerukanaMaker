@@ -64,7 +64,7 @@
 						<div class="help-div">
 							<span class="help-block">上のフォームに単語入力して一括追加できます</span>
 							<span class="help-block">単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です</span>
-							<span class="help-block">最大256単語まで,区切り文字の記号は使用できません</span>
+							<span class="help-block">最大1024単語まで,区切り文字の記号は使用できません</span>
 							<span class="help-block">下のリストを直接変更することも出来ます</span>
 						</div>
 						<div class="btn-group pull-right">
@@ -91,7 +91,7 @@
 					</div>
 					<!--<div class="col-md-8">
 						<p class="">
-							単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です.最大256単語まで<br />
+							単語は20文字以内ですが全角文字の場合<b>10文字以内</b>推奨です.最大1024単語まで<br />
 							記号(改行やスペースなど)は使えません.<br />
 							右のフォームでカンマ,またはスペース区切りで<b>複数同時</b>に追加できます.<br />
 							下のボックスに直接編集することも出来ます.<br />
@@ -101,8 +101,8 @@
 			</div>
 			<div class="col-md-12" id="word-list-box">
 				<?php
-				$h = 32;
 				$w = 8;
+				$h = 1024 / 8;
 				$f = TRUE;
 				for ($i = 0; $i < $h; $i++) {
 					/* @var $word Wordobj */

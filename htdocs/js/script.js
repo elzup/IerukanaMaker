@@ -37,7 +37,7 @@
     JUDGE_OK = 1;
     JUDGE_ALREADY = 2;
     to_ans_kana = function(str) {
-      str = str.replace(/[()（）・\s\t/]/g, '').replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[?？]/, '__q').replace(/[!！]/, '__e');
+      str = str.replace(/[()（）・\s\t/]/g, '').replace(/[<]/g, '__r').replace(/[>]/g, '__l').replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[?？]/, '__q').replace(/[!！]/, '__e');
       return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)), {
         convert: {
           punctuation: false
@@ -142,7 +142,7 @@
       });
       return timer_id = setInterval(function() {
         return my_disp_down();
-      }, 1);
+      }, 10);
     };
     game_start_open = function() {
       game_flag = 1;
@@ -157,7 +157,7 @@
       time_box.css('color', 'black');
       return timer_id = setInterval(function() {
         return my_disp();
-      }, 1);
+      }, 10);
     };
     to_double0 = function(n) {
       if (n < 10) {

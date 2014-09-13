@@ -31,7 +31,7 @@
 				$words_games_negative[] = $games_recent[$i];
 			}
 		}
-		$this->load->view('wordslistpane', array('title' => '最近忘れられたワード', 'games' => $words_games_negative, 'icon' => 'sort-by-attributes'));
+		$this->load->view('wordslistpane', array('title' => '最近忘れられたワード', 'games' => $words_games_negative, 'icon' => 'sort-by-attributes', 'is_worst' => TRUE));
 		?>
 	</div>
 </div>

@@ -13,7 +13,7 @@
  */
 function to_ans_kana($str) {
 	return preg_replace(
-		array('#[・ ()（）「」/]#u', '#[ー-]#u', '#\+#', '#\.#', '/#/', '#[?？]#u', '#[！!]#u'), array('', '__h', '__p', '__d', '__s', '__q', '__e'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+		array('#[・ ()（）「」/]#u', '#[ー-]#u', '#\+#', '#\.#', '/#/', '#[?？]#u', '#[！!]#u', '#>#', '#<#'), array('', '__h', '__p', '__d', '__s', '__q', '__e', '__l', '__r'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {

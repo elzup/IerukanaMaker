@@ -36,7 +36,7 @@ switch ($gamemode) {
 		<div class="col-md-2">
 			<?php
 			if ($gamemode != GAME_MODE_RANK) {
-				?> <a class="btn btn-default" href="<?= $game->get_link() ?>">単語ランキングを見る</a> <?php
+				?> <a class="btn btn-default" href="<?= $game->get_ranklink() ?>">単語ランキングを見る</a> <?php
 			} else {
 				echo '<a class="btn btn-default" href="' . $game->get_link() . '">ゲームページヘ</a>';
 			}

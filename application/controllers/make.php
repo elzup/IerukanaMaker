@@ -129,7 +129,7 @@ class Make extends CI_Controller {
 		}
 		$word_list_tmp = $game->word_list;
 		$game->word_list = array();
-		for ($i = 0; $i < 256; $i++) {
+		for ($i = 0; $i < 1024; $i++) {
 			if (!$text = $post['word-' . $i]) {
 				continue;
 			}

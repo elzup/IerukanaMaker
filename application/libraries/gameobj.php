@@ -143,6 +143,10 @@ class Gameobj {
 		Wordobj::$point_negative_maxs[$this->id] = $max_n;
 	}
 
+	public function get_ranklink($tail = '') {
+		return base_url(PATH_RANK . $this->id) . $tail;
+	}
+
 	public function get_link($tail = '') {
 		return base_url(PATH_GAME . $this->id) . $tail;
 	}

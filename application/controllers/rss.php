@@ -9,7 +9,6 @@ class Rss extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('User_model', 'user', TRUE);
 		$this->load->model('Game_model', 'game', TRUE);
 	}
 

@@ -34,7 +34,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 
 		<?php
 		if (ENVIRONMENT !== ENVIRONMENT_DEVELOPMENT) {
-			echo tag_script_js(base_url(PATH_GOOGLE_ANALYTICS));
+			echo tag_script_js(base_url(PATH_GOOGLE_ANALYTICS_JS));
 		}
 		?>
 	</head>
