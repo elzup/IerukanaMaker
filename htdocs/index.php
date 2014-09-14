@@ -32,6 +32,10 @@ if($_SERVER['SERVER_NAME'] !== 'localhost') {
         exit;
     }
     if(substr($_SERVER['REQUEST_URI'],-10) == "index.html"){
+        header("Location: http://ierukana.elzup.com".substr($_SERVER['REQUEST_URI'],0,-11), TRUE, 301);
+        exit;
+    }
+    if(substr($_SERVER['REQUEST_URI'],-9) == "index.php"){
         header("Location: http://ierukana.elzup.com".substr($_SERVER['REQUEST_URI'],0,-10), TRUE, 301);
         exit;
     }
