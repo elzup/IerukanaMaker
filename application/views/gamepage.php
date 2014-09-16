@@ -5,7 +5,6 @@
 /* @var $games_tag Gameobj[] */
 /* @var $feed_items Itemobj[] */
 
-
 /**
  * 
  * @param string $str
@@ -47,7 +46,7 @@ function strtosilhouette($str, $head_view = FALSE) {
 			$silhouette .= 'O';
 			continue;
 		}
-		$silhouette .= '○';
+		$silhouette .= '◯';
 	}
 	return $silhouette;
 }

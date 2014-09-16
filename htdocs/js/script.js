@@ -107,6 +107,7 @@
       btn_answer.hide();
       btn_start.show();
       btn_tweet.show();
+      ans_form.addAttr('disabled');
       timer_btn.removeClass("disabled");
       ng_ids = [];
       td_boxs.not('.ok').each(function() {
@@ -133,6 +134,7 @@
       process_count_span.html(0);
       time_box.css('color', 'red');
       timer_btn.addClass("disabled");
+      ans_form.removeAttr('disabled');
       td_boxs.each(function() {
         if (game_mode === 'normal') {
           $(this).html("");
@@ -568,6 +570,9 @@
       var id;
       if (e.which === 13) {
         id = $(this).attr('id');
+        if (id === "input-search") {
+          return true;
+        }
         if (id === "input_game_name") {
           return;
         }
