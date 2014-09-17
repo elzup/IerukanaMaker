@@ -18,9 +18,13 @@ class Search extends CI_Controller {
 		$this->main(SORT_HOT);
 	}
 
-	public function main($method, $page_index = 0) {
-		$q = $this->input->get('q') ? : NULL;
-		$games = $this->game->get_games($q, $method, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
+	public function main() {
+		$get = $this->input->get();
+		$q = @$get['q'] ? : NULL;
+		$method = @$get['m'] ? : SORT_HOT;
+		$category = @$get['c'] ? : GAME_CATEGORY_ALL;
+		$page_index = @$get['n'] ? : 0;
+		$games = $this->game->get_games($q, $category, NULL, $method, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
 		$meta = new Metaobj();
 		if (empty($q)) {
 			// 検索クエリがない場合は固定ページとして扱う

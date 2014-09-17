@@ -14,7 +14,8 @@
 			?>
 		</div>
 	</div>
-	<?php $this->load->view('categorynav', array('category' => $category)); ?>
-	<?php $this->load->view('topmain', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags)); ?>
-
+	<?php
+	$this->load->view('categorynav', array('category' => $category));
+	$this->load->view('topmain', array('games_hot' => $games_hot, 'games_new' => $games_new, 'games_recent' => $games_recent, 'tags' => $tags, 'category' => $category));
+	?>
 </div>

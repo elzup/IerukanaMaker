@@ -11,8 +11,11 @@ function tag_pager($is_startpage, $is_nogame, $page_index, $q, $is_tag) {
 		$prev_url = base_url(PATH_TAG . $q . '/' . ($page_index - 1));
 		$next_url = base_url(PATH_TAG . $q . '/' . ($page_index + 1));
 	} else {
-		$prev_url = ($page_index - 1) . ($q ? '?q=' . urlencode($q) : "");
-		$next_url = ($page_index + 1) . ($q ? '?q=' . urlencode($q) : "");
+		$prev_url = ($q ? '?q=' . urlencode($q) : "");
+		if ($page_index != 1) {
+			$prev_url .= '&n=' . ($page_index - 1);
+		}
+		$next_url = ($q ? '?q=' . urlencode($q) : "") . '&n=' . ($page_index + 1);
 	}
 	?>
 	<ul class="pager">

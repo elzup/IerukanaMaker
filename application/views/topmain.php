@@ -4,13 +4,14 @@
 /* @var $games_recent Gameobj[] */
 /* @var $word Word */
 /* @var $tags string[] */
+/* @var $category string[] */
 ?>
 
 <div class="row">
 	<div class="col-md-7 col-md-offset-1 topmain-list">
 		<?php
-		$this->load->view('listparts', array('items' => $games_hot, 'title' => '人気の言えるかな？', 'icon' => 'fire', 'more_link' => base_url(PATH_HOT)));
-		$this->load->view('listparts', array('items' => $games_new, 'title' => '新着の言えるかな？', 'icon' => 'leaf', 'more_link' => base_url(PATH_NEW)));
+		$this->load->view('listparts', array('items' => $games_hot, 'title' => '人気の言えるかな？', 'icon' => 'fire', 'more_link' => base_url(PATH_SEARCH . '?m=' . SORT_HOT)));
+		$this->load->view('listparts', array('items' => $games_new, 'title' => '新着の言えるかな？', 'icon' => 'leaf', 'more_link' => base_url(PATH_SEARCH . '?m=' . SORT_NEW)));
 		$this->load->view('listparts', array('items' => $games_recent, 'title' => 'おすすめの言えるかな？', 'icon' => 'bullhorn', 'more_link' => NULL));
 		?>
 	</div>

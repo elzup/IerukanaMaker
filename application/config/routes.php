@@ -66,8 +66,7 @@ $route['c/arts'] = 'category/view/3';
 $route['c/anime'] = 'category/view/4';
 $route['c/sports'] = 'category/view/5';
 
-$route['s'] = 'search';
-$route['s/(:num)'] = 'search/main/hot/$1';
+$route['s'] = 'search/main';
 $route['s/(.*)'] = 'search/main/$1';
 
 $route['h'] = 'hot';

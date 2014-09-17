@@ -3,6 +3,7 @@
 /* @var $title string */
 /* @var $icon string */
 /* @var $is_worst boolean */
+/* @var $category string[] */
 if (!isset($is_worst)) {
 	$is_worst = FALSE;
 }
