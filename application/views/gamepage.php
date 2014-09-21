@@ -97,10 +97,10 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 				</div>
 				<div class="col-xs-12">
 					<div class="btn-group">
-						<a href="<?= $game->get_link() ?>" class="btn btn-default<?= $gamemode == GAME_MODE_NORMAL ? ' active disabled' : '' ?>">ノーマル</a>
-						<a href="<?= $game->get_link('?easy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_EASY ? ' active disabled' : '' ?>">やさしい</a>
-						<a href="<?= $game->get_link('?soeasy') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_SO_EASY ? ' active disabled' : '' ?>">超やさしい</a>
-						<a href="<?= $game->get_link('?typing') ?>" class="btn btn-default<?= $gamemode == GAME_MODE_TYPING ? ' active disabled' : '' ?>">タイピング</a>
+						<a href="<?= $game->get_link() ?>" data-func="end" class="btn btn-default<?= $gamemode == GAME_MODE_NORMAL ? ' active disabled' : '' ?>">ノーマル</a>
+						<a href="<?= $game->get_link('?easy') ?>" data-func="end" class="btn btn-default<?= $gamemode == GAME_MODE_EASY ? ' active disabled' : '' ?>">やさしい</a>
+						<a href="<?= $game->get_link('?soeasy') ?>" data-func="end" class="btn btn-default<?= $gamemode == GAME_MODE_SO_EASY ? ' active disabled' : '' ?>">超やさしい</a>
+						<a href="<?= $game->get_link('?typing') ?>" data-func="end" class="btn btn-default<?= $gamemode == GAME_MODE_TYPING ? ' active disabled' : '' ?>">タイピング</a>
 					</div>
 				</div>
 			</div>

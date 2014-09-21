@@ -570,7 +570,7 @@
       });
     };
     $('[data-toggle=tooltip]').tooltip();
-    return $('input[type=text]').on("keypress", function(e) {
+    $('input[type=text]').on("keypress", function(e) {
       var id;
       if (e.which === 13) {
         id = $(this).attr('id');
@@ -581,6 +581,11 @@
           return;
         }
         return false;
+      }
+    });
+    return $('a[data-func=end]').click(function() {
+      if (game_flag !== 0) {
+        return game_end();
       }
     });
   });

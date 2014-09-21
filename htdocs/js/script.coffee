@@ -500,3 +500,7 @@ $ ->
             return false
     )
 
+    $('a[data-func=end]').click ->
+        if game_flag != 0
+            game_end()
+
