@@ -370,19 +370,24 @@ div.description {
     -o-text-overflow: ellipsis;
 }
 
-.control-box {
-    padding: 10px;
-    .control-forms {
-        padding-top: 10px;
-        #answer-form {
-            width: 50%;
-            display: inline;
+.game-container {
+    margin-top: 20px;
+    background: @sub_color + #f28;
+    border-radius: 10px;
+    .control-box {
+        padding: 10px;
+        .control-forms {
+            padding-top: 10px;
+            #answer-form {
+                width: 50%;
+                display: inline;
+            }
         }
-    }
-    .plate {
-        display: table;
-        text-align: center;
-        font-family: monospace;
+        .plate {
+            display: table;
+            text-align: center;
+            font-family: monospace;
+        }
     }
 }
 
@@ -610,22 +615,29 @@ div.tag-box {
 }
 
 .timer-set {
-    width: 80%;
     border: @border_d;
     border-bottom: none;
     border-radius: 3px 3px 0 0;
+    @h: 14px;
+    * {
+        font-size: @h;
+    }
     #timer-toggle-btn {
         border-radius: 0;
+        height: 32px;
+        padding: 0 20px;
     }
     #timer-input {
+        height: @h + 18px;
         padding: 0 5px;
-        height: 22px;
+        background: @main_color + #aaa;
         border: none;
         text-align: right;
     }
     .input-group-addon {
         line-height: 3px;
         border-radius: 0;
+        background: @main_color + #aaa;
     }
     &[disabled] {
         #timer-input {
@@ -637,6 +649,10 @@ div.tag-box {
             color: #333;
         }
     }
+}
+
+#owner-panel {
+    margin-top: 20px;
 }
 
 .game-mode-box {
@@ -756,6 +772,15 @@ i {
 }
 
 .btn-favorite {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 28px;
+    line-height: 22px;
+    &:active {
+        border: none;
+        box-shadow: none;
+    }
     &#favorite-btn {
         &:hover {
             &:first-letter {
@@ -765,6 +790,7 @@ i {
     }
     &#unfavorite-btn {
         margin-top: 0px;
+        text-shadow: 3px 3px, 4px 4px yellow;
         &:first-letter {
             color: @main_color;
         }

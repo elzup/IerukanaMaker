@@ -22,20 +22,17 @@ switch ($gamemode) {
 ?>
 <div id="game-info" class="plate">
 	<div class="row">
-		<div class="col-md-2">
-			<?php if (isset($game->is_favorited)): ?>
-				<button id="favorite-btn" class="btn btn-default btn-block btn-favorite" <?= $game->is_favorited ? 'style="display: none"' : '' ?>>☆</button>
-				<button id="unfavorite-btn" class="btn btn-default btn-block btn-favorite" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★</button>
-			<?php else: ?>
-				<button class="btn btn-default btn-block btn-favorite disabled disabled-tmp" data-toggle="tooltip" data-placement="top" title="ログインが必要です">★お気に入り登録</button>
-			<?php endif; ?>
-			<?php
-			if ($gamemode != GAME_MODE_RANK) {
-				?> <a class="btn btn-default" href="<?= $game->get_ranklink() ?>">単語ランキングを見る</a> <?php
-			} else {
-				echo '<a class="btn btn-default" href="' . $game->get_link() . '">ゲームページヘ</a>';
-			}
-			?>
+		<div class="col-md-3">
+			<?php if (isset($game->is_favorited)) { ?>
+				<button id="favorite-btn" class="btn btn-favorite <?= $game->is_favorited ? 'hidden' : '' ?>" data-toggle="tooltip" data-placement="top" title="お気に入り登録する" >☆</button>
+				<button id="unfavorite-btn" class="btn btn-favorite <?= !$game->is_favorited ? 'hidden' : '' ?>" data-toggle="tooltip" data-placement="top" title="お気に入り解除する">★</button>
+			<?php } else { ?>
+				<button class="btn btn-favorite disabled disabled-tmp" data-toggle="tooltip" data-placement="top" title="お気に入り登録にはログインが必要です">☆</button>
+			<?php } ?>
+			<div class="btn-group">
+				<a class="btn btn-default <?= $gamemode == GAME_MODE_RANK ? '' : 'disabled' ?>" href="<?= $game->get_link() ?>"><?= tag_icon('play') ?>ゲーム</a>
+				<a class="btn btn-default <?= $gamemode != GAME_MODE_RANK ? '' : 'disabled' ?>" href="<?= $game->get_ranklink() ?>"><?= tag_icon('sort-by-attributes') ?>統計　</a>
+			</div>
 		</div>
 		<div class="col-md-8">
 			<h1 class="page-title"><?= $title ?></h1>

@@ -112,7 +112,7 @@ class Game extends CI_Controller {
 
 	public function rank($game_id) {
 		$user = $this->user->get_main_user();
-		$game = $this->game->get_game($game_id);
+		$game = $this->game->get_game($game_id, @$user->id_user);
 
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {

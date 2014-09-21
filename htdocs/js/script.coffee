@@ -462,18 +462,13 @@ $ ->
 
     $('#favorite-btn').click ->
         favorite(1)
-        $(@).hide()
-        $('#unfavorite-btn').show()
+        $(@).addClass('hidden')
+        $('#unfavorite-btn').removeClass('hidden')
 
     $('#unfavorite-btn').click ->
         favorite(0)
-        $(@).hide()
-        $('#favorite-btn').show()
-
-    $('#unfavorite-btn').hover ->
-        $(@).html('★')
-    , ->
-        $(@).html('☆')
+        $(@).addClass('hidden')
+        $('#favorite-btn').removeClass('hidden')
 
     favorite = (is_regist)->
         data =

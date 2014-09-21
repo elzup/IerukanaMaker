@@ -105,10 +105,12 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<div class="input-group timer-set" disabled="">
 						<span class="input-group-btn">
-							<button id="timer-toggle-btn" class="btn btn-xs btn-default" type="button" data-toggle="button"><i class="glyphicon glyphicon-time"></i></button>
+							<button id="timer-toggle-btn" class="btn btn-xs btn-default" type="button" data-toggle="button">
+								<i class="glyphicon glyphicon-time"></i>セットする
+							</button>
 						</span>
 						<input id="timer-input" type="number" class="form-control" value="3" disabled="">
 						<span class="input-group-addon">分</span>

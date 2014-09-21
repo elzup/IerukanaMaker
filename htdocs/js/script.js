@@ -539,18 +539,13 @@
     };
     $('#favorite-btn').click(function() {
       favorite(1);
-      $(this).hide();
-      return $('#unfavorite-btn').show();
+      $(this).addClass('hidden');
+      return $('#unfavorite-btn').removeClass('hidden');
     });
     $('#unfavorite-btn').click(function() {
       favorite(0);
-      $(this).hide();
-      return $('#favorite-btn').show();
-    });
-    $('#unfavorite-btn').hover(function() {
-      return $(this).html('★お気に入り解除');
-    }, function() {
-      return $(this).html('★お気に入り中　');
+      $(this).addClass('hidden');
+      return $('#favorite-btn').removeClass('hidden');
     });
     favorite = function(is_regist) {
       var data;
