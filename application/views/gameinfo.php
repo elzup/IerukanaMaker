@@ -22,18 +22,13 @@ switch ($gamemode) {
 ?>
 <div id="game-info" class="plate">
 	<div class="row">
-		<div class="col-md-8">
-			<h1 class="page-title"><?= $title ?></h1>
-		</div>
 		<div class="col-md-2">
 			<?php if (isset($game->is_favorited)): ?>
-				<button id="favorite-btn" class="btn btn-default btn-block btn-favorite" <?= $game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り登録</button>
-				<button id="unfavorite-btn" class="btn btn-default btn-block btn-favorite" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★お気に入り中　</button>
+				<button id="favorite-btn" class="btn btn-default btn-block btn-favorite" <?= $game->is_favorited ? 'style="display: none"' : '' ?>>☆</button>
+				<button id="unfavorite-btn" class="btn btn-default btn-block btn-favorite" <?= !$game->is_favorited ? 'style="display: none"' : '' ?>>★</button>
 			<?php else: ?>
 				<button class="btn btn-default btn-block btn-favorite disabled disabled-tmp" data-toggle="tooltip" data-placement="top" title="ログインが必要です">★お気に入り登録</button>
 			<?php endif; ?>
-		</div>
-		<div class="col-md-2">
 			<?php
 			if ($gamemode != GAME_MODE_RANK) {
 				?> <a class="btn btn-default" href="<?= $game->get_ranklink() ?>">単語ランキングを見る</a> <?php
@@ -41,6 +36,9 @@ switch ($gamemode) {
 				echo '<a class="btn btn-default" href="' . $game->get_link() . '">ゲームページヘ</a>';
 			}
 			?>
+		</div>
+		<div class="col-md-8">
+			<h1 class="page-title"><?= $title ?></h1>
 		</div>
 	</div>
 	<div class="description">

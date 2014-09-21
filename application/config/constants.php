@@ -90,6 +90,8 @@ define('PATH_HELP', 'help/');
 define('PATH_RSS', 'rss/');
 define('PATH_RSS_CATEGORY', 'rss/category/');
 
+define('PATH_IMG_SC', PATH_IMG . 'sc.png');
+
 define('PATH_AUTH_LOGIN', 'login');
 define('PATH_AUTH_END', PATH_AUTH . 'end');
 define('PATH_AUTH_LOGOUT', 'logout');

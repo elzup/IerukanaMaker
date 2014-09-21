@@ -1,5 +1,5 @@
 <div id="topjumbo" class="jumbotron">
-	<h1>言えるかな<img class="log-img" src="<?= base_url(PATH_IMG . 'logo.png') ?>" alt="言えるかなロゴ" /></h1>
+	<h1 itemscope itemtype="http://schema.org/SoftwareApplication"><span itemprop="name">言えるかな</span><img itemprop="image" class="log-img" src="<?= base_url(PATH_IMG . 'logo.png') ?>" alt="言えるかなロゴ" /></h1>
 	<p class="description">
 		<span class="strong-s">腕試し</span>に<span class="strong-s">暇つぶし</span>に<span class="strong-s">学習</span>に<br />
 		<strong>言えるかな？</strong>とは、お題に沿った単語のリストの中でいくつ答えられるかを試すゲームです<br />
