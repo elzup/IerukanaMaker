@@ -24,7 +24,7 @@ class Search extends CI_Controller {
 		$method = @$get['m'] ? : SORT_HOT;
 		$category = @$get['c'] ? : GAME_CATEGORY_ALL;
 		$page_index = @$get['n'] ? : 0;
-		$games = $this->game->get_games($q, $category, NULL, $method, NUM_GAME_PAR_SEARCHPAGE, $page_index * NUM_GAME_PAR_SEARCHPAGE);
+		$games = $this->game->get_games($q, $category, NULL, $method, NUM_GAME_PAR_SEARCHPAGE + 1, $page_index * NUM_GAME_PAR_SEARCHPAGE);
 		$meta = new Metaobj();
 		if (empty($q)) {
 			// 検索クエリがない場合は固定ページとして扱う
