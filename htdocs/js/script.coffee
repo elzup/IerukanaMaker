@@ -40,7 +40,7 @@ $ ->
     JUDGE_ALREADY = 2
 
     to_ans_kana = (str) ->
-        str = str.replace(/[()（）・\s\t/]/g, '').replace(/[<]/g, '__r').replace(/[>]/g, '__l').replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[?？]/, '__q').replace(/[!！]/, '__e')
+        str = str.replace(/[()（）・\s\t/]/g, '').replace(/[<]/g, '__r').replace(/[&＆(アンド|あんど)]/g, '__a').replace(/[>]/g, '__l').replace(/[-ー]/g, '__h').replace(/\./g, '__d').replace(/\+/g, '__p').replace(/#/g, '__s').replace(/[?？]/, '__q').replace(/[!！]/, '__e')
         return stc.toHankaku(stc.toHiragana(stc.killHankakuKatakana(str)),
             convert:
                 punctuation: false
@@ -98,7 +98,7 @@ $ ->
         btn_answer.hide()
         btn_start.show()
         btn_tweet.show()
-        ans_form.addAttr('disabled')
+        ans_form.attr('disabled')
         timer_btn.removeClass("disabled")
         ng_ids = []
         td_boxs.not('.ok').each ->
@@ -206,7 +206,10 @@ $ ->
 
     ans_form.on("keypress", (e) ->
         if e.which == 13
-            replay()
+            if game_flag == 0
+                game_start()
+            else
+                replay()
     )
     btn_answer.click ->
         replay()
