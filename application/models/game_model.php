@@ -213,7 +213,7 @@ class Game_model extends CI_Model {
 	 * @return \Gameobj
 	 */
 	function get_game_tweet() {
-		$games = $this->get_recent_games(1);
+		$games = $this->get_games_recent(NULL, 1);
 		return $games[0];
 	}
 
