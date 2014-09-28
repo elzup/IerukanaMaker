@@ -10,7 +10,7 @@
  * @param string $str
  * @return string
  */
-function to_ans_kana($str) {
+function to_ans_check($str) {
 	return preg_replace(
 		array('#[・ ()（）「」/]#u' , '#[ー-]#u' , '#([+]|たす|タス|プラス|ぷらす)#' , '#\.#' , '/#/' , '#[?？]#u' , '#[！!]#u' , '#>#' , '#<#' , '#([&＆]|アンド|あんど)#u') , 
 		array(''                    , '__h'      , '__p'  , '__d'  , '__s' , '__q'      , '__e'      , '__l' , '__r' , '__a') , 
@@ -159,7 +159,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 						echo '<tr>';
 					}
 					$value = to_valuetext($word->text, $gamemode);
-					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_kana($word->text) . '">' . $value . '</td>';
+					echo '<td nid="' . $word->id . '" ans="' . $word->text . '" ansc="' . to_ans_check($word->text) . '" ansf="' . $value . '">' . $value . '</td>';
 					$i++;
 				}
 				while ($i % $p != 0) {

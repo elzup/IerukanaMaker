@@ -136,9 +136,7 @@
       timer_btn.addClass("disabled");
       ans_form.removeAttr('disabled');
       td_boxs.each(function() {
-        if (game_mode === 'normal') {
-          $(this).html("");
-        }
+        $(this).html($(this).attr('ansf'));
         $(this).removeClass('ok');
         return $(this).removeClass('ng');
       });

@@ -125,8 +125,7 @@ $ ->
         timer_btn.addClass("disabled")
         ans_form.removeAttr('disabled')
         td_boxs.each ->
-            if game_mode == 'normal'
-                $(@).html("")
+            $(@).html($(@).attr('ansf'))
             $(@).removeClass('ok')
             $(@).removeClass('ng')
         timer_id = setInterval ->
