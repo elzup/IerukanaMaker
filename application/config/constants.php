@@ -63,6 +63,9 @@ define('NUM_GAME_PAR_TOPPAGE_RECENT', 10);
 define('NUM_TAG_PAR_TOPPAGE', 10);
 define('NUM_GAME_FEED', 5);
 
+// TODO: change to 21
+define('NUM_LOG_RESULT', 20);
+
 define('FORMAT_RSS_TITLE_CATEGORY_KEYWORD', '%CATEGORY%');
 define('FORMAT_RSS_TITLE_CATEGORY', '言えるかな？ - [' . FORMAT_RSS_TITLE_CATEGORY_KEYWORD . ']');
 
@@ -143,6 +146,12 @@ define('DB_CN_TAGS_TEXT', 'tag_text');
 define('DB_TN_FAVORITES', 'favorites');
 define('DB_CN_FAVORITES_USER_ID', 'user_id');
 define('DB_CN_FAVORITES_GAME_ID', 'game_id');
+
+define('DB_TN_LOG', 'log');
+define('DB_CN_LOG_USER_ID', 'user_id');
+define('DB_CN_LOG_GAME_ID', 'game_id');
+define('DB_CN_LOG_POINT', 'point');
+define('DB_CN_LOG_LOGGED_AT', 'logged_at');
 
 define('DB_CN_AS_COUNT', 'ascount');
 

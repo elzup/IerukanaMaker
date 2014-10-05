@@ -170,6 +170,11 @@ class Game extends CI_Controller {
 		}
 		$this->game->increment_play_count($game_id);
 		$this->game->log_points($game_id, $active_points, $negative_points);
+		$user = $this->user->get_main_user();
+		if (($user)) {
+			$this->game->regist_log($user->id_user, $game_id, count($active_points));
+		}
+
 		$this->game->close();
 		echo "result logged!";
 	}

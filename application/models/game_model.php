@@ -30,7 +30,6 @@ class Game_model extends CI_Model {
 		return $ids;
 	}
 
-
 	/*
 	 *  game access methods
 	 * ------------------ */
@@ -260,6 +259,15 @@ class Game_model extends CI_Model {
 		$this->_update_points($game_id, $data);
 	}
 
+	public function regist_log($user_id, $game_id, $point) {
+		$this->_insert_log($user_id, $game_id, $point);
+		// 制限以上のログは消去
+		$c = count($this->_select_log($user_id, $game_id)) - NUM_LOG_RESULT;
+		if ($c > 0) {
+			$this->_pop_log($user_id, $game_id, $c);
+		}
+	}
+
 	/**
 	 * 
 	 * @param array $rows
@@ -315,7 +323,7 @@ class Game_model extends CI_Model {
 		$sql = 'SELECT distinct ' . DB_CN_TAGS_TEXT . ', count(' . DB_CN_TAGS_TEXT . ') as ' . DB_CN_AS_COUNT;
 		$sql .= ' FROM ie_' . DB_TN_TAGS;
 		$where = isset($category) ? ' WHERE ' . DB_CN_GAMES_CATEGORY . ' = ' . $category : '';
-		$sql .= ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' ' . $where . ' order by ' . DB_CN_GAMES_UPDATED_AT. ')';
+		$sql .= ' WHERE (' . DB_CN_TAGS_GAME_ID . ') in (select ' . DB_CN_GAMES_ID . ' from ie_' . DB_TN_GAMES . ' ' . $where . ' order by ' . DB_CN_GAMES_UPDATED_AT . ')';
 		$sql .= ' group by ' . DB_CN_TAGS_TEXT;
 		$sql .= ' limit ' . $limit;
 		$query = $this->db->query($sql);
@@ -356,10 +364,9 @@ class Game_model extends CI_Model {
 		}
 	}
 
-
 	/*
 	 * DB methods
-	 --------------------- */
+	  --------------------- */
 
 	/**
 	 * 
@@ -391,6 +398,19 @@ class Game_model extends CI_Model {
 		return @$result[0] ? : NULL;
 	}
 
+	private function _delete_game($game_id) {
+		$this->db->where(DB_CN_GAMES_ID, $game_id);
+		$this->db->delete(DB_TN_GAMES);
+	}
+
+	private function _update_game(Gameobj $game) {
+		$this->db->where(DB_CN_GAMES_ID, $game->id);
+		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
+		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
+		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
+		$this->db->set(DB_CN_GAMES_CATEGORY, $game->category);
+		$this->db->update(DB_TN_GAMES);
+	}
 
 	/**
 	 * 
@@ -469,8 +489,6 @@ class Game_model extends CI_Model {
 		return $result;
 	}
 
-
-
 	private function _select_games_from_ids($ids, $limit, $offset, $order_by, $order_asc) {
 		$this->db->where_in(DB_CN_GAMES_ID, $ids);
 		$this->db->order_by($order_by, $order_asc);
@@ -484,18 +502,27 @@ class Game_model extends CI_Model {
 		$this->db->delete(DB_TN_WORDS);
 	}
 
-	private function _delete_game($game_id) {
-		$this->db->where(DB_CN_GAMES_ID, $game_id);
-		$this->db->delete(DB_TN_GAMES);
+	private function _insert_log($user_id, $game_id, $point) {
+		$this->db->set(DB_CN_LOG_USER_ID, $user_id);
+		$this->db->set(DB_CN_LOG_GAME_ID, $game_id);
+		$this->db->set(DB_CN_LOG_POINT, $point);
+		$this->db->insert(DB_TN_LOG);
+		return $this->db->insert_id();
 	}
 
-	private function _update_game(Gameobj $game) {
-		$this->db->where(DB_CN_GAMES_ID, $game->id);
-		$this->db->set(DB_CN_GAMES_DESCRIPTION, $game->description);
-		$this->db->set(DB_CN_GAMES_WORDS_UNIT, $game->word_unit);
-		$this->db->set(DB_CN_GAMES_WORDS_NUM, $game->words_num);
-		$this->db->set(DB_CN_GAMES_CATEGORY, $game->category);
-		$this->db->update(DB_TN_GAMES);
+	private function _select_log($user_id, $game_id) {
+		$this->db->where(DB_CN_LOG_USER_ID, $user_id);
+		$this->db->where(DB_CN_LOG_GAME_ID, $game_id);
+		$query = $this->db->get(DB_TN_LOG);
+		return $query->result();
+	}
+
+	private function _pop_log($user_id, $game_id, $num = 1) {
+		$this->db->where(DB_CN_LOG_USER_ID, $user_id);
+		$this->db->where(DB_CN_LOG_GAME_ID, $game_id);
+		$this->db->order_by(DB_CN_LOG_LOGGED_AT, 'ASC');
+		$this->db->limit($num);
+		$this->db->delete(DB_TN_LOG);
 	}
 
 	/**
