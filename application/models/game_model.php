@@ -268,6 +268,14 @@ class Game_model extends CI_Model {
 		}
 	}
 
+	public function get_logs($user_id, $game_id) {
+		$logs = Game_model::to_logobjs($this->_select_log($user_id, $game_id));
+		return $logs;
+	}
+
+	public static function to_logs() {
+	}
+
 	/**
 	 * 
 	 * @param array $rows
@@ -606,6 +614,15 @@ class Game_model extends CI_Model {
 		}
 		return $words;
 	}
+
+	public static function to_logobjs($rows) {
+		$logs = array();
+		foreach ($rows as $row) {
+			$logs[] = new Logobj($row);
+		}
+		return $logs;
+	}
+
 
 	/**
 	 * 

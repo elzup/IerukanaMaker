@@ -61,6 +61,7 @@ $autoload['libraries'] = array(
 	'session',
 	'gameobj',
 	'wordobj',
+	'logobj',
 	'user_agent',
 );
 

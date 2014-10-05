@@ -56,6 +56,10 @@ class Game extends CI_Controller {
 		}
 
 		$is_owner = isset($user) && $user->id_user == $game->user_id;
+		$logs = array();
+		if ($user) {
+			$logs = $this->game->get_logs($user->id_user, $game->id);
+		}
 
 		$games_hot = $this->game->get_games_hot();
 		$games_new = $this->game->get_games_new();
@@ -71,7 +75,7 @@ class Game extends CI_Controller {
 			$games_tag = $this->game->get_games_recent();
 		}
 
-		$feed_items = $this->rss->get_feeds($game->category);
+//		$feed_items = $this->rss->get_feeds($game->category);
 
 		$meta = new Metaobj();
 		$meta->setup_game($game);
@@ -93,7 +97,8 @@ class Game extends CI_Controller {
 			'is_owner' => $is_owner,
 			'gamemode' => $gamemode,
 			'games_tag' => $games_tag,
-			'feed_items' => $feed_items,
+//			'feed_items' => $feed_items,
+			'logs' => $logs,
 		);
 		$this->load->view('gamepage', $gamepage_param);
 		$this->load->view('listparts_head');
