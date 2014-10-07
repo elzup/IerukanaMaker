@@ -88,7 +88,9 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 		<?php
 		$this->load->view('listparts', array('items' => $games_tag, 'title' => 'おすすめ言えるかな', 'col' => 6, 'num' => 5));
 //		$this->load->view('listparts', array('items' => $feed_items, 'title' => '記事紹介', 'col' => 6, 'num' => 5));
-		$this->load->view('loggraphparts', array('logs' => $logs, 'col' => 6));
+		if ($user) {
+			$this->load->view('loggraphparts', array('logs' => $logs, 'col' => 6, 'is_login' => !!$user, 'word_num' => $game->words_num));
+		}
 		?>
 	</div>
 	<div class="game-container">
