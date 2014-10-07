@@ -18,7 +18,17 @@ if ($is_login) {
 		</span>
 	</div>
 	<div class="plate plate-wide">
-		前回の成績 [ <?= $logs[0]->point ?> /  <?= $word_num ?> ]
+		<?php
+		$logs = array_reverse($logs);
+		echo '前回の成績';
+		if (isset($logs[0])) {
+			echo ' [' . $logs[0]->point . ' / ' . $word_num . '] : ';
+			// TODO: time format
+			echo $logs[0]->time;
+		} else {
+			echo 'なし';
+		}
+		?>
 		<!--
 		<svg height="110px" width="100%">	
 		<?php
@@ -38,7 +48,7 @@ if ($is_login) {
 		}
 		?>
 		</svg>
-  -->
+		-->
 	</div>
 
 	<?php

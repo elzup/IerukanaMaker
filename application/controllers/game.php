@@ -166,6 +166,8 @@ class Game extends CI_Controller {
 		$post = $this->input->post();
 		$active_points = explode(',', $post['start_ids']);
 		$negative_points = explode(',', $post['ng_ids']);
+		$time = $post['time'];
+		$is_typing = $post['is_typing'];
 		if ($this->agent->is_referral()) {
 			$game_id_check = Game::get_game_id($this->agent->referrer());
 		}
@@ -173,11 +175,13 @@ class Game extends CI_Controller {
 			echo 'e:0';
 			return;
 		}
-		$this->game->increment_play_count($game_id);
-		$this->game->log_points($game_id, $active_points, $negative_points);
+		if (!$is_typing) {
+			$this->game->increment_play_count($game_id);
+			$this->game->log_points($game_id, $active_points, $negative_points);
+		}
 		$user = $this->user->get_main_user();
 		if (($user)) {
-			$this->game->regist_log($user->id_user, $game_id, count($active_points));
+			$this->game->regist_log($user->id_user, $game_id, count($active_points), $time);
 		}
 
 		$this->game->close();

@@ -105,7 +105,7 @@ $ ->
             $(@).html($(@).attr('ans'))
             $(@).addClass('ng')
             ng_ids.push $(@).attr 'nid'
-        if all_word_num < 5 || data_start_id.length >= 1 && game_mode != 'typing'
+        if all_word_num < 5 || data_start_id.length >= 1
             post_result(data_start_id, ng_ids)
 
     game_start = ->
@@ -193,6 +193,8 @@ $ ->
         data =
             start_ids: start_ids.join ","
             ng_ids: ng_ids.join ","
+            time: get_times(false)
+            is_typing:  game_mode == 'typing'
         $.ajax(
             type: "POST",
             url: "../game/result/" + game_id
@@ -363,10 +365,7 @@ $ ->
 
     btn_tweet.click ->
         hashtags = '言えるかな'
-        if timer_mode == 1
-            time = to_time_str_r(time_box.html())
-        else
-            time = to_time_str(time_box.html())
+        time = get_time_str()
         if game_mode != 'typing'
             if all_word_num == solve_count
                 text = "#{game_name}を#{solve_count}#{word_unit}全て言うことが出来ました！[#{time}]"
@@ -385,27 +384,32 @@ $ ->
         text = ""
         url = "https://twitter.com/intent/tweet?hashtags=#{hashtags}&text=#{text}"
         window.open(url)
-
     
-    to_time_str_r = (time) ->
-        ts = time.split(':')
-        ts2 = ts[2].split('.')
-        dtime = ((timer_input_val - (ts[0] * 60 + ts[1])) * 60 - ts2[0]) * 1000 - ts2[1] * 10
-        time_h = Math.floor(dtime/(60*60*1000))
-        dtime = dtime-(time_h*60*60*1000)
-        time_m = Math.floor(dtime/(60*1000))
-        dtime = dtime-(time_m*60*1000)
-        time_s = Math.floor(dtime/1000)
-        str = (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
-        return str
+    get_time_str = () ->
+        times = get_times(true)
+        return (if times["h"] then times["h"] + '時間' else '') + "" + (if times["m"] then times["m"] + '分' else '') + "" + times["s"] + '秒'
 
-    to_time_str = (time) ->
+    get_times = (is_split)->
+        time = time_box.html()
+        times = []
         ts = time.split(':')
-        time_h = ts[0] * 1
-        time_m = ts[1] * 1
         ts2 = ts[2].split('.')
-        time_s = ts2[0] * 1
-        return (if time_h then time_h + '時間' else '') + "" + (if time_m then time_m + '分' else '') + "" + time_s + '秒'
+        if timer_mode == 1
+            dtime = (((timer_input_val - (ts[0] * 60 + ts[1])) * 60 - ts2[0]) * 1000) - (ts2[1] * 10)
+            return dtime if !is_split
+            times["h"] = Math.floor(dtime/(60*60*1000))
+            dtime = dtime-(times["h"]*60*60*1000)
+            times["m"] = Math.floor(dtime/(60*1000))
+            dtime = dtime-(times["m"]*60*1000)
+            times["s"] = Math.floor(dtime/1000)
+            times["ms"] = dtime % 1000
+        else
+            return (ts[0] * 3600000) + (ts[1] * 60000) + (ts2[0] * 1000) + (ts2[1] * 10) if !is_split
+            times["h"] = ts[0] * 1
+            times["m"] = ts[1] * 1
+            times["s"] = ts2[0] * 1
+            times["ms"] = ts2[1] * 1
+        return times
 
     $('#update-btn').click ->
         data = get_forms()

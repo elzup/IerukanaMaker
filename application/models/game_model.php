@@ -259,8 +259,8 @@ class Game_model extends CI_Model {
 		$this->_update_points($game_id, $data);
 	}
 
-	public function regist_log($user_id, $game_id, $point) {
-		$this->_insert_log($user_id, $game_id, $point);
+	public function regist_log($user_id, $game_id, $point, $time) {
+		$this->_insert_log($user_id, $game_id, $point, $time);
 		// 制限以上のログは消去
 		$c = count($this->_select_log($user_id, $game_id)) - NUM_LOG_RESULT;
 		if ($c > 0) {
@@ -510,10 +510,11 @@ class Game_model extends CI_Model {
 		$this->db->delete(DB_TN_WORDS);
 	}
 
-	private function _insert_log($user_id, $game_id, $point) {
+	private function _insert_log($user_id, $game_id, $point, $time) {
 		$this->db->set(DB_CN_LOG_USER_ID, $user_id);
 		$this->db->set(DB_CN_LOG_GAME_ID, $game_id);
 		$this->db->set(DB_CN_LOG_POINT, $point);
+		$this->db->set(DB_CN_LOG_TIME, $time);
 		$this->db->insert(DB_TN_LOG);
 		return $this->db->insert_id();
 	}

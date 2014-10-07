@@ -151,6 +151,7 @@ define('DB_TN_LOG', 'log');
 define('DB_CN_LOG_USER_ID', 'user_id');
 define('DB_CN_LOG_GAME_ID', 'game_id');
 define('DB_CN_LOG_POINT', 'point');
+define('DB_CN_LOG_TIME', 'time');
 define('DB_CN_LOG_LOGGED_AT', 'logged_at');
 
 define('DB_CN_AS_COUNT', 'ascount');
