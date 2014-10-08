@@ -9,22 +9,29 @@
 if (isset($col)) {
 	echo '<div class="col-md-' . $col . '">';
 }
-if ($is_login) {
-	// ログイン時
-	?>
-	<div class="plate plate-tab">
-		<span class="sub-title">
-			履歴
-		</span>
-	</div>
-	<div class="plate plate-wide">
+?>
+<div class = "plate plate-tab">
+	<span class = "sub-title">
+		履歴
+	</span>
+</div>
+<div class="plate plate-wide">
+	<?php if ($is_login) { ?>
 		<?php
 		$logs = array_reverse($logs);
-		echo '前回の成績';
+		echo '<p>前回の成績 : ';
 		if (isset($logs[0])) {
-			echo ' [' . $logs[0]->point . ' / ' . $word_num . '] : ';
+			if ($logs[0]->point == $word_num) {
+				echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
+				echo '/' . '<span class="point">' . $word_num . '</span>';
+				echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
+			} else {
+				echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
+				echo '/' . '<span class="point">' . $word_num . '</span>';
+				echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
+			}
+			echo '</p>';
 			// TODO: time format
-			echo $logs[0]->time;
 		} else {
 			echo 'なし';
 		}
@@ -49,19 +56,12 @@ if ($is_login) {
 		?>
 		</svg>
 		-->
-	</div>
-
-	<?php
-} else {
-	// 非ログイン時
-	?>
-	<div class="plate plate-tab">
-		<span class="sub-title">
-			非ログインユーザです
-		</span>
-	</div>
-	<?php
-}
+	<?php } else { ?>
+		ログインしていません
+		<?php
+	}
+	?> </div>
+<?php
 if (isset($col)) {
 	echo '</div>';
 }

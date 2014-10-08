@@ -356,3 +356,18 @@ if (!function_exists('array_rand_values')) {
 	}
 
 }
+
+if (!function_exists('time_to_str_ms')) {
+
+	function time_to_str_ms($num) {
+		$h = floor($num / (60 * 60 * 1000));
+		$num %= 60 * 60 * 1000;
+		$m = floor($num / (60 * 1000));
+		$num %= 60 * 1000;
+		$s = floor($num / 1000);
+		$ms = $s % 1000;
+		return ($h ? "{$h}時間" : '') . ($m ? "{$m}分" : '') . "{$s}秒{$ms}";
+
+	}
+
+}

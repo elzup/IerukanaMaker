@@ -13,9 +13,7 @@
  */
 function to_ans_check($str) {
 	return preg_replace(
-		array('#[・ ()（）「」/]#u' , '#[ー-]#u' , '#([+]|たす|タス|プラス|ぷらす)#' , '#\.#' , '/#/' , '#[?？]#u' , '#[！!]#u' , '#>#' , '#<#' , '#([&＆]|アンド|あんど)#u') , 
-		array(''                    , '__h'      , '__p'  , '__d'  , '__s' , '__q'      , '__e'      , '__l' , '__r' , '__a') , 
-		strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
+		array('#[・ ()（）「」/]#u', '#[ー-]#u', '#([+]|たす|タス|プラス|ぷらす)#', '#\.#', '/#/', '#[?？]#u', '#[！!]#u', '#>#', '#<#', '#([&＆]|アンド|あんど)#u'), array('', '__h', '__p', '__d', '__s', '__q', '__e', '__l', '__r', '__a'), strtolower(mb_convert_kana(mb_convert_kana($str, 'asKVc', 'utf8'), 'c', 'utf8')));
 }
 
 function to_valuetext($text, $gamemode) {
@@ -88,9 +86,7 @@ function mbStringToArray($sStr, $sEnc = 'UTF-8') {
 		<?php
 		$this->load->view('listparts', array('items' => $games_tag, 'title' => 'おすすめ言えるかな', 'col' => 6, 'num' => 5));
 //		$this->load->view('listparts', array('items' => $feed_items, 'title' => '記事紹介', 'col' => 6, 'num' => 5));
-		if ($user) {
-			$this->load->view('loggraphparts', array('logs' => $logs, 'col' => 6, 'is_login' => !!$user, 'word_num' => $game->words_num));
-		}
+		$this->load->view('loggraphparts', array('logs' => $logs, 'col' => 6, 'is_login' => !!$user, 'word_num' => $game->words_num));
 		?>
 	</div>
 	<div class="game-container">
