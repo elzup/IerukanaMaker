@@ -259,12 +259,23 @@ class Game_model extends CI_Model {
 		$this->_update_points($game_id, $data);
 	}
 
-	public function regist_log($user_id, $game_id, $point, $time) {
-		$this->_insert_log($user_id, $game_id, $point, $time);
+	public function regist_log(Logobj $log) {
+		$this->_insert_log($log);
 		// 制限以上のログは消去
-		$c = count($this->_select_log($user_id, $game_id)) - NUM_LOG_RESULT;
+		$c = count($this->_select_log($log->user_id, $log->game_id)) - NUM_LOG_RESULT;
 		if ($c > 0) {
-			$this->_pop_log($user_id, $game_id, $c);
+			$this->_pop_log($log->user_id, $log->game_id, $c);
+		}
+		$this->_update_best_log($log);
+	}
+
+	private function _update_best_log(Logobj $log) {
+		$log_best = $this->_select_best_log($log->user_id, $log->game_id);
+		// ベスト記録が無い または 新記録がベストより大きい
+		if (!$log_best ||
+			$log->compare_to(new Logobj($log_best)) == 1) {
+			$this->_delete_best_log($log->user_id, $log->game_id);
+			$this->_insert_log($log, TRUE);
 		}
 	}
 
@@ -273,7 +284,8 @@ class Game_model extends CI_Model {
 		return $logs;
 	}
 
-	public static function to_logs() {
+	public function get_best_log($user_id, $game_id) {
+		return new Logobj($this->_select_best_log($user_id, $game_id));
 	}
 
 	/**
@@ -510,28 +522,42 @@ class Game_model extends CI_Model {
 		$this->db->delete(DB_TN_WORDS);
 	}
 
-	private function _insert_log($user_id, $game_id, $point, $time) {
-		$this->db->set(DB_CN_LOG_USER_ID, $user_id);
-		$this->db->set(DB_CN_LOG_GAME_ID, $game_id);
-		$this->db->set(DB_CN_LOG_POINT, $point);
-		$this->db->set(DB_CN_LOG_TIME, $time);
+	private function _insert_log(Logobj $log, $is_best = FALSE) {
+		$this->db->set(DB_CN_LOG_USER_ID, $log->user_id);
+		$this->db->set(DB_CN_LOG_GAME_ID, $log->game_id);
+		if ($is_best) {
+			$this->db->set(DB_CN_LOG_IS_BEST, TRUE);
+		}
+		$this->db->set(DB_CN_LOG_POINT, $log->point);
+		$this->db->set(DB_CN_LOG_TIME, $log->time);
 		$this->db->insert(DB_TN_LOG);
 		return $this->db->insert_id();
 	}
 
-	private function _select_log($user_id, $game_id) {
+	private function _select_log($user_id, $game_id, $is_best = FALSE) {
 		$this->db->where(DB_CN_LOG_USER_ID, $user_id);
 		$this->db->where(DB_CN_LOG_GAME_ID, $game_id);
+		$this->db->where(DB_CN_LOG_IS_BEST, $is_best);
 		$query = $this->db->get(DB_TN_LOG);
 		return $query->result();
 	}
 
-	private function _pop_log($user_id, $game_id, $num = 1) {
+	private function _pop_log($user_id, $game_id, $num = 1, $is_best = FALSE) {
 		$this->db->where(DB_CN_LOG_USER_ID, $user_id);
 		$this->db->where(DB_CN_LOG_GAME_ID, $game_id);
+		$this->db->where(DB_CN_LOG_IS_BEST, $is_best);
 		$this->db->order_by(DB_CN_LOG_LOGGED_AT, 'ASC');
 		$this->db->limit($num);
 		$this->db->delete(DB_TN_LOG);
+	}
+
+	private function _delete_best_log($user_id, $game_id) {
+		$this->_pop_log($user_id, $game_id, 1, TRUE);
+	}
+
+	private function _select_best_log($user_id, $game_id) {
+		$logs = $this->_select_log($user_id, $game_id, TRUE);
+		return isset($logs[0]) ? $logs[0] : NULL;
 	}
 
 	/**
@@ -624,18 +650,17 @@ class Game_model extends CI_Model {
 		return $logs;
 	}
 
-
 	/**
 	 * 
 	 * @param Gameobj $game
-	 * @param array $active_points
-	 * @param array $negative_points
+	 * @param array $active_points_b
+	 * @param array $negative_points_b
 	 * @return array
 	 */
-	public static function to_sql_points(Gameobj $game, $active_points, $negative_points) {
+	public static function to_sql_points(Gameobj $game, $active_points_b, $negative_points_b) {
 		$data = array();
-		$active_points = array_filter($active_points, "strlen");
-		$negative_points = array_filter($negative_points, "strlen");
+		$active_points = array_filter($active_points_b, "strlen");
+		$negative_points = array_filter($negative_points_b, "strlen");
 		$max = count($active_points) < 100 ? count($active_points) : 100;
 		foreach ($active_points as $i => $p) {
 			$data[] = array(

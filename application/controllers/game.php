@@ -59,6 +59,7 @@ class Game extends CI_Controller {
 		$logs = array();
 		if ($user) {
 			$logs = $this->game->get_logs($user->id_user, $game->id);
+			$logs['best'] = $this->game->get_best_log($user->id_user, $game->id);
 		}
 
 		$games_hot = $this->game->get_games_hot();
@@ -164,8 +165,14 @@ class Game extends CI_Controller {
 
 	public function result($game_id = NULL) {
 		$post = $this->input->post();
-		$active_points = explode(',', $post['start_ids']);
-		$negative_points = explode(',', $post['ng_ids']);
+		$active_points = array();
+		$negative_points = array();
+		if (($ids = $post['start_ids'])) {
+			$active_points = explode(',', $ids);
+		}
+		if (($ids = $post['ng_ids'])) {
+			$negative_points = explode(',', $ids);
+		}
 		$time = $post['time'];
 		$is_typing = $post['is_typing'];
 		if ($this->agent->is_referral()) {
@@ -181,7 +188,12 @@ class Game extends CI_Controller {
 		}
 		$user = $this->user->get_main_user();
 		if (($user)) {
-			$this->game->regist_log($user->id_user, $game_id, count($active_points), $time);
+			$log = new Logobj();
+			$log->game_id = $game_id;
+			$log->user_id = $user->id_user;
+			$log->time = $time;
+			$log->point = count($active_points);
+			$this->game->regist_log($log);
 		}
 
 		$this->game->close();

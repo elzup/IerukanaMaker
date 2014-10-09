@@ -19,21 +19,21 @@ if (isset($col)) {
 	<?php if ($is_login) { ?>
 		<?php
 		$logs = array_reverse($logs);
-		echo '<p>前回の成績 : ';
 		if (isset($logs[0])) {
-			if ($logs[0]->point == $word_num) {
-				echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
-				echo '/' . '<span class="point">' . $word_num . '</span>';
-				echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
-			} else {
-				echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
-				echo '/' . '<span class="point">' . $word_num . '</span>';
-				echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
-			}
+			echo '<p class="' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">前回の記録 : ';
+			echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
+			echo '/' . '<span class="point">' . $word_num . '</span>';
+			echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
+			echo '</p>';
+
+			echo '<p class="' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">ベストレコード : ';
+			echo '<span class="maxpiont">' . $logs['best']->point . '</span>';
+			echo '/' . '<span class="point">' . $word_num . '</span>';
+			echo '<span class="time">' . time_to_str_ms($logs['best']->time) . '</span>';
 			echo '</p>';
 			// TODO: time format
 		} else {
-			echo 'なし';
+			echo '<p>前回の成績 : なし</p>';
 		}
 		?>
 		<!--

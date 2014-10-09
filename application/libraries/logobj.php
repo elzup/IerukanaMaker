@@ -19,4 +19,14 @@ class Logobj {
 		$this->timestamp = time($obj->{DB_CN_LOG_LOGGED_AT});
 	}
 
+	public function compare_to(Logobj $log) {
+		if ($this->point != $log->point) {
+			return $this->point > $log->point ? 1 : -1;
+		}
+		if ($this->time == $log->time) {
+			return 0;
+		}
+		return $this->time < $log->time ? 1 : -1;
+	}
+
 }

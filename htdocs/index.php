@@ -22,7 +22,7 @@
 /**
  * url floating
  */
-if($_SERVER['SERVER_NAME'] !== 'localhost') {
+if ($_SERVER['SERVER_NAME'] !== 'localhost' && strpos($_SERVER['SERVER_NAME'], '192.168.1.') === FALSE) {
     if($_SERVER['REQUEST_URI'] != "/" && substr($_SERVER['REQUEST_URI'],-1) == '/'){
         header("Location: http://ierukana.elzup.com".substr($_SERVER['REQUEST_URI'],0,-1), TRUE, 301);
         exit;
