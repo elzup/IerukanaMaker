@@ -20,18 +20,21 @@ if (isset($col)) {
 		<?php
 		$logs = array_reverse($logs);
 		if (isset($logs[0])) {
-			echo '<p class="' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">前回の記録 : ';
-			echo '<span class="maxpiont">' . $logs[0]->point . '</span>';
-			echo '/' . '<span class="point">' . $word_num . '</span>';
-			echo '<span class="time">' . time_to_str_ms($logs[0]->time) . '</span>';
-			echo '</p>';
+			echo '<table>';
+			echo '<tr class="log ' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">';
+			echo '<td class="title">前回の記録</td>';
+			echo '<td><span class="maxpiont">' . $logs[0]->point . '</span>';
+			echo '/' . '<span class="point">' . $word_num . '</span></td>';
+			echo '<td class="time">' . time_to_str_ms($logs[0]->time) . '</td>';
+			echo '</tr>';
 
-			echo '<p class="' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">ベストレコード : ';
-			echo '<span class="maxpiont">' . $logs['best']->point . '</span>';
-			echo '/' . '<span class="point">' . $word_num . '</span>';
-			echo '<span class="time">' . time_to_str_ms($logs['best']->time) . '</span>';
-			echo '</p>';
-			// TODO: time format
+			echo '<tr class="log ' . ($logs[0]->point == $word_num ? 'time' : 'point') . '">';
+			echo '<td class="title">ベストレコード</td>';
+			echo '<td><span class="maxpiont">' . $logs['best']->point . '</span>';
+			echo '/' . '<span class="point">' . $word_num . '</span></td>';
+			echo '<td class="time">' . time_to_str_ms($logs['best']->time) . '</td>';
+			echo '</tr>';
+			echo '</table>';
 		} else {
 			echo '<p>前回の成績 : なし</p>';
 		}
