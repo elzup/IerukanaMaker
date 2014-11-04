@@ -161,7 +161,7 @@ define('MYSQL_TIMESTAMP', 'Y-m-d H:i:s');
 
 define('SORT_HOT', 'hot');
 define('SORT_NEW', 'new');
-define('SORT_RECENT', 'new');
+define('SORT_RECENT', 'recent');
 
 define('GAME_MODE_NORMAL', 'normal');
 define('GAME_MODE_EASY', 'easy');
