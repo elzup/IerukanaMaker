@@ -22,7 +22,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 		<?php if (isset($rss_link)) { ?>
 			<link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $rss_link ?>" />
 		<?php } ?>
-
+        <script src="http://localhost:8080/target/target-script-min.js#ierukana"></script>
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="<?= base_url(PATH_BOOTSTRAP_CSS) ?>" media="screen" />
 		<link rel="stylesheet" href="<?= base_url(PATH_BOOTSTRAP_CSS_FA) ?>" media="screen" />
@@ -35,6 +35,24 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 		<?php
 		if (ENVIRONMENT !== ENVIRONMENT_DEVELOPMENT) {
 			echo tag_script_js(base_url(PATH_GOOGLE_ANALYTICS_JS));
+			?>
+			<script>
+				(function (i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function () {
+						(i[r].q = i[r].q || []).push(arguments)
+					},
+							i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o) [0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+				ga('create', 'UA-49286104-2', 'auto');
+				ga('send', 'pageview');
+			</script>'
+			<?php
 		}
 		?>
 	</head>
