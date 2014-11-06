@@ -67,15 +67,17 @@ $ ->
                     judge = JUDGE_ALREADY if judge != JUDGE_OK && word_k == word_kt
                     continue
                 judge = JUDGE_OK
-                ans = td.attr 'ans'
                 word_k = word_k.substr(sp_end)
                 ans_form.val(word_k)
                 # 正解した場合
-                td.html(ans)
+                td.each ->
+                    ans = $(@).attr 'ans'
+                    $(@).html(ans)
+                    
                 td.addClass('ok')
                 # 人気アイテムの統計
                 data_start_id.push td.attr 'nid'
-                solve_count++
+                solve_count += td.size()
                 process_count_span.html(solve_count)
                 if solve_count == all_word_num
                     game_end()

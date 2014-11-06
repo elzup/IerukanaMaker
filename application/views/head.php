@@ -51,7 +51,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 				ga('create', 'UA-49286104-2', 'auto');
 				ga('send', 'pageview');
-			</script>'
+			</script>
 			<?php
 		}
 		?>

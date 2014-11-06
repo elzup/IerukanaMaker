@@ -45,7 +45,7 @@
       }).toLowerCase();
     };
     replay = function() {
-      var ans, c, judge, sp_end, td, word, word_k, word_kp, word_kt, _i;
+      var c, judge, sp_end, td, word, word_k, word_kp, word_kt, _i;
       word = ans_form.val();
       if (game_flag !== 1 || !word) {
         return;
@@ -70,13 +70,16 @@
             continue;
           }
           judge = JUDGE_OK;
-          ans = td.attr('ans');
           word_k = word_k.substr(sp_end);
           ans_form.val(word_k);
-          td.html(ans);
+          td.each(function() {
+            var ans;
+            ans = $(this).attr('ans');
+            return $(this).html(ans);
+          });
           td.addClass('ok');
           data_start_id.push(td.attr('nid'));
-          solve_count++;
+          solve_count += td.size();
           process_count_span.html(solve_count);
           if (solve_count === all_word_num) {
             game_end();
