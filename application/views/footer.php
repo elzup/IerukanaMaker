@@ -25,8 +25,6 @@
 						<b>リンク</b>
 						<ul>
 							<li><a href="//tohyomaker.com/" target="_blank">投票メーカー</a>
-							<li><a href="//www.hima-tsubu.net/other/amusing/" target="_blank">ヒマツブネット</a>
-							<li><a href="//nyan.eggtree.net/" target="_blank">にゃんてな！</a>
 							<li><a href="https://twitter.com/ieru_kana" class="twitter-follow-button" data-show-count="false">Follow @ierukana</a>
 						</ul>
 					</div>
@@ -42,18 +40,10 @@
 									sharebtn_twitter($text, base_url(), TRUE, TRUE);
 									?>
 								</div>
-								<div class="facebook-btn">
-									<div id="fb-root"></div>
-									<script>(function (d, s, id) {
-											var js, fjs = d.getElementsByTagName(s)[0];
-											if (d.getElementById(id))
-												return;
-											js = d.createElement(s);
-											js.id = id;
-											js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
-											fjs.parentNode.insertBefore(js, fjs);
-										}(document, 'script', 'facebook-jssdk'));</script>
-								</div>
+							</li>
+							<li>
+								<div class="fb-share-button" data-href="https://ierukana.elzup.com" data-layout="button_count"></div>
+							</li>
 						</ul>
 					</div>
 				</div>

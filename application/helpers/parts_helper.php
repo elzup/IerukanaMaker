@@ -70,7 +70,7 @@ if (!function_exists('attr_tooltip'))
 
 }
 
-if (!function_exists('sharebtn_twitter'))
+if (!function_exists('harebtn_twitter'))
 {
 
 	function sharebtn_twitter($text, $uri, $name_text = 'ツイートする', $is_count = TRUE, $is_large = FALSE)
