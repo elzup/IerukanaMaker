@@ -7,16 +7,26 @@ $is_exist_next = count($games) == NUM_GAME_PAR_SEARCHPAGE + 1;
 $is_nogame = count($games) == 0;
 $is_exist_prev = $page_index != 0;
 
-function tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag) {
+function tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag, $m = NULL) {
 	if ($is_tag) {
 		$prev_url = base_url(PATH_TAG . $q . '/' . ($page_index - 1));
 		$next_url = base_url(PATH_TAG . $q . '/' . ($page_index + 1));
+        echo 'is_tag';
 	} else {
-		$prev_url = ($q ? '?q=' . urlencode($q) : "");
+		if ($m) {
+			$prev_url = '?m=' . $m;
+		} else {
+			$prev_url = ($q ? '?q=' . urlencode($q) : "");
+		}
 		if ($page_index != 1) {
 			$prev_url .= '&n=' . ($page_index - 1);
 		}
-		$next_url = ($q ? '?q=' . urlencode($q) : "") . '&n=' . ($page_index + 1);
+		if ($m) {
+			$next_url = '?m=' . $m;
+		}else  {
+			$next_url = ($q ? '?q=' . urlencode($q) : "");
+		}
+		$next_url .= '&n=' . ($page_index + 1);
 	}
 	?>
 	<ul class="pager">
@@ -31,7 +41,7 @@ function tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag) {
 		<div class="col-md-offset-2 col-md-8">
 			<?php
 			$this->load->view('searchform');
-			tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag);
+			tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag, $m);
 			if (!$is_nogame) {
 				foreach ($games as $i => $game) {
 					if ($i == NUM_GAME_PAR_SEARCHPAGE) {
@@ -45,7 +55,7 @@ function tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag) {
 					</div>
 					<?php
 				}
-				tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag);
+				tag_pager($is_exist_prev, $is_exist_next, $page_index, $q, $is_tag, $m);
 			} else {
 				?>
 				言えるかなは見つかりませんでした
