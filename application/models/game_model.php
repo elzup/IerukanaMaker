@@ -107,7 +107,7 @@ class Game_model extends CI_Model {
 	 * @param int $offset
 	 * @return Gameobj[]
 	 */
-	function get_games_favorited($user_id, $limit, $offset = 0) {
+	function get_games_favorited($user_id, $limit = NUM_GAME_PAR_SEARCHPAGE, $offset = 0) {
 		$ids = $this->get_ids_favorited($user_id);
 		if (empty($ids)) {
 			return array();
