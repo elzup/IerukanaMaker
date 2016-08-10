@@ -22,7 +22,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8")) {
 		<?php if (isset($rss_link)) { ?>
 			<link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $rss_link ?>" />
 		<?php } ?>
-        <script src="http://localhost:8080/target/target-script-min.js#ierukana"></script>
+<!--        <script src="/target/target-script-min.js#ierukana"></script>-->
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="<?= base_url(PATH_BOOTSTRAP_CSS) ?>" media="screen" />
 		<link rel="stylesheet" href="<?= base_url(PATH_BOOTSTRAP_CSS_FA) ?>" media="screen" />

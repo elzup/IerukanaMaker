@@ -45,10 +45,10 @@ class Search extends CI_Controller {
 			$meta->description = '言えるかなのキーワード検索結果';
 			$meta->no_meta = TRUE;
 		}
-		$this->_call_views($q, $page_index, $meta, $games);
+		$this->_call_views($q, $method, $page_index, $meta, $games);
 	}
 
-	private function _call_views($q, $page_index, $meta, $games) {
+	private function _call_views($q, $m, $page_index, $meta, $games) {
 		$user = $this->user->get_main_user();
 		$messages = array();
 		if (($posted = $this->session->userdata('alert'))) {
@@ -62,7 +62,7 @@ class Search extends CI_Controller {
 		$this->load->view('breadcrumbs', array('list' => array('TOP' => base_url(), '検索 言えるかな' => TRUE)));
 		$this->load->view('title', array('title' => $meta->get_title()));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('listpage', array('games' => $games, 'page_index' => $page_index, 'q' => $q));
+		$this->load->view('listpage', array('games' => $games, 'page_index' => $page_index, 'q' => $q, 'm' => $m));
 		$this->load->view('container_foot');
 		$this->load->view('bodywrapper_foot');
 		$this->load->view('footer');
