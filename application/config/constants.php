@@ -111,8 +111,8 @@ define('PATH_JQUERY_TEXT_CONVERT', PATH_LIB . 'jquery-supertextconverter-plugin.
 define('URL_JQUERY_OFFLINE', PATH_LIB . 'jquery-2.1.1.min.js');
 
 /* online lib url */
-define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');
-define('URL_YAHOO_RESET_CSS', 'http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css');
+define('URL_TWITTER_WIDGETS', 'https://platform.twitter.com/widgets.js');
+define('URL_YAHOO_RESET_CSS', 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css');
 define('URL_JQUERY', 'https://code.jquery.com/jquery.js');
 
 /* DB constnats */
